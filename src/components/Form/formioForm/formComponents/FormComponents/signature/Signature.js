@@ -69,7 +69,7 @@ export default class Signature extends ValueComponent {
 
   getElements() {
     const { component } = this.props;
-
+    const label=component.label;
     if (this.props.readOnly) {
       const image = typeof this.state.value === 'object' ? this.state.value.item : this.state.value;
       return (
@@ -86,6 +86,7 @@ export default class Signature extends ValueComponent {
       <View style={styles.signatureWrapper}>
      {this.state.value && this.state.value.item ?
      <View style={styles.imageWrapper}>
+     
          <Image
     style={styles.signature}
     source={{uri: this.state.value.item}}
@@ -94,6 +95,15 @@ export default class Signature extends ValueComponent {
        </View> :null
 
 }
+<Text style={{
+             flex: 1,
+             marginTop: 20,
+             marginHorizontal: 0,
+             padding: 10,
+             borderWidth: 0,
+             fontSize: 16,
+             lineHeight: 16,
+        }}>{label}</Text>
         <Button
        icon={
         <Icon

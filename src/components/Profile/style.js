@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   headSectionContainer: {
     marginRight: 'auto',
+    flexDirection:'row'
   },
   contentContainer: {
     flex: 1,

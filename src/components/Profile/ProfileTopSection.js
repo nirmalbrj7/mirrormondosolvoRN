@@ -5,31 +5,24 @@ import {Button} from 'react-native-elements';
 
 import globalStyles from '../../globalStyles';
 import styles from './style';
-
+import { Avatar } from 'react-native-paper';
 function ProfileTopSection(props) {
   const {name, email, isConfirmed, sendEmailVerification, sentEmail} = props;
 
   return (
     <View style={styles.headSectionContainer}>
+   
+      <Avatar.Icon size={80} icon="user" />
+      <View style={{marginHorizontal:20,marginTop:20}}>
       <Text style={globalStyles.text}>{name}</Text>
       <Text style={globalStyles.text}>
         {email}
-        {' - '}
-        {isConfirmed ? (
-          <Text style={globalStyles.successText}>Confirmed</Text>
-        ) : (
-          <Text style={globalStyles.errorText}>Not confirmed</Text>
-        )}
+       
+   
       </Text>
-      {!isConfirmed && !sentEmail && (
-        <Button
-          onPress={sendEmailVerification}
-          title="Send Email Verification"
-        />
-      )}
-      {sentEmail && !isConfirmed && (
-        <Text style={globalStyles.text}>Check you email.</Text>
-      )}
+      </View>
+
+  
     </View>
   );
 }

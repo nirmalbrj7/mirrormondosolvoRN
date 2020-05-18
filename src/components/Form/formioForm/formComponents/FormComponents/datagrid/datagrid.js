@@ -110,14 +110,18 @@ else{
       //if(!data[key]){
     return (
       <View >
-        <Text>{label}</Text>
-        <Button
-      style={{width: 250,
-        marginTop : 10,
-        marginHorizontal: 0,
-        paddingHorizontal: 0,
-        alignSelf:'center',
-        borderRadius:6}}
+        <Text style={{
+             flex: 1,
+             marginTop: 20,
+             marginHorizontal: 0,
+             padding: 10,
+             borderWidth: 0,
+             fontSize: 16,
+             lineHeight: 16,
+        }}>{label}</Text>
+
+
+<Button
        icon={
         <Icon
           name="edit"
@@ -126,8 +130,26 @@ else{
           color="white"
         />
       }
-      title="AddCard"
-      onPress={(e)=>this.onConfirm(mycomp,e,'add',this.state)}/>
+          title="AddCard"
+          buttonStyle={{
+            width: 250,
+            marginTop:  10,
+            marginHorizontal: 0,
+            paddingHorizontal: 0,
+            alignSelf:'center',
+            borderRadius:6
+          }}
+          onPress={(e)=>this.onConfirm(mycomp,e,'add',this.state)}
+          backgroundColor={'transparent'}
+          color={this.props.colors.primary1Color}
+        >
+
+          </Button>
+
+
+
+
+      
       {
         /**
          *  <Button title="AddCard"

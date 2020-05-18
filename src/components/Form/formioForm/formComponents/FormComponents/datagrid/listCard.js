@@ -84,8 +84,8 @@ export const listCard = (props) => {
                     const FormioElement = FormioComponents.getComponent(component.type);
                     if (!FormioElement) return null;
                     if (mycomp.checkConditional(component, listcomponent.row)) {
-                      return (<View>
-                        <Text>{component.datagridId}</Text>
+                      return (
+                       
                         <FormioElement
                           {...listcomponent}
                           readOnly={listcomponent.isDisabled(component)}
@@ -97,7 +97,7 @@ export const listCard = (props) => {
                         //callbackau6={myCallback}
 
                         />
-                      </View>
+                     
 
                       )
 
@@ -125,7 +125,7 @@ export const listCard = (props) => {
 
   }
 
-  return (<View><Text>YAHA{JSON.stringify(newstate)}</Text></View>);
+  return (<View></View>);
 
 
 
