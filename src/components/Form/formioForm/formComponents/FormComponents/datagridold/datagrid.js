@@ -44,7 +44,7 @@ const FormView = () => {
     <View>
 
 
-<Text>SSS{JSON.stringify('ssss')}</Text>
+
 <Button title="Add" onPress={(event) => dispatch({ type: 'add_card',payload:'aaaa' }) }/>
 </View>
   )

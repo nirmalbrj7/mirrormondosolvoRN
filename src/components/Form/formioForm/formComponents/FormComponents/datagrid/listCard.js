@@ -16,7 +16,7 @@ export const listCard = (props) => {
   //dispatch({ type: 'select_card',payload:initdata});
 
   const currentCard = useSelector(state => {
-    console.log("STATE" + JSON.stringify(state.datagridreducer))
+    //console.log("STATE" + JSON.stringify(state.datagridreducer))
     return state.datagridreducer;
   });
 
@@ -42,77 +42,86 @@ export const listCard = (props) => {
     console.log('empty 6');
     // Object is empty (Would return true in this example)
   } else {
-    if (newstate.value.item) {
-      const cardData = newstate.value.item;
+    if (newstate) {
+      const cardData = newstate;
       //const removeprops
+      var result = cardData.filter(value => JSON.stringify(value) !== '[]');
       return (<View>
-        <FlatList
-          data={cardData}
-          renderItem={({ item }) => (
-            <View style={styles.item}>
-              <Card
-                style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}
-                onPress={(event) => { dispatch({ type: 'select_card', payload: item.id }) }}
-              >
-                <Card.Title title={`Card No`}
 
 
-                  right={() => (
-                    <Icon
-                      raised
-                      name='close'
-                      type='font-awesome'
-                      color='#f50'
-                      style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}
-                      onPress={(event) => { props.action(item.id) }} />
+    
+      <FlatList
+      data={result}
+      renderItem={({ item,datagridIndex }) => (
+       
+        <View style={styles.item}>
+       
+          <Card
+            style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}
+            onPress={(event) => { dispatch({ type: 'select_card', payload: item.id }) }}
+          >
+    
+            <Card.Title title={`Card No`}
 
 
-                  )}
-                />
-                <Card.Content>
-
-                  {ourcomponent.map((component, index) => {
-                    component.datagridItem = parentKey;
-                    component.datagridId = item.id;
-                    const key = component.key || component.type + index;
-
-                    const value = (item.hasOwnProperty(key) ? item[key] : listcomponent.values && listcomponent.values.hasOwnProperty(component.key)
-                      ? mycomp.values[component.key]
-                      : null);
+              right={() => (
+                <Icon
+                  raised
+                  name='close'
+                  type='font-awesome'
+                  color='#f50'
+                  style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}
+                  onPress={(event) => { props.action(item.id) }} />
 
 
-                    const FormioElement = FormioComponents.getComponent(component.type);
-                    if (!FormioElement) return null;
-                    if (mycomp.checkConditional(component, listcomponent.row)) {
-                      return (
-                       
-                        <FormioElement
-                          {...listcomponent}
-                          readOnly={listcomponent.isDisabled(component)}
-                          name={component.key}
-                          key={key}
-                          component={component}
-                          value={value}
-                          dgId={item.id}
-                        //callbackau6={myCallback}
+              )}
+            />
+            <Card.Content>
 
-                        />
-                     
+              {ourcomponent.map((component, index) => {
+                component.datagridItem = parentKey;
+                component.datagridIndex = datagridIndex;
+                component.datagridId = item.id;
+                const key = component.key || component.type + index;
 
-                      )
-
-                    }
-                    return null;
-                  })
+                const value = (item.hasOwnProperty(key) ? item[key] : listcomponent.values && listcomponent.values.hasOwnProperty(component.key)
+                  ? mycomp.values[component.key]
+                  : null);
 
 
-                  }
-                </Card.Content>
-              </Card>
-            </View>
-          )}
-          keyExtractor={item => item.id}
-        />
+                const FormioElement = FormioComponents.getComponent(component.type);
+                if (!FormioElement) return null;
+                if (mycomp.checkConditional(component, listcomponent.row)) {
+                  return (
+                   
+                    <FormioElement
+                      {...listcomponent}
+                      readOnly={listcomponent.isDisabled(component)}
+                      name={component.key}
+                      key={key}
+                      component={component}
+                      value={value}
+                      dgId={item.id}
+                    //callbackau6={myCallback}
+
+                    />
+                 
+
+                  )
+
+                }
+                return null;
+              })
+
+
+              }
+            </Card.Content>
+          </Card>
+        </View>
+      )}
+      keyExtractor={item => item.id}
+    />
+
 
 
 
@@ -120,7 +129,7 @@ export const listCard = (props) => {
       </View>);
     }
     else {
-      return (<View><Text>item 6aina{JSON.stringify(newstate.value.item)}</Text></View>)
+      return (<View><Text>item 6aina{JSON.stringify(newstate.value)}</Text></View>)
     }
 
   }

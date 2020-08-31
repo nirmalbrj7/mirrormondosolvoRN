@@ -28,9 +28,7 @@ export default class InputComponent extends MultiComponent {
     }
   }
 
-  onChangeInput(value,id) {
-
-    // Allow components to respond to onChange event.
+  onChangeInput(value, id) {
     if (typeof this.onChangeCustom === 'function') {
       value = this.onChangeCustom(value);
     }
@@ -48,20 +46,20 @@ export default class InputComponent extends MultiComponent {
       newValue = value;
     }
     const validatedValue = this.validate(newValue);
-if(id){
-  this.setState({
-    isPristine: false,
-    hasChanges: true,
-    value: validatedValue,
-    cardId:'23333'
-  });
-}else{
-  this.setState({
-    isPristine: false,
-    hasChanges: true,
-    value: validatedValue,
-  });
-}
+    if (id) {
+      this.setState({
+        isPristine: false,
+        hasChanges: true,
+        value: validatedValue,
+        cardId: '23333'
+      });
+    } else {
+      this.setState({
+        isPristine: false,
+        hasChanges: true,
+        value: validatedValue,
+      });
+    }
 
   }
 

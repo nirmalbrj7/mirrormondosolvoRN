@@ -26,17 +26,11 @@ export default class Number extends InputComponent {
         id={component.key}
         data-index={index}
         name={name}
-
         value={fieldValue}
         defaultValue={fieldValue}
         placeholder={component.placeholder}
-
         disabled={!readOnly}
-
-        // type={'only-numbers'}
-
         keyboardType="numeric"
-
         onChange={this.onChange}
         style={[
           styles.inputSingleLine,

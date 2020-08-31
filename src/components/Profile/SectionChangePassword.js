@@ -1,26 +1,17 @@
 import React from 'react';
-import {Text, View, Alert, ActivityIndicator,ScrollView} from 'react-native';
-
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { Text, Alert, ActivityIndicator } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import auth from '@react-native-firebase/auth';
-
-import NetInfo from "@react-native-community/netinfo";
-import Background from '../../components/simple/Background';
-import Logo from '../../components/simple/Logo';
-import Header from '../../components/simple/Header';
 import Button from '../../components/simple/Button';
 import TextInput from '../../components/simple/TextInput';
-
 import globalStyles from '../../globalStyles';
 import styles from './style';
-
 import Strings from '../../constants/strings';
 import { theme } from '../../core/theme';
 export default class SectionChangePassword extends React.PureComponent {
   static navigationOptions = () => ({
     title: 'Change Password',
   });
-
   state = {
     oldPassword: '',
     newPassword: '',
@@ -33,7 +24,7 @@ export default class SectionChangePassword extends React.PureComponent {
   };
 
   handlePasswordChange = () => {
-    const {oldPassword, newPassword, newPasswordRepeat} = this.state;
+    const { oldPassword, newPassword, newPasswordRepeat } = this.state;
     let errorPasswordOld = '';
     let errorPassword = '';
     let errorPasswordRepeat = '';
@@ -66,8 +57,8 @@ export default class SectionChangePassword extends React.PureComponent {
       errorMessage: '',
     });
     if (!errorPasswordOld && !errorPassword && !errorPasswordRepeat) {
-      this.setState({loading: true});
-      const {currentUser} = auth();
+      this.setState({ loading: true });
+      const { currentUser } = auth();
 
       const cred = auth.EmailAuthProvider.credential(
         currentUser.email,
@@ -86,7 +77,7 @@ export default class SectionChangePassword extends React.PureComponent {
             loading: false,
           });
         })
-        .catch(({message = Strings.ERROR_DEFAULT}) =>
+        .catch(({ message = Strings.ERROR_DEFAULT }) =>
           this.setState({
             errorMessage: message,
             loading: false,
@@ -96,7 +87,7 @@ export default class SectionChangePassword extends React.PureComponent {
   };
 
   handleInputChange = inputName => text => {
-    this.setState({[inputName]: text});
+    this.setState({ [inputName]: text });
   };
 
   render() {
@@ -112,68 +103,53 @@ export default class SectionChangePassword extends React.PureComponent {
     } = this.state;
 
     return (
-<KeyboardAwareScrollView>
+      <KeyboardAwareScrollView>
 
-<Text style={globalStyles.text}>Change Password</Text>
+        <Text style={globalStyles.text}>Change Password</Text>
         {Boolean(errorMessage) && (
           <Text style={styles.changePasswordErrorMessage}>{errorMessage}</Text>
         )}
-
-        
-
-<TextInput
-        label="Old Password"
-        returnKeyType="next"
-        value={oldPassword}
-        onChangeText={this.handleInputChange('oldPassword')}
-        error={Boolean(errorPasswordOld)}
-        errorText={errorPasswordOld}
-        secureTextEntry
-        autoCapitalize="none"
-      />
-
-
- 
-<TextInput
-        label="New Password"
-        returnKeyType="next"
-        value={newPassword}
-        onChangeText={this.handleInputChange('newPassword')}
-        error={Boolean(errorPassword)}
-        errorText={errorPassword}
-        secureTextEntry
-        autoCapitalize="none"
-      />
-
-   
-
-<TextInput
-        label="Repeat New Password"
-        returnKeyType="next"
-        value={newPasswordRepeat}
-        onChangeText={this.handleInputChange('newPasswordRepeat')}
-        error={Boolean(errorPasswordRepeat)}
-        errorText={errorPasswordRepeat}
-        secureTextEntry
-        autoCapitalize="none"
-      />
-
-
-       
-
-          {loading ? (
-            <ActivityIndicator />
-          ) : (
+        <TextInput
+          label="Old Password"
+          returnKeyType="next"
+          value={oldPassword}
+          onChangeText={this.handleInputChange('oldPassword')}
+          error={Boolean(errorPasswordOld)}
+          errorText={errorPasswordOld}
+          secureTextEntry
+          autoCapitalize="none"
+        />
+        <TextInput
+          label="New Password"
+          returnKeyType="next"
+          value={newPassword}
+          onChangeText={this.handleInputChange('newPassword')}
+          error={Boolean(errorPassword)}
+          errorText={errorPassword}
+          secureTextEntry
+          autoCapitalize="none"
+        />
+        <TextInput
+          label="Repeat New Password"
+          returnKeyType="next"
+          value={newPasswordRepeat}
+          onChangeText={this.handleInputChange('newPasswordRepeat')}
+          error={Boolean(errorPasswordRepeat)}
+          errorText={errorPasswordRepeat}
+          secureTextEntry
+          autoCapitalize="none"
+        />
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
             <Button mode="contained"
-            
+
               onPress={this.handlePasswordChange}
               containerStyle={globalStyles.button}
             >Submit</Button>
           )}
+      </KeyboardAwareScrollView>
 
-      
-</KeyboardAwareScrollView>
-       
     );
   }
 }

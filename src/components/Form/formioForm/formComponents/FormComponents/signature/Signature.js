@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Image, Text, Modal } from 'react-native';
-import { Button,Icon } from 'react-native-elements/src/index';
+import { Button, Icon } from 'react-native-elements/src/index';
 import ValueComponent from '../sharedComponents/Value';
 import SignatureCapture from 'react-native-signature-capture';
 import DeviceInfo from 'react-native-device-info';
 import styles from './styles';
-//import Orientation from 'react-native-orientation';
 const isTablet = DeviceInfo.isTablet();
 
 export default class Signature extends ValueComponent {
@@ -58,8 +57,6 @@ export default class Signature extends ValueComponent {
 
   saveSignature() {
     this.signature.saveImage();
-    //   Orientation.removeSpecificOrientationListener(this._specificOrientationChange);
-    //Orientation.lockToPortrait();
   }
 
   clearSignature() {
@@ -69,9 +66,9 @@ export default class Signature extends ValueComponent {
 
   getElements() {
     const { component } = this.props;
-    const label=component.label;
+    const label = component.label;
+    const image = typeof this.state.value === 'object' ? this.state.value.item : this.state.value;
     if (this.props.readOnly) {
-      const image = typeof this.state.value === 'object' ? this.state.value.item : this.state.value;
       return (
         <View style={styles.imageWrapper}>
           <Image
@@ -84,43 +81,50 @@ export default class Signature extends ValueComponent {
     }
     return (
       <View style={styles.signatureWrapper}>
-     {this.state.value && this.state.value.item ?
-     <View style={styles.imageWrapper}>
-     
-         <Image
-    style={styles.signature}
-    source={{uri: this.state.value.item}}
-    resizeMode={'stretch'}
-  />
-       </View> :null
-
-}
-<Text style={{
-             flex: 1,
-             marginTop: 20,
-             marginHorizontal: 0,
-             padding: 10,
-             borderWidth: 0,
-             fontSize: 16,
-             lineHeight: 16,
+        <View style={styles.imageWrapper}>
+        </View>
+        {this.state.value.item ?
+          <View style={styles.imageWrapper}>
+            <Image
+              style={styles.signature}
+              source={{ uri: this.state.value.item }}
+              resizeMode={'stretch'}
+            />
+          </View> : this.state.value ?
+            <View style={styles.imageWrapper}>
+              <Image
+                style={styles.signature}
+                source={{ uri: this.state.value }}
+                resizeMode={'stretch'}
+              />
+            </View>
+            : null
+        }
+        <Text style={{
+          flex: 1,
+          marginTop: 20,
+          marginHorizontal: 0,
+          padding: 10,
+          borderWidth: 0,
+          fontSize: 16,
+          lineHeight: 16,
         }}>{label}</Text>
         <Button
-       icon={
-        <Icon
-          name="edit"
-          type='fontawesome'
-          size={25}
-          color="white"
-        />
-      }
+          icon={
+            <Icon
+              name="edit"
+              type='fontawesome'
+              size={25}
+              color="white"
+            />
+          }
           title={`Tap to ${this.state.value && this.state.value.item ? 'change' : 'sign'}`}
           buttonStyle={styles.signatureButton}
           onPress={this.toggleSignaturePad}
           backgroundColor={'transparent'}
           color={this.props.colors.primary1Color}
         >
-
-          </Button>
+        </Button>
         <Modal
           animationType="slide"
           transparent={false}

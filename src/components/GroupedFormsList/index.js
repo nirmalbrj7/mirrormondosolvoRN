@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
@@ -69,7 +69,7 @@ export default class GroupedFormsList extends React.PureComponent {
       .doc(currentUid)
       .get()
       .then(userDataSnapshot => {
-        hiddenGroups = userDataSnapshot.data().hiddenGroups;
+        //hiddenGroups = userDataSnapshot.data().hiddenGroups;
       })
       .then(() =>
         firestore()
@@ -79,15 +79,15 @@ export default class GroupedFormsList extends React.PureComponent {
       )
       .then(querySnapshot => {
         const nonHiddenGroups = querySnapshot.docs.filter(group => {
-          if (hiddenGroups) {
-            return hiddenGroups.every(e => e !== group.data().groupId);
-          }
+          /* if (hiddenGroups) {
+             return hiddenGroups.every(e => e !== group.data().groupId);
+           }*/
           return true;
         });
 
         return Promise.all(
           nonHiddenGroups.map(usersInGroupsDoc => {
-            const {groupId} = usersInGroupsDoc.data();
+            const { groupId } = usersInGroupsDoc.data();
             return firestore()
               .collection('groups')
               .doc(groupId)
@@ -120,7 +120,7 @@ export default class GroupedFormsList extends React.PureComponent {
       .doc(currentUid)
       .get()
       .then(userDataSnapshot => {
-        hiddenGroups = userDataSnapshot.data().hiddenGroups;
+        //hiddenGroups = userDataSnapshot.data().hiddenGroups;
       })
       .then(() =>
         firestore()
@@ -130,9 +130,9 @@ export default class GroupedFormsList extends React.PureComponent {
       )
       .then(querySnapshot => {
         const nonHiddenGroups = querySnapshot.docs.filter(group => {
-          if (hiddenGroups) {
-            return hiddenGroups.every(e => e !== group.id);
-          }
+          /* if (hiddenGroups) {
+             return hiddenGroups.every(e => e !== group.id);
+           }*/
           return true;
         });
 
@@ -151,12 +151,12 @@ export default class GroupedFormsList extends React.PureComponent {
   };
 
   render() {
-    const {privateGroups, publicGroups, loading} = this.state;
+    const { privateGroups, publicGroups, loading } = this.state;
 
     const groups = privateGroups.concat(publicGroups);
     const groupsOrdered = groups.sort((a, b) => a.orderNo - b.orderNo);
 
-    const {handleFormsListItemPress} = this.props;
+    const { handleFormsListItemPress } = this.props;
 
     if (loading) {
       return <ActivityIndicator size="large" />;

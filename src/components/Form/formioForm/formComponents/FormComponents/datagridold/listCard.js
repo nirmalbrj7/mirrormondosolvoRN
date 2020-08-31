@@ -11,7 +11,7 @@ export const CounterComponent = (props) => {
   );
   const newform=useSelector(state=>state);
   const cardData = useSelector(state => {
-    console.log("STATE" + JSON.stringify(state.datagridreducer))
+   // console.log("STATE" + JSON.stringify(state.datagridreducer))
     return state.datagridreducer;
   });
   const mycomp = props.newComp;

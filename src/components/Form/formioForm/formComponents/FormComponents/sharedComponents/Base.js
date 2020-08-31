@@ -1,8 +1,13 @@
-import React from 'react';
+
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { deepEqual } from '../../../util';
 
-export default class BaseComponent extends React.Component {
+
+ export default class BaseComponent extends Component {
+  constructor(props){
+    super(props);
+}
   shouldComponentUpdate(nextProps, nextState) {
     // If a new value is set within state, re-render.
     if (this.state && this.state.hasOwnProperty('value') && this.state.value !== nextState.value) {
@@ -52,9 +57,16 @@ export default class BaseComponent extends React.Component {
     return false;
   }
 }
-
 BaseComponent.propTypes = {
   component: PropTypes.any,
   isFormValid: PropTypes.any,
   value: PropTypes.any,
 };
+
+
+
+
+
+
+
+

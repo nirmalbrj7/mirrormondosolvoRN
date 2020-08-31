@@ -1,0 +1,4500 @@
+
+Status-
+
+jsonlogic :"value = 'Visitada';"
+
+Pais
+"value = 'Colombia';"
+
+Department
+RawJSON
+[
+  {
+    "label": "Amazonas\t-\tEl Encanto",
+    "value": "91263"
+  },
+  {
+    "label": "Amazonas\t-\tLa Chorrera",
+    "value": "91405"
+  },
+  {
+    "label": "Amazonas\t-\tLa Pedrera",
+    "value": "91407"
+  },
+  {
+    "label": "Amazonas\t-\tLa Victoria",
+    "value": "91430"
+  },
+  {
+    "label": "Amazonas\t-\tLeticia",
+    "value": "91001"
+  },
+  {
+    "label": "Amazonas\t-\tMiriti - Parana",
+    "value": "91460"
+  },
+  {
+    "label": "Amazonas\t-\tPuerto Alegria",
+    "value": "91530"
+  },
+  {
+    "label": "Amazonas\t-\tPuerto Arica",
+    "value": "91536"
+  },
+  {
+    "label": "Amazonas\t-\tPuerto Narino",
+    "value": "91540"
+  },
+  {
+    "label": "Amazonas\t-\tPuerto Santander",
+    "value": "91669"
+  },
+  {
+    "label": "Amazonas\t-\tTarapaca",
+    "value": "91798"
+  },
+  {
+    "label": "Antioquia\t-\tAbejorral",
+    "value": "5002"
+  },
+  {
+    "label": "Antioquia\t-\tAbriaqui",
+    "value": "5004"
+  },
+  {
+    "label": "Antioquia\t-\tAlejandria",
+    "value": "5021"
+  },
+  {
+    "label": "Antioquia\t-\tAmaga",
+    "value": "5030"
+  },
+  {
+    "label": "Antioquia\t-\tAmalfi",
+    "value": "5031"
+  },
+  {
+    "label": "Antioquia\t-\tAndes",
+    "value": "5034"
+  },
+  {
+    "label": "Antioquia\t-\tAngelopolis",
+    "value": "5036"
+  },
+  {
+    "label": "Antioquia\t-\tAngostura",
+    "value": "5038"
+  },
+  {
+    "label": "Antioquia\t-\tAnori",
+    "value": "5040"
+  },
+  {
+    "label": "Antioquia\t-\tAnza",
+    "value": "5044"
+  },
+  {
+    "label": "Antioquia\t-\tApartado",
+    "value": "5045"
+  },
+  {
+    "label": "Antioquia\t-\tArboletes",
+    "value": "5051"
+  },
+  {
+    "label": "Antioquia\t-\tArgelia",
+    "value": "5055"
+  },
+  {
+    "label": "Antioquia\t-\tArmenia",
+    "value": "5059"
+  },
+  {
+    "label": "Antioquia\t-\tBarbosa",
+    "value": "5079"
+  },
+  {
+    "label": "Antioquia\t-\tBello",
+    "value": "5088"
+  },
+  {
+    "label": "Antioquia\t-\tBelmira",
+    "value": "5086"
+  },
+  {
+    "label": "Antioquia\t-\tBetania",
+    "value": "5091"
+  },
+  {
+    "label": "Antioquia\t-\tBetulia",
+    "value": "5093"
+  },
+  {
+    "label": "Antioquia\t-\tBriceno",
+    "value": "5107"
+  },
+  {
+    "label": "Antioquia\t-\tBuritica",
+    "value": "5113"
+  },
+  {
+    "label": "Antioquia\t-\tCaceres",
+    "value": "5120"
+  },
+  {
+    "label": "Antioquia\t-\tCaicedo",
+    "value": "5125"
+  },
+  {
+    "label": "Antioquia\t-\tCaldas",
+    "value": "5129"
+  },
+  {
+    "label": "Antioquia\t-\tCampamento",
+    "value": "5134"
+  },
+  {
+    "label": "Antioquia\t-\tCanasgordas",
+    "value": "5138"
+  },
+  {
+    "label": "Antioquia\t-\tCaracoli",
+    "value": "5142"
+  },
+  {
+    "label": "Antioquia\t-\tCaramanta",
+    "value": "5145"
+  },
+  {
+    "label": "Antioquia\t-\tCarepa",
+    "value": "5147"
+  },
+  {
+    "label": "Antioquia\t-\tCarolina",
+    "value": "5150"
+  },
+  {
+    "label": "Antioquia\t-\tCaucasia",
+    "value": "5154"
+  },
+  {
+    "label": "Antioquia\t-\tChigorodo",
+    "value": "5172"
+  },
+  {
+    "label": "Antioquia\t-\tCisneros",
+    "value": "5190"
+  },
+  {
+    "label": "Antioquia\t-\tCiudad Bolivar",
+    "value": "5101"
+  },
+  {
+    "label": "Antioquia\t-\tCocorna",
+    "value": "5197"
+  },
+  {
+    "label": "Antioquia\t-\tConcepcion",
+    "value": "5206"
+  },
+  {
+    "label": "Antioquia\t-\tConcordia",
+    "value": "5209"
+  },
+  {
+    "label": "Antioquia\t-\tCopacabana",
+    "value": "5212"
+  },
+  {
+    "label": "Antioquia\t-\tDabeiba",
+    "value": "5234"
+  },
+  {
+    "label": "Antioquia\t-\tDonmatias",
+    "value": "5237"
+  },
+  {
+    "label": "Antioquia\t-\tEbejico",
+    "value": "5240"
+  },
+  {
+    "label": "Antioquia\t-\tEl Bagre",
+    "value": "5250"
+  },
+  {
+    "label": "Antioquia\t-\tEl Carmen De Viboral",
+    "value": "5148"
+  },
+  {
+    "label": "Antioquia\t-\tEl Santuario",
+    "value": "5697"
+  },
+  {
+    "label": "Antioquia\t-\tEntrerrios",
+    "value": "5264"
+  },
+  {
+    "label": "Antioquia\t-\tEnvigado",
+    "value": "5266"
+  },
+  {
+    "label": "Antioquia\t-\tFredonia",
+    "value": "5282"
+  },
+  {
+    "label": "Antioquia\t-\tFrontino",
+    "value": "5284"
+  },
+  {
+    "label": "Antioquia\t-\tGiraldo",
+    "value": "5306"
+  },
+  {
+    "label": "Antioquia\t-\tGirardota",
+    "value": "5308"
+  },
+  {
+    "label": "Antioquia\t-\tGomez Plata",
+    "value": "5310"
+  },
+  {
+    "label": "Antioquia\t-\tGranada",
+    "value": "5313"
+  },
+  {
+    "label": "Antioquia\t-\tGuadalupe",
+    "value": "5315"
+  },
+  {
+    "label": "Antioquia\t-\tGuarne",
+    "value": "5318"
+  },
+  {
+    "label": "Antioquia\t-\tGuatape",
+    "value": "5321"
+  },
+  {
+    "label": "Antioquia\t-\tHeliconia",
+    "value": "5347"
+  },
+  {
+    "label": "Antioquia\t-\tHispania",
+    "value": "5353"
+  },
+  {
+    "label": "Antioquia\t-\tItagüi",
+    "value": "5360"
+  },
+  {
+    "label": "Antioquia\t-\tItuango",
+    "value": "5361"
+  },
+  {
+    "label": "Antioquia\t-\tJardin",
+    "value": "5364"
+  },
+  {
+    "label": "Antioquia\t-\tJerico",
+    "value": "5368"
+  },
+  {
+    "label": "Antioquia\t-\tLa Ceja",
+    "value": "5376"
+  },
+  {
+    "label": "Antioquia\t-\tLa Estrella",
+    "value": "5380"
+  },
+  {
+    "label": "Antioquia\t-\tLa Pintada",
+    "value": "5390"
+  },
+  {
+    "label": "Antioquia\t-\tLa Union",
+    "value": "5400"
+  },
+  {
+    "label": "Antioquia\t-\tLiborina",
+    "value": "5411"
+  },
+  {
+    "label": "Antioquia\t-\tMaceo",
+    "value": "5425"
+  },
+  {
+    "label": "Antioquia\t-\tMarinilla",
+    "value": "5440"
+  },
+  {
+    "label": "Antioquia\t-\tMedellin",
+    "value": "5001"
+  },
+  {
+    "label": "Antioquia\t-\tMontebello",
+    "value": "5467"
+  },
+  {
+    "label": "Antioquia\t-\tMurindo",
+    "value": "5475"
+  },
+  {
+    "label": "Antioquia\t-\tMutata",
+    "value": "5480"
+  },
+  {
+    "label": "Antioquia\t-\tNarino",
+    "value": "5483"
+  },
+  {
+    "label": "Antioquia\t-\tNechi",
+    "value": "5495"
+  },
+  {
+    "label": "Antioquia\t-\tNecocli",
+    "value": "5490"
+  },
+  {
+    "label": "Antioquia\t-\tOlaya",
+    "value": "5501"
+  },
+  {
+    "label": "Antioquia\t-\tPenol",
+    "value": "5541"
+  },
+  {
+    "label": "Antioquia\t-\tPeque",
+    "value": "5543"
+  },
+  {
+    "label": "Antioquia\t-\tPueblorrico",
+    "value": "5576"
+  },
+  {
+    "label": "Antioquia\t-\tPuerto Berrio",
+    "value": "5579"
+  },
+  {
+    "label": "Antioquia\t-\tPuerto Nare",
+    "value": "5585"
+  },
+  {
+    "label": "Antioquia\t-\tPuerto Triunfo",
+    "value": "5591"
+  },
+  {
+    "label": "Antioquia\t-\tRemedios",
+    "value": "5604"
+  },
+  {
+    "label": "Antioquia\t-\tRetiro",
+    "value": "5607"
+  },
+  {
+    "label": "Antioquia\t-\tRionegro",
+    "value": "5615"
+  },
+  {
+    "label": "Antioquia\t-\tSabanalarga",
+    "value": "5628"
+  },
+  {
+    "label": "Antioquia\t-\tSabaneta",
+    "value": "5631"
+  },
+  {
+    "label": "Antioquia\t-\tSalgar",
+    "value": "5642"
+  },
+  {
+    "label": "Antioquia\t-\tSan Andres De Cuerquia",
+    "value": "5647"
+  },
+  {
+    "label": "Antioquia\t-\tSan Carlos",
+    "value": "5649"
+  },
+  {
+    "label": "Antioquia\t-\tSan Francisco",
+    "value": "5652"
+  },
+  {
+    "label": "Antioquia\t-\tSan Jeronimo",
+    "value": "5656"
+  },
+  {
+    "label": "Antioquia\t-\tSan Jose De La Montana",
+    "value": "5658"
+  },
+  {
+    "label": "Antioquia\t-\tSan Juan De Uraba",
+    "value": "5659"
+  },
+  {
+    "label": "Antioquia\t-\tSan Luis",
+    "value": "5660"
+  },
+  {
+    "label": "Antioquia\t-\tSan Pedro De Los Milagros",
+    "value": "5664"
+  },
+  {
+    "label": "Antioquia\t-\tSan Pedro De Uraba",
+    "value": "5665"
+  },
+  {
+    "label": "Antioquia\t-\tSan Rafael",
+    "value": "5667"
+  },
+  {
+    "label": "Antioquia\t-\tSan Roque",
+    "value": "5670"
+  },
+  {
+    "label": "Antioquia\t-\tSan Vicente Ferrer",
+    "value": "5674"
+  },
+  {
+    "label": "Antioquia\t-\tSanta Barbara",
+    "value": "5679"
+  },
+  {
+    "label": "Antioquia\t-\tSanta Fe De Antioquia",
+    "value": "5042"
+  },
+  {
+    "label": "Antioquia\t-\tSanta Rosa De Osos",
+    "value": "5686"
+  },
+  {
+    "label": "Antioquia\t-\tSanto Domingo",
+    "value": "5690"
+  },
+  {
+    "label": "Antioquia\t-\tSegovia",
+    "value": "5736"
+  },
+  {
+    "label": "Antioquia\t-\tSonson",
+    "value": "5756"
+  },
+  {
+    "label": "Antioquia\t-\tSopetran",
+    "value": "5761"
+  },
+  {
+    "label": "Antioquia\t-\tTamesis",
+    "value": "5789"
+  },
+  {
+    "label": "Antioquia\t-\tTaraza",
+    "value": "5790"
+  },
+  {
+    "label": "Antioquia\t-\tTarso",
+    "value": "5792"
+  },
+  {
+    "label": "Antioquia\t-\tTitiribi",
+    "value": "5809"
+  },
+  {
+    "label": "Antioquia\t-\tToledo",
+    "value": "5819"
+  },
+  {
+    "label": "Antioquia\t-\tTurbo",
+    "value": "5837"
+  },
+  {
+    "label": "Antioquia\t-\tUramita",
+    "value": "5842"
+  },
+  {
+    "label": "Antioquia\t-\tUrrao",
+    "value": "5847"
+  },
+  {
+    "label": "Antioquia\t-\tValdivia",
+    "value": "5854"
+  },
+  {
+    "label": "Antioquia\t-\tValparaiso",
+    "value": "5856"
+  },
+  {
+    "label": "Antioquia\t-\tVegachi",
+    "value": "5858"
+  },
+  {
+    "label": "Antioquia\t-\tVenecia",
+    "value": "5861"
+  },
+  {
+    "label": "Antioquia\t-\tVigia Del Fuerte",
+    "value": "5873"
+  },
+  {
+    "label": "Antioquia\t-\tYali",
+    "value": "5885"
+  },
+  {
+    "label": "Antioquia\t-\tYarumal",
+    "value": "5887"
+  },
+  {
+    "label": "Antioquia\t-\tYolombo",
+    "value": "5890"
+  },
+  {
+    "label": "Antioquia\t-\tYondo",
+    "value": "5893"
+  },
+  {
+    "label": "Antioquia\t-\tZaragoza",
+    "value": "5895"
+  },
+  {
+    "label": "Arauca\t-\tArauca",
+    "value": "81001"
+  },
+  {
+    "label": "Arauca\t-\tArauquita",
+    "value": "81065"
+  },
+  {
+    "label": "Arauca\t-\tCravo Norte",
+    "value": "81220"
+  },
+  {
+    "label": "Arauca\t-\tFortul",
+    "value": "81300"
+  },
+  {
+    "label": "Arauca\t-\tPuerto Rondon",
+    "value": "81591"
+  },
+  {
+    "label": "Arauca\t-\tSaravena",
+    "value": "81736"
+  },
+  {
+    "label": "Arauca\t-\tTame",
+    "value": "81794"
+  },
+  {
+    "label": "Archipielago De San Andres y Providencia\t-\tProvidencia",
+    "value": "88564"
+  },
+  {
+    "label": "Archipielago De San Andres y Providencia\t-\tSan Andres",
+    "value": "88001"
+  },
+  {
+    "label": "Atlantico\t-\tBaranoa",
+    "value": "8078"
+  },
+  {
+    "label": "Atlantico\t-\tBarranquilla",
+    "value": "8001"
+  },
+  {
+    "label": "Atlantico\t-\tCampo De La Cruz",
+    "value": "8137"
+  },
+  {
+    "label": "Atlantico\t-\tCandelaria",
+    "value": "8141"
+  },
+  {
+    "label": "Atlantico\t-\tGalapa",
+    "value": "8296"
+  },
+  {
+    "label": "Atlantico\t-\tJuan De Acosta",
+    "value": "8372"
+  },
+  {
+    "label": "Atlantico\t-\tLuruaco",
+    "value": "8421"
+  },
+  {
+    "label": "Atlantico\t-\tMalambo",
+    "value": "8433"
+  },
+  {
+    "label": "Atlantico\t-\tManati",
+    "value": "8436"
+  },
+  {
+    "label": "Atlantico\t-\tPalmar De Varela",
+    "value": "8520"
+  },
+  {
+    "label": "Atlantico\t-\tPiojo",
+    "value": "8549"
+  },
+  {
+    "label": "Atlantico\t-\tPolonuevo",
+    "value": "8558"
+  },
+  {
+    "label": "Atlantico\t-\tPonedera",
+    "value": "8560"
+  },
+  {
+    "label": "Atlantico\t-\tPuerto Colombia",
+    "value": "8573"
+  },
+  {
+    "label": "Atlantico\t-\tRepelon",
+    "value": "8606"
+  },
+  {
+    "label": "Atlantico\t-\tSabanagrande",
+    "value": "8634"
+  },
+  {
+    "label": "Atlantico\t-\tSabanalarga",
+    "value": "8638"
+  },
+  {
+    "label": "Atlantico\t-\tSanta Lucia",
+    "value": "8675"
+  },
+  {
+    "label": "Atlantico\t-\tSanto Tomas",
+    "value": "8685"
+  },
+  {
+    "label": "Atlantico\t-\tSoledad",
+    "value": "8758"
+  },
+  {
+    "label": "Atlantico\t-\tSuan",
+    "value": "8770"
+  },
+  {
+    "label": "Atlantico\t-\tTubara",
+    "value": "8832"
+  },
+  {
+    "label": "Atlantico\t-\tUsiacuri",
+    "value": "8849"
+  },
+  {
+    "label": "Bogota, D. C.\t-\tBogota, D.C.",
+    "value": "11001"
+  },
+  {
+    "label": "Bolivar\t-\tAchi",
+    "value": "13006"
+  },
+  {
+    "label": "Bolivar\t-\tAltos Del Rosario",
+    "value": "13030"
+  },
+  {
+    "label": "Bolivar\t-\tArenal",
+    "value": "13042"
+  },
+  {
+    "label": "Bolivar\t-\tArjona",
+    "value": "13052"
+  },
+  {
+    "label": "Bolivar\t-\tArroyohondo",
+    "value": "13062"
+  },
+  {
+    "label": "Bolivar\t-\tBarranco De Loba",
+    "value": "13074"
+  },
+  {
+    "label": "Bolivar\t-\tCalamar",
+    "value": "13140"
+  },
+  {
+    "label": "Bolivar\t-\tCantagallo",
+    "value": "13160"
+  },
+  {
+    "label": "Bolivar\t-\tCartagena De Indias",
+    "value": "13001"
+  },
+  {
+    "label": "Bolivar\t-\tCicuco",
+    "value": "13188"
+  },
+  {
+    "label": "Bolivar\t-\tClemencia",
+    "value": "13222"
+  },
+  {
+    "label": "Bolivar\t-\tCordoba",
+    "value": "13212"
+  },
+  {
+    "label": "Bolivar\t-\tEl Carmen De Bolivar",
+    "value": "13244"
+  },
+  {
+    "label": "Bolivar\t-\tEl Guamo",
+    "value": "13248"
+  },
+  {
+    "label": "Bolivar\t-\tEl Penon",
+    "value": "13268"
+  },
+  {
+    "label": "Bolivar\t-\tHatillo De Loba",
+    "value": "13300"
+  },
+  {
+    "label": "Bolivar\t-\tMagangue",
+    "value": "13430"
+  },
+  {
+    "label": "Bolivar\t-\tMahates",
+    "value": "13433"
+  },
+  {
+    "label": "Bolivar\t-\tMargarita",
+    "value": "13440"
+  },
+  {
+    "label": "Bolivar\t-\tMaria La Baja",
+    "value": "13442"
+  },
+  {
+    "label": "Bolivar\t-\tMompos",
+    "value": "13468"
+  },
+  {
+    "label": "Bolivar\t-\tMontecristo",
+    "value": "13458"
+  },
+  {
+    "label": "Bolivar\t-\tMorales",
+    "value": "13473"
+  },
+  {
+    "label": "Bolivar\t-\tNorosi",
+    "value": "13490"
+  },
+  {
+    "label": "Bolivar\t-\tPinillos",
+    "value": "13549"
+  },
+  {
+    "label": "Bolivar\t-\tRegidor",
+    "value": "13580"
+  },
+  {
+    "label": "Bolivar\t-\tRio Viejo",
+    "value": "13600"
+  },
+  {
+    "label": "Bolivar\t-\tSan Cristobal",
+    "value": "13620"
+  },
+  {
+    "label": "Bolivar\t-\tSan Estanislao",
+    "value": "13647"
+  },
+  {
+    "label": "Bolivar\t-\tSan Fernando",
+    "value": "13650"
+  },
+  {
+    "label": "Bolivar\t-\tSan Jacinto",
+    "value": "13654"
+  },
+  {
+    "label": "Bolivar\t-\tSan Jacinto Del Cauca",
+    "value": "13655"
+  },
+  {
+    "label": "Bolivar\t-\tSan Juan Nepomuceno",
+    "value": "13657"
+  },
+  {
+    "label": "Bolivar\t-\tSan Martin De Loba",
+    "value": "13667"
+  },
+  {
+    "label": "Bolivar\t-\tSan Pablo",
+    "value": "13670"
+  },
+  {
+    "label": "Bolivar\t-\tSanta Catalina",
+    "value": "13673"
+  },
+  {
+    "label": "Bolivar\t-\tSanta Rosa",
+    "value": "13683"
+  },
+  {
+    "label": "Bolivar\t-\tSanta Rosa Del Sur",
+    "value": "13688"
+  },
+  {
+    "label": "Bolivar\t-\tSimiti",
+    "value": "13744"
+  },
+  {
+    "label": "Bolivar\t-\tSoplaviento",
+    "value": "13760"
+  },
+  {
+    "label": "Bolivar\t-\tTalaigua Nuevo",
+    "value": "13780"
+  },
+  {
+    "label": "Bolivar\t-\tTiquisio",
+    "value": "13810"
+  },
+  {
+    "label": "Bolivar\t-\tTurbaco",
+    "value": "13836"
+  },
+  {
+    "label": "Bolivar\t-\tTurbana",
+    "value": "13838"
+  },
+  {
+    "label": "Bolivar\t-\tVillanueva",
+    "value": "13873"
+  },
+  {
+    "label": "Bolivar\t-\tZambrano",
+    "value": "13894"
+  },
+  {
+    "label": "Boyaca\t-\tAlmeida",
+    "value": "15022"
+  },
+  {
+    "label": "Boyaca\t-\tAquitania",
+    "value": "15047"
+  },
+  {
+    "label": "Boyaca\t-\tArcabuco",
+    "value": "15051"
+  },
+  {
+    "label": "Boyaca\t-\tBelen",
+    "value": "15087"
+  },
+  {
+    "label": "Boyaca\t-\tBerbeo",
+    "value": "15090"
+  },
+  {
+    "label": "Boyaca\t-\tBeteitiva",
+    "value": "15092"
+  },
+  {
+    "label": "Boyaca\t-\tBoavita",
+    "value": "15097"
+  },
+  {
+    "label": "Boyaca\t-\tBoyaca",
+    "value": "15104"
+  },
+  {
+    "label": "Boyaca\t-\tBriceno",
+    "value": "15106"
+  },
+  {
+    "label": "Boyaca\t-\tBuenavista",
+    "value": "15109"
+  },
+  {
+    "label": "Boyaca\t-\tBusbanza",
+    "value": "15114"
+  },
+  {
+    "label": "Boyaca\t-\tCaldas",
+    "value": "15131"
+  },
+  {
+    "label": "Boyaca\t-\tCampohermoso",
+    "value": "15135"
+  },
+  {
+    "label": "Boyaca\t-\tCerinza",
+    "value": "15162"
+  },
+  {
+    "label": "Boyaca\t-\tChinavita",
+    "value": "15172"
+  },
+  {
+    "label": "Boyaca\t-\tChiquinquira",
+    "value": "15176"
+  },
+  {
+    "label": "Boyaca\t-\tChiquiza",
+    "value": "15232"
+  },
+  {
+    "label": "Boyaca\t-\tChiscas",
+    "value": "15180"
+  },
+  {
+    "label": "Boyaca\t-\tChita",
+    "value": "15183"
+  },
+  {
+    "label": "Boyaca\t-\tChitaraque",
+    "value": "15185"
+  },
+  {
+    "label": "Boyaca\t-\tChivata",
+    "value": "15187"
+  },
+  {
+    "label": "Boyaca\t-\tChivor",
+    "value": "15236"
+  },
+  {
+    "label": "Boyaca\t-\tCienega",
+    "value": "15189"
+  },
+  {
+    "label": "Boyaca\t-\tCombita",
+    "value": "15204"
+  },
+  {
+    "label": "Boyaca\t-\tCoper",
+    "value": "15212"
+  },
+  {
+    "label": "Boyaca\t-\tCorrales",
+    "value": "15215"
+  },
+  {
+    "label": "Boyaca\t-\tCovarachia",
+    "value": "15218"
+  },
+  {
+    "label": "Boyaca\t-\tCubara",
+    "value": "15223"
+  },
+  {
+    "label": "Boyaca\t-\tCucaita",
+    "value": "15224"
+  },
+  {
+    "label": "Boyaca\t-\tCuitiva",
+    "value": "15226"
+  },
+  {
+    "label": "Boyaca\t-\tDuitama",
+    "value": "15238"
+  },
+  {
+    "label": "Boyaca\t-\tEl Cocuy",
+    "value": "15244"
+  },
+  {
+    "label": "Boyaca\t-\tEl Espino",
+    "value": "15248"
+  },
+  {
+    "label": "Boyaca\t-\tFiravitoba",
+    "value": "15272"
+  },
+  {
+    "label": "Boyaca\t-\tFloresta",
+    "value": "15276"
+  },
+  {
+    "label": "Boyaca\t-\tGachantiva",
+    "value": "15293"
+  },
+  {
+    "label": "Boyaca\t-\tGameza",
+    "value": "15296"
+  },
+  {
+    "label": "Boyaca\t-\tGaragoa",
+    "value": "15299"
+  },
+  {
+    "label": "Boyaca\t-\tGuacamayas",
+    "value": "15317"
+  },
+  {
+    "label": "Boyaca\t-\tGuateque",
+    "value": "15322"
+  },
+  {
+    "label": "Boyaca\t-\tGuayata",
+    "value": "15325"
+  },
+  {
+    "label": "Boyaca\t-\tGüican De La Sierra",
+    "value": "15332"
+  },
+  {
+    "label": "Boyaca\t-\tIza",
+    "value": "15362"
+  },
+  {
+    "label": "Boyaca\t-\tJenesano",
+    "value": "15367"
+  },
+  {
+    "label": "Boyaca\t-\tJerico",
+    "value": "15368"
+  },
+  {
+    "label": "Boyaca\t-\tLa Capilla",
+    "value": "15380"
+  },
+  {
+    "label": "Boyaca\t-\tLa Uvita",
+    "value": "15403"
+  },
+  {
+    "label": "Boyaca\t-\tLa Victoria",
+    "value": "15401"
+  },
+  {
+    "label": "Boyaca\t-\tLabranzagrande",
+    "value": "15377"
+  },
+  {
+    "label": "Boyaca\t-\tMacanal",
+    "value": "15425"
+  },
+  {
+    "label": "Boyaca\t-\tMaripi",
+    "value": "15442"
+  },
+  {
+    "label": "Boyaca\t-\tMiraflores",
+    "value": "15455"
+  },
+  {
+    "label": "Boyaca\t-\tMongua",
+    "value": "15464"
+  },
+  {
+    "label": "Boyaca\t-\tMongui",
+    "value": "15466"
+  },
+  {
+    "label": "Boyaca\t-\tMoniquira",
+    "value": "15469"
+  },
+  {
+    "label": "Boyaca\t-\tMotavita",
+    "value": "15476"
+  },
+  {
+    "label": "Boyaca\t-\tMuzo",
+    "value": "15480"
+  },
+  {
+    "label": "Boyaca\t-\tNobsa",
+    "value": "15491"
+  },
+  {
+    "label": "Boyaca\t-\tNuevo Colon",
+    "value": "15494"
+  },
+  {
+    "label": "Boyaca\t-\tOicata",
+    "value": "15500"
+  },
+  {
+    "label": "Boyaca\t-\tOtanche",
+    "value": "15507"
+  },
+  {
+    "label": "Boyaca\t-\tPachavita",
+    "value": "15511"
+  },
+  {
+    "label": "Boyaca\t-\tPaez",
+    "value": "15514"
+  },
+  {
+    "label": "Boyaca\t-\tPaipa",
+    "value": "15516"
+  },
+  {
+    "label": "Boyaca\t-\tPajarito",
+    "value": "15518"
+  },
+  {
+    "label": "Boyaca\t-\tPanqueba",
+    "value": "15522"
+  },
+  {
+    "label": "Boyaca\t-\tPauna",
+    "value": "15531"
+  },
+  {
+    "label": "Boyaca\t-\tPaya",
+    "value": "15533"
+  },
+  {
+    "label": "Boyaca\t-\tPaz De Rio",
+    "value": "15537"
+  },
+  {
+    "label": "Boyaca\t-\tPesca",
+    "value": "15542"
+  },
+  {
+    "label": "Boyaca\t-\tPisba",
+    "value": "15550"
+  },
+  {
+    "label": "Boyaca\t-\tPuerto Boyaca",
+    "value": "15572"
+  },
+  {
+    "label": "Boyaca\t-\tQuipama",
+    "value": "15580"
+  },
+  {
+    "label": "Boyaca\t-\tRamiriqui",
+    "value": "15599"
+  },
+  {
+    "label": "Boyaca\t-\tRaquira",
+    "value": "15600"
+  },
+  {
+    "label": "Boyaca\t-\tRondon",
+    "value": "15621"
+  },
+  {
+    "label": "Boyaca\t-\tSaboya",
+    "value": "15632"
+  },
+  {
+    "label": "Boyaca\t-\tSachica",
+    "value": "15638"
+  },
+  {
+    "label": "Boyaca\t-\tSamaca",
+    "value": "15646"
+  },
+  {
+    "label": "Boyaca\t-\tSan Eduardo",
+    "value": "15660"
+  },
+  {
+    "label": "Boyaca\t-\tSan Jose De Pare",
+    "value": "15664"
+  },
+  {
+    "label": "Boyaca\t-\tSan Luis De Gaceno",
+    "value": "15667"
+  },
+  {
+    "label": "Boyaca\t-\tSan Mateo",
+    "value": "15673"
+  },
+  {
+    "label": "Boyaca\t-\tSan Miguel De Sema",
+    "value": "15676"
+  },
+  {
+    "label": "Boyaca\t-\tSan Pablo De Borbur",
+    "value": "15681"
+  },
+  {
+    "label": "Boyaca\t-\tSanta Maria",
+    "value": "15690"
+  },
+  {
+    "label": "Boyaca\t-\tSanta Rosa De Viterbo",
+    "value": "15693"
+  },
+  {
+    "label": "Boyaca\t-\tSanta Sofia",
+    "value": "15696"
+  },
+  {
+    "label": "Boyaca\t-\tSantana",
+    "value": "15686"
+  },
+  {
+    "label": "Boyaca\t-\tSativanorte",
+    "value": "15720"
+  },
+  {
+    "label": "Boyaca\t-\tSativasur",
+    "value": "15723"
+  },
+  {
+    "label": "Boyaca\t-\tSiachoque",
+    "value": "15740"
+  },
+  {
+    "label": "Boyaca\t-\tSoata",
+    "value": "15753"
+  },
+  {
+    "label": "Boyaca\t-\tSocha",
+    "value": "15757"
+  },
+  {
+    "label": "Boyaca\t-\tSocota",
+    "value": "15755"
+  },
+  {
+    "label": "Boyaca\t-\tSogamoso",
+    "value": "15759"
+  },
+  {
+    "label": "Boyaca\t-\tSomondoco",
+    "value": "15761"
+  },
+  {
+    "label": "Boyaca\t-\tSora",
+    "value": "15762"
+  },
+  {
+    "label": "Boyaca\t-\tSoraca",
+    "value": "15764"
+  },
+  {
+    "label": "Boyaca\t-\tSotaquira",
+    "value": "15763"
+  },
+  {
+    "label": "Boyaca\t-\tSusacon",
+    "value": "15774"
+  },
+  {
+    "label": "Boyaca\t-\tSutamarchan",
+    "value": "15776"
+  },
+  {
+    "label": "Boyaca\t-\tSutatenza",
+    "value": "15778"
+  },
+  {
+    "label": "Boyaca\t-\tTasco",
+    "value": "15790"
+  },
+  {
+    "label": "Boyaca\t-\tTenza",
+    "value": "15798"
+  },
+  {
+    "label": "Boyaca\t-\tTibana",
+    "value": "15804"
+  },
+  {
+    "label": "Boyaca\t-\tTibasosa",
+    "value": "15806"
+  },
+  {
+    "label": "Boyaca\t-\tTinjaca",
+    "value": "15808"
+  },
+  {
+    "label": "Boyaca\t-\tTipacoque",
+    "value": "15810"
+  },
+  {
+    "label": "Boyaca\t-\tToca",
+    "value": "15814"
+  },
+  {
+    "label": "Boyaca\t-\tTogüi",
+    "value": "15816"
+  },
+  {
+    "label": "Boyaca\t-\tTopaga",
+    "value": "15820"
+  },
+  {
+    "label": "Boyaca\t-\tTota",
+    "value": "15822"
+  },
+  {
+    "label": "Boyaca\t-\tTunja",
+    "value": "15001"
+  },
+  {
+    "label": "Boyaca\t-\tTunungua",
+    "value": "15832"
+  },
+  {
+    "label": "Boyaca\t-\tTurmeque",
+    "value": "15835"
+  },
+  {
+    "label": "Boyaca\t-\tTuta",
+    "value": "15837"
+  },
+  {
+    "label": "Boyaca\t-\tTutaza",
+    "value": "15839"
+  },
+  {
+    "label": "Boyaca\t-\tUmbita",
+    "value": "15842"
+  },
+  {
+    "label": "Boyaca\t-\tVentaquemada",
+    "value": "15861"
+  },
+  {
+    "label": "Boyaca\t-\tVilla De Leyva",
+    "value": "15407"
+  },
+  {
+    "label": "Boyaca\t-\tViracacha",
+    "value": "15879"
+  },
+  {
+    "label": "Boyaca\t-\tZetaquira",
+    "value": "15897"
+  },
+  {
+    "label": "Caldas\t-\tAguadas",
+    "value": "17013"
+  },
+  {
+    "label": "Caldas\t-\tAnserma",
+    "value": "17042"
+  },
+  {
+    "label": "Caldas\t-\tAranzazu",
+    "value": "17050"
+  },
+  {
+    "label": "Caldas\t-\tBelalcazar",
+    "value": "17088"
+  },
+  {
+    "label": "Caldas\t-\tChinchina",
+    "value": "17174"
+  },
+  {
+    "label": "Caldas\t-\tFiladelfia",
+    "value": "17272"
+  },
+  {
+    "label": "Caldas\t-\tLa Dorada",
+    "value": "17380"
+  },
+  {
+    "label": "Caldas\t-\tLa Merced",
+    "value": "17388"
+  },
+  {
+    "label": "Caldas\t-\tManizales",
+    "value": "17001"
+  },
+  {
+    "label": "Caldas\t-\tManzanares",
+    "value": "17433"
+  },
+  {
+    "label": "Caldas\t-\tMarmato",
+    "value": "17442"
+  },
+  {
+    "label": "Caldas\t-\tMarquetalia",
+    "value": "17444"
+  },
+  {
+    "label": "Caldas\t-\tMarulanda",
+    "value": "17446"
+  },
+  {
+    "label": "Caldas\t-\tNeira",
+    "value": "17486"
+  },
+  {
+    "label": "Caldas\t-\tNorcasia",
+    "value": "17495"
+  },
+  {
+    "label": "Caldas\t-\tPacora",
+    "value": "17513"
+  },
+  {
+    "label": "Caldas\t-\tPalestina",
+    "value": "17524"
+  },
+  {
+    "label": "Caldas\t-\tPensilvania",
+    "value": "17541"
+  },
+  {
+    "label": "Caldas\t-\tRiosucio",
+    "value": "17614"
+  },
+  {
+    "label": "Caldas\t-\tRisaralda",
+    "value": "17616"
+  },
+  {
+    "label": "Caldas\t-\tSalamina",
+    "value": "17653"
+  },
+  {
+    "label": "Caldas\t-\tSamana",
+    "value": "17662"
+  },
+  {
+    "label": "Caldas\t-\tSan Jose",
+    "value": "17665"
+  },
+  {
+    "label": "Caldas\t-\tSupia",
+    "value": "17777"
+  },
+  {
+    "label": "Caldas\t-\tVictoria",
+    "value": "17867"
+  },
+  {
+    "label": "Caldas\t-\tVillamaria",
+    "value": "17873"
+  },
+  {
+    "label": "Caldas\t-\tViterbo",
+    "value": "17877"
+  },
+  {
+    "label": "Caqueta\t-\tAlbania",
+    "value": "18029"
+  },
+  {
+    "label": "Caqueta\t-\tBelen De Los Andaquies",
+    "value": "18094"
+  },
+  {
+    "label": "Caqueta\t-\tCartagena Del Chaira",
+    "value": "18150"
+  },
+  {
+    "label": "Caqueta\t-\tCurillo",
+    "value": "18205"
+  },
+  {
+    "label": "Caqueta\t-\tEl Doncello",
+    "value": "18247"
+  },
+  {
+    "label": "Caqueta\t-\tEl Paujil",
+    "value": "18256"
+  },
+  {
+    "label": "Caqueta\t-\tFlorencia",
+    "value": "18001"
+  },
+  {
+    "label": "Caqueta\t-\tLa Montanita",
+    "value": "18410"
+  },
+  {
+    "label": "Caqueta\t-\tMilan",
+    "value": "18460"
+  },
+  {
+    "label": "Caqueta\t-\tMorelia",
+    "value": "18479"
+  },
+  {
+    "label": "Caqueta\t-\tPuerto Rico",
+    "value": "18592"
+  },
+  {
+    "label": "Caqueta\t-\tSan Jose Del Fragua",
+    "value": "18610"
+  },
+  {
+    "label": "Caqueta\t-\tSan Vicente Del Caguan",
+    "value": "18753"
+  },
+  {
+    "label": "Caqueta\t-\tSolano",
+    "value": "18756"
+  },
+  {
+    "label": "Caqueta\t-\tSolita",
+    "value": "18785"
+  },
+  {
+    "label": "Caqueta\t-\tValparaiso",
+    "value": "18860"
+  },
+  {
+    "label": "Casanare\t-\tAguazul",
+    "value": "85010"
+  },
+  {
+    "label": "Casanare\t-\tChameza",
+    "value": "85015"
+  },
+  {
+    "label": "Casanare\t-\tHato Corozal",
+    "value": "85125"
+  },
+  {
+    "label": "Casanare\t-\tLa Salina",
+    "value": "85136"
+  },
+  {
+    "label": "Casanare\t-\tMani",
+    "value": "85139"
+  },
+  {
+    "label": "Casanare\t-\tMonterrey",
+    "value": "85162"
+  },
+  {
+    "label": "Casanare\t-\tNunchia",
+    "value": "85225"
+  },
+  {
+    "label": "Casanare\t-\tOrocue",
+    "value": "85230"
+  },
+  {
+    "label": "Casanare\t-\tPaz De Ariporo",
+    "value": "85250"
+  },
+  {
+    "label": "Casanare\t-\tPore",
+    "value": "85263"
+  },
+  {
+    "label": "Casanare\t-\tRecetor",
+    "value": "85279"
+  },
+  {
+    "label": "Casanare\t-\tSabanalarga",
+    "value": "85300"
+  },
+  {
+    "label": "Casanare\t-\tSacama",
+    "value": "85315"
+  },
+  {
+    "label": "Casanare\t-\tSan Luis De Palenque",
+    "value": "85325"
+  },
+  {
+    "label": "Casanare\t-\tTamara",
+    "value": "85400"
+  },
+  {
+    "label": "Casanare\t-\tTauramena",
+    "value": "85410"
+  },
+  {
+    "label": "Casanare\t-\tTrinidad",
+    "value": "85430"
+  },
+  {
+    "label": "Casanare\t-\tVillanueva",
+    "value": "85440"
+  },
+  {
+    "label": "Casanare\t-\tYopal",
+    "value": "85001"
+  },
+  {
+    "label": "Cauca\t-\tAlmaguer",
+    "value": "19022"
+  },
+  {
+    "label": "Cauca\t-\tArgelia",
+    "value": "19050"
+  },
+  {
+    "label": "Cauca\t-\tBalboa",
+    "value": "19075"
+  },
+  {
+    "label": "Cauca\t-\tBolivar",
+    "value": "19100"
+  },
+  {
+    "label": "Cauca\t-\tBuenos Aires",
+    "value": "19110"
+  },
+  {
+    "label": "Cauca\t-\tCajibio",
+    "value": "19130"
+  },
+  {
+    "label": "Cauca\t-\tCaldono",
+    "value": "19137"
+  },
+  {
+    "label": "Cauca\t-\tCaloto",
+    "value": "19142"
+  },
+  {
+    "label": "Cauca\t-\tCorinto",
+    "value": "19212"
+  },
+  {
+    "label": "Cauca\t-\tEl Tambo",
+    "value": "19256"
+  },
+  {
+    "label": "Cauca\t-\tFlorencia",
+    "value": "19290"
+  },
+  {
+    "label": "Cauca\t-\tGuachene",
+    "value": "19300"
+  },
+  {
+    "label": "Cauca\t-\tGuapi",
+    "value": "19318"
+  },
+  {
+    "label": "Cauca\t-\tInza",
+    "value": "19355"
+  },
+  {
+    "label": "Cauca\t-\tJambalo",
+    "value": "19364"
+  },
+  {
+    "label": "Cauca\t-\tLa Sierra",
+    "value": "19392"
+  },
+  {
+    "label": "Cauca\t-\tLa Vega",
+    "value": "19397"
+  },
+  {
+    "label": "Cauca\t-\tLopez De Micay",
+    "value": "19418"
+  },
+  {
+    "label": "Cauca\t-\tMercaderes",
+    "value": "19450"
+  },
+  {
+    "label": "Cauca\t-\tMiranda",
+    "value": "19455"
+  },
+  {
+    "label": "Cauca\t-\tMorales",
+    "value": "19473"
+  },
+  {
+    "label": "Cauca\t-\tPadilla",
+    "value": "19513"
+  },
+  {
+    "label": "Cauca\t-\tPaez",
+    "value": "19517"
+  },
+  {
+    "label": "Cauca\t-\tPatia",
+    "value": "19532"
+  },
+  {
+    "label": "Cauca\t-\tPiamonte",
+    "value": "19533"
+  },
+  {
+    "label": "Cauca\t-\tPiendamo - Tunia",
+    "value": "19548"
+  },
+  {
+    "label": "Cauca\t-\tPopayan",
+    "value": "19001"
+  },
+  {
+    "label": "Cauca\t-\tPuerto Tejada",
+    "value": "19573"
+  },
+  {
+    "label": "Cauca\t-\tPurace",
+    "value": "19585"
+  },
+  {
+    "label": "Cauca\t-\tRosas",
+    "value": "19622"
+  },
+  {
+    "label": "Cauca\t-\tSan Sebastian",
+    "value": "19693"
+  },
+  {
+    "label": "Cauca\t-\tSanta Rosa",
+    "value": "19701"
+  },
+  {
+    "label": "Cauca\t-\tSantander De Quilichao",
+    "value": "19698"
+  },
+  {
+    "label": "Cauca\t-\tSilvia",
+    "value": "19743"
+  },
+  {
+    "label": "Cauca\t-\tSotara",
+    "value": "19760"
+  },
+  {
+    "label": "Cauca\t-\tSuarez",
+    "value": "19780"
+  },
+  {
+    "label": "Cauca\t-\tSucre",
+    "value": "19785"
+  },
+  {
+    "label": "Cauca\t-\tTimbio",
+    "value": "19807"
+  },
+  {
+    "label": "Cauca\t-\tTimbiqui",
+    "value": "19809"
+  },
+  {
+    "label": "Cauca\t-\tToribio",
+    "value": "19821"
+  },
+  {
+    "label": "Cauca\t-\tTotoro",
+    "value": "19824"
+  },
+  {
+    "label": "Cauca\t-\tVilla Rica",
+    "value": "19845"
+  },
+  {
+    "label": "Cesar\t-\tAguachica",
+    "value": "20011"
+  },
+  {
+    "label": "Cesar\t-\tAgustin Codazzi",
+    "value": "20013"
+  },
+  {
+    "label": "Cesar\t-\tAstrea",
+    "value": "20032"
+  },
+  {
+    "label": "Cesar\t-\tBecerril",
+    "value": "20045"
+  },
+  {
+    "label": "Cesar\t-\tBosconia",
+    "value": "20060"
+  },
+  {
+    "label": "Cesar\t-\tChimichagua",
+    "value": "20175"
+  },
+  {
+    "label": "Cesar\t-\tChiriguana",
+    "value": "20178"
+  },
+  {
+    "label": "Cesar\t-\tCurumani",
+    "value": "20228"
+  },
+  {
+    "label": "Cesar\t-\tEl Copey",
+    "value": "20238"
+  },
+  {
+    "label": "Cesar\t-\tEl Paso",
+    "value": "20250"
+  },
+  {
+    "label": "Cesar\t-\tGamarra",
+    "value": "20295"
+  },
+  {
+    "label": "Cesar\t-\tGonzalez",
+    "value": "20310"
+  },
+  {
+    "label": "Cesar\t-\tLa Gloria",
+    "value": "20383"
+  },
+  {
+    "label": "Cesar\t-\tLa Jagua De Ibirico",
+    "value": "20400"
+  },
+  {
+    "label": "Cesar\t-\tLa Paz",
+    "value": "20621"
+  },
+  {
+    "label": "Cesar\t-\tManaure Balcon Del Cesar",
+    "value": "20443"
+  },
+  {
+    "label": "Cesar\t-\tPailitas",
+    "value": "20517"
+  },
+  {
+    "label": "Cesar\t-\tPelaya",
+    "value": "20550"
+  },
+  {
+    "label": "Cesar\t-\tPueblo Bello",
+    "value": "20570"
+  },
+  {
+    "label": "Cesar\t-\tRio De Oro",
+    "value": "20614"
+  },
+  {
+    "label": "Cesar\t-\tSan Alberto",
+    "value": "20710"
+  },
+  {
+    "label": "Cesar\t-\tSan Diego",
+    "value": "20750"
+  },
+  {
+    "label": "Cesar\t-\tSan Martin",
+    "value": "20770"
+  },
+  {
+    "label": "Cesar\t-\tTamalameque",
+    "value": "20787"
+  },
+  {
+    "label": "Cesar\t-\tValledupar",
+    "value": "20001"
+  },
+  {
+    "label": "Choco\t-\tAcandi",
+    "value": "27006"
+  },
+  {
+    "label": "Choco\t-\tAlto Baudo",
+    "value": "27025"
+  },
+  {
+    "label": "Choco\t-\tAtrato",
+    "value": "27050"
+  },
+  {
+    "label": "Choco\t-\tBagado",
+    "value": "27073"
+  },
+  {
+    "label": "Choco\t-\tBahia Solano",
+    "value": "27075"
+  },
+  {
+    "label": "Choco\t-\tBajo Baudo",
+    "value": "27077"
+  },
+  {
+    "label": "Choco\t-\tBojaya",
+    "value": "27099"
+  },
+  {
+    "label": "Choco\t-\tCarmen Del Darien",
+    "value": "27150"
+  },
+  {
+    "label": "Choco\t-\tCertegui",
+    "value": "27160"
+  },
+  {
+    "label": "Choco\t-\tCondoto",
+    "value": "27205"
+  },
+  {
+    "label": "Choco\t-\tEl Canton Del San Pablo",
+    "value": "27135"
+  },
+  {
+    "label": "Choco\t-\tEl Carmen De Atrato",
+    "value": "27245"
+  },
+  {
+    "label": "Choco\t-\tEl Litoral Del San Juan",
+    "value": "27250"
+  },
+  {
+    "label": "Choco\t-\tIstmina",
+    "value": "27361"
+  },
+  {
+    "label": "Choco\t-\tJurado",
+    "value": "27372"
+  },
+  {
+    "label": "Choco\t-\tLloro",
+    "value": "27413"
+  },
+  {
+    "label": "Choco\t-\tMedio Atrato",
+    "value": "27425"
+  },
+  {
+    "label": "Choco\t-\tMedio Baudo",
+    "value": "27430"
+  },
+  {
+    "label": "Choco\t-\tMedio San Juan",
+    "value": "27450"
+  },
+  {
+    "label": "Choco\t-\tNovita",
+    "value": "27491"
+  },
+  {
+    "label": "Choco\t-\tNuqui",
+    "value": "27495"
+  },
+  {
+    "label": "Choco\t-\tQuibdo",
+    "value": "27001"
+  },
+  {
+    "label": "Choco\t-\tRio Iro",
+    "value": "27580"
+  },
+  {
+    "label": "Choco\t-\tRio Quito",
+    "value": "27600"
+  },
+  {
+    "label": "Choco\t-\tRiosucio",
+    "value": "27615"
+  },
+  {
+    "label": "Choco\t-\tSan Jose Del Palmar",
+    "value": "27660"
+  },
+  {
+    "label": "Choco\t-\tSipi",
+    "value": "27745"
+  },
+  {
+    "label": "Choco\t-\tTado",
+    "value": "27787"
+  },
+  {
+    "label": "Choco\t-\tUnguia",
+    "value": "27800"
+  },
+  {
+    "label": "Choco\t-\tUnion Panamericana",
+    "value": "27810"
+  },
+  {
+    "label": "Cordoba\t-\tAyapel",
+    "value": "23068"
+  },
+  {
+    "label": "Cordoba\t-\tBuenavista",
+    "value": "23079"
+  },
+  {
+    "label": "Cordoba\t-\tCanalete",
+    "value": "23090"
+  },
+  {
+    "label": "Cordoba\t-\tCerete",
+    "value": "23162"
+  },
+  {
+    "label": "Cordoba\t-\tChima",
+    "value": "23168"
+  },
+  {
+    "label": "Cordoba\t-\tChinu",
+    "value": "23182"
+  },
+  {
+    "label": "Cordoba\t-\tCienaga De Oro",
+    "value": "23189"
+  },
+  {
+    "label": "Cordoba\t-\tCotorra",
+    "value": "23300"
+  },
+  {
+    "label": "Cordoba\t-\tLa Apartada",
+    "value": "23350"
+  },
+  {
+    "label": "Cordoba\t-\tLorica",
+    "value": "23417"
+  },
+  {
+    "label": "Cordoba\t-\tLos Cordobas",
+    "value": "23419"
+  },
+  {
+    "label": "Cordoba\t-\tMomil",
+    "value": "23464"
+  },
+  {
+    "label": "Cordoba\t-\tMonitos",
+    "value": "23500"
+  },
+  {
+    "label": "Cordoba\t-\tMontelibano",
+    "value": "23466"
+  },
+  {
+    "label": "Cordoba\t-\tMonteria",
+    "value": "23001"
+  },
+  {
+    "label": "Cordoba\t-\tPlaneta Rica",
+    "value": "23555"
+  },
+  {
+    "label": "Cordoba\t-\tPueblo Nuevo",
+    "value": "23570"
+  },
+  {
+    "label": "Cordoba\t-\tPuerto Escondido",
+    "value": "23574"
+  },
+  {
+    "label": "Cordoba\t-\tPuerto Libertador",
+    "value": "23580"
+  },
+  {
+    "label": "Cordoba\t-\tPurisima De La Concepcion",
+    "value": "23586"
+  },
+  {
+    "label": "Cordoba\t-\tSahagun",
+    "value": "23660"
+  },
+  {
+    "label": "Cordoba\t-\tSan Andres De Sotavento",
+    "value": "23670"
+  },
+  {
+    "label": "Cordoba\t-\tSan Antero",
+    "value": "23672"
+  },
+  {
+    "label": "Cordoba\t-\tSan Bernardo Del Viento",
+    "value": "23675"
+  },
+  {
+    "label": "Cordoba\t-\tSan Carlos",
+    "value": "23678"
+  },
+  {
+    "label": "Cordoba\t-\tSan Jose De Ure",
+    "value": "23682"
+  },
+  {
+    "label": "Cordoba\t-\tSan Pelayo",
+    "value": "23686"
+  },
+  {
+    "label": "Cordoba\t-\tTierralta",
+    "value": "23807"
+  },
+  {
+    "label": "Cordoba\t-\tTuchin",
+    "value": "23815"
+  },
+  {
+    "label": "Cordoba\t-\tValencia",
+    "value": "23855"
+  },
+  {
+    "label": "Cundinamarca\t-\tAgua De Dios",
+    "value": "25001"
+  },
+  {
+    "label": "Cundinamarca\t-\tAlban",
+    "value": "25019"
+  },
+  {
+    "label": "Cundinamarca\t-\tAnapoima",
+    "value": "25035"
+  },
+  {
+    "label": "Cundinamarca\t-\tAnolaima",
+    "value": "25040"
+  },
+  {
+    "label": "Cundinamarca\t-\tApulo",
+    "value": "25599"
+  },
+  {
+    "label": "Cundinamarca\t-\tArbelaez",
+    "value": "25053"
+  },
+  {
+    "label": "Cundinamarca\t-\tBeltran",
+    "value": "25086"
+  },
+  {
+    "label": "Cundinamarca\t-\tBituima",
+    "value": "25095"
+  },
+  {
+    "label": "Cundinamarca\t-\tBojaca",
+    "value": "25099"
+  },
+  {
+    "label": "Cundinamarca\t-\tCabrera",
+    "value": "25120"
+  },
+  {
+    "label": "Cundinamarca\t-\tCachipay",
+    "value": "25123"
+  },
+  {
+    "label": "Cundinamarca\t-\tCajica",
+    "value": "25126"
+  },
+  {
+    "label": "Cundinamarca\t-\tCaparrapi",
+    "value": "25148"
+  },
+  {
+    "label": "Cundinamarca\t-\tCaqueza",
+    "value": "25151"
+  },
+  {
+    "label": "Cundinamarca\t-\tCarmen De Carupa",
+    "value": "25154"
+  },
+  {
+    "label": "Cundinamarca\t-\tChaguani",
+    "value": "25168"
+  },
+  {
+    "label": "Cundinamarca\t-\tChia",
+    "value": "25175"
+  },
+  {
+    "label": "Cundinamarca\t-\tChipaque",
+    "value": "25178"
+  },
+  {
+    "label": "Cundinamarca\t-\tChoachi",
+    "value": "25181"
+  },
+  {
+    "label": "Cundinamarca\t-\tChoconta",
+    "value": "25183"
+  },
+  {
+    "label": "Cundinamarca\t-\tCogua",
+    "value": "25200"
+  },
+  {
+    "label": "Cundinamarca\t-\tCota",
+    "value": "25214"
+  },
+  {
+    "label": "Cundinamarca\t-\tCucunuba",
+    "value": "25224"
+  },
+  {
+    "label": "Cundinamarca\t-\tEl Colegio",
+    "value": "25245"
+  },
+  {
+    "label": "Cundinamarca\t-\tEl Penon",
+    "value": "25258"
+  },
+  {
+    "label": "Cundinamarca\t-\tEl Rosal",
+    "value": "25260"
+  },
+  {
+    "label": "Cundinamarca\t-\tFacatativa",
+    "value": "25269"
+  },
+  {
+    "label": "Cundinamarca\t-\tFomeque",
+    "value": "25279"
+  },
+  {
+    "label": "Cundinamarca\t-\tFosca",
+    "value": "25281"
+  },
+  {
+    "label": "Cundinamarca\t-\tFunza",
+    "value": "25286"
+  },
+  {
+    "label": "Cundinamarca\t-\tFuquene",
+    "value": "25288"
+  },
+  {
+    "label": "Cundinamarca\t-\tFusagasuga",
+    "value": "25290"
+  },
+  {
+    "label": "Cundinamarca\t-\tGachala",
+    "value": "25293"
+  },
+  {
+    "label": "Cundinamarca\t-\tGachancipa",
+    "value": "25295"
+  },
+  {
+    "label": "Cundinamarca\t-\tGacheta",
+    "value": "25297"
+  },
+  {
+    "label": "Cundinamarca\t-\tGama",
+    "value": "25299"
+  },
+  {
+    "label": "Cundinamarca\t-\tGirardot",
+    "value": "25307"
+  },
+  {
+    "label": "Cundinamarca\t-\tGranada",
+    "value": "25312"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuacheta",
+    "value": "25317"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuaduas",
+    "value": "25320"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuasca",
+    "value": "25322"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuataqui",
+    "value": "25324"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuatavita",
+    "value": "25326"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuayabal De Siquima",
+    "value": "25328"
+  },
+  {
+    "label": "Cundinamarca\t-\tGuayabetal",
+    "value": "25335"
+  },
+  {
+    "label": "Cundinamarca\t-\tGutierrez",
+    "value": "25339"
+  },
+  {
+    "label": "Cundinamarca\t-\tJerusalen",
+    "value": "25368"
+  },
+  {
+    "label": "Cundinamarca\t-\tJunin",
+    "value": "25372"
+  },
+  {
+    "label": "Cundinamarca\t-\tLa Calera",
+    "value": "25377"
+  },
+  {
+    "label": "Cundinamarca\t-\tLa Mesa",
+    "value": "25386"
+  },
+  {
+    "label": "Cundinamarca\t-\tLa Palma",
+    "value": "25394"
+  },
+  {
+    "label": "Cundinamarca\t-\tLa Pena",
+    "value": "25398"
+  },
+  {
+    "label": "Cundinamarca\t-\tLa Vega",
+    "value": "25402"
+  },
+  {
+    "label": "Cundinamarca\t-\tLenguazaque",
+    "value": "25407"
+  },
+  {
+    "label": "Cundinamarca\t-\tMacheta",
+    "value": "25426"
+  },
+  {
+    "label": "Cundinamarca\t-\tMadrid",
+    "value": "25430"
+  },
+  {
+    "label": "Cundinamarca\t-\tManta",
+    "value": "25436"
+  },
+  {
+    "label": "Cundinamarca\t-\tMedina",
+    "value": "25438"
+  },
+  {
+    "label": "Cundinamarca\t-\tMosquera",
+    "value": "25473"
+  },
+  {
+    "label": "Cundinamarca\t-\tNarino",
+    "value": "25483"
+  },
+  {
+    "label": "Cundinamarca\t-\tNemocon",
+    "value": "25486"
+  },
+  {
+    "label": "Cundinamarca\t-\tNilo",
+    "value": "25488"
+  },
+  {
+    "label": "Cundinamarca\t-\tNimaima",
+    "value": "25489"
+  },
+  {
+    "label": "Cundinamarca\t-\tNocaima",
+    "value": "25491"
+  },
+  {
+    "label": "Cundinamarca\t-\tPacho",
+    "value": "25513"
+  },
+  {
+    "label": "Cundinamarca\t-\tPaime",
+    "value": "25518"
+  },
+  {
+    "label": "Cundinamarca\t-\tPandi",
+    "value": "25524"
+  },
+  {
+    "label": "Cundinamarca\t-\tParatebueno",
+    "value": "25530"
+  },
+  {
+    "label": "Cundinamarca\t-\tPasca",
+    "value": "25535"
+  },
+  {
+    "label": "Cundinamarca\t-\tPuerto Salgar",
+    "value": "25572"
+  },
+  {
+    "label": "Cundinamarca\t-\tPuli",
+    "value": "25580"
+  },
+  {
+    "label": "Cundinamarca\t-\tQuebradanegra",
+    "value": "25592"
+  },
+  {
+    "label": "Cundinamarca\t-\tQuetame",
+    "value": "25594"
+  },
+  {
+    "label": "Cundinamarca\t-\tQuipile",
+    "value": "25596"
+  },
+  {
+    "label": "Cundinamarca\t-\tRicaurte",
+    "value": "25612"
+  },
+  {
+    "label": "Cundinamarca\t-\tSan Antonio Del Tequendama",
+    "value": "25645"
+  },
+  {
+    "label": "Cundinamarca\t-\tSan Bernardo",
+    "value": "25649"
+  },
+  {
+    "label": "Cundinamarca\t-\tSan Cayetano",
+    "value": "25653"
+  },
+  {
+    "label": "Cundinamarca\t-\tSan Francisco",
+    "value": "25658"
+  },
+  {
+    "label": "Cundinamarca\t-\tSan Juan De Rioseco",
+    "value": "25662"
+  },
+  {
+    "label": "Cundinamarca\t-\tSasaima",
+    "value": "25718"
+  },
+  {
+    "label": "Cundinamarca\t-\tSesquile",
+    "value": "25736"
+  },
+  {
+    "label": "Cundinamarca\t-\tSibate",
+    "value": "25740"
+  },
+  {
+    "label": "Cundinamarca\t-\tSilvania",
+    "value": "25743"
+  },
+  {
+    "label": "Cundinamarca\t-\tSimijaca",
+    "value": "25745"
+  },
+  {
+    "label": "Cundinamarca\t-\tSoacha",
+    "value": "25754"
+  },
+  {
+    "label": "Cundinamarca\t-\tSopo",
+    "value": "25758"
+  },
+  {
+    "label": "Cundinamarca\t-\tSubachoque",
+    "value": "25769"
+  },
+  {
+    "label": "Cundinamarca\t-\tSuesca",
+    "value": "25772"
+  },
+  {
+    "label": "Cundinamarca\t-\tSupata",
+    "value": "25777"
+  },
+  {
+    "label": "Cundinamarca\t-\tSusa",
+    "value": "25779"
+  },
+  {
+    "label": "Cundinamarca\t-\tSutatausa",
+    "value": "25781"
+  },
+  {
+    "label": "Cundinamarca\t-\tTabio",
+    "value": "25785"
+  },
+  {
+    "label": "Cundinamarca\t-\tTausa",
+    "value": "25793"
+  },
+  {
+    "label": "Cundinamarca\t-\tTena",
+    "value": "25797"
+  },
+  {
+    "label": "Cundinamarca\t-\tTenjo",
+    "value": "25799"
+  },
+  {
+    "label": "Cundinamarca\t-\tTibacuy",
+    "value": "25805"
+  },
+  {
+    "label": "Cundinamarca\t-\tTibirita",
+    "value": "25807"
+  },
+  {
+    "label": "Cundinamarca\t-\tTocaima",
+    "value": "25815"
+  },
+  {
+    "label": "Cundinamarca\t-\tTocancipa",
+    "value": "25817"
+  },
+  {
+    "label": "Cundinamarca\t-\tTopaipi",
+    "value": "25823"
+  },
+  {
+    "label": "Cundinamarca\t-\tUbala",
+    "value": "25839"
+  },
+  {
+    "label": "Cundinamarca\t-\tUbaque",
+    "value": "25841"
+  },
+  {
+    "label": "Cundinamarca\t-\tUne",
+    "value": "25845"
+  },
+  {
+    "label": "Cundinamarca\t-\tUtica",
+    "value": "25851"
+  },
+  {
+    "label": "Cundinamarca\t-\tVenecia",
+    "value": "25506"
+  },
+  {
+    "label": "Cundinamarca\t-\tVergara",
+    "value": "25862"
+  },
+  {
+    "label": "Cundinamarca\t-\tViani",
+    "value": "25867"
+  },
+  {
+    "label": "Cundinamarca\t-\tVilla De San Diego De Ubate",
+    "value": "25843"
+  },
+  {
+    "label": "Cundinamarca\t-\tVillagomez",
+    "value": "25871"
+  },
+  {
+    "label": "Cundinamarca\t-\tVillapinzon",
+    "value": "25873"
+  },
+  {
+    "label": "Cundinamarca\t-\tVilleta",
+    "value": "25875"
+  },
+  {
+    "label": "Cundinamarca\t-\tViota",
+    "value": "25878"
+  },
+  {
+    "label": "Cundinamarca\t-\tYacopi",
+    "value": "25885"
+  },
+  {
+    "label": "Cundinamarca\t-\tZipacon",
+    "value": "25898"
+  },
+  {
+    "label": "Cundinamarca\t-\tZipaquira",
+    "value": "25899"
+  },
+  {
+    "label": "Guainia\t-\tBarranco Minas",
+    "value": "94343"
+  },
+  {
+    "label": "Guainia\t-\tCacahual",
+    "value": "94886"
+  },
+  {
+    "label": "Guainia\t-\tInirida",
+    "value": "94001"
+  },
+  {
+    "label": "Guainia\t-\tLa Guadalupe",
+    "value": "94885"
+  },
+  {
+    "label": "Guainia\t-\tMapiripana",
+    "value": "94663"
+  },
+  {
+    "label": "Guainia\t-\tMorichal",
+    "value": "94888"
+  },
+  {
+    "label": "Guainia\t-\tPana Pana",
+    "value": "94887"
+  },
+  {
+    "label": "Guainia\t-\tPuerto Colombia",
+    "value": "94884"
+  },
+  {
+    "label": "Guainia\t-\tSan Felipe",
+    "value": "94883"
+  },
+  {
+    "label": "Guaviare\t-\tCalamar",
+    "value": "95015"
+  },
+  {
+    "label": "Guaviare\t-\tEl Retorno",
+    "value": "95025"
+  },
+  {
+    "label": "Guaviare\t-\tMiraflores",
+    "value": "95200"
+  },
+  {
+    "label": "Guaviare\t-\tSan Jose Del Guaviare",
+    "value": "95001"
+  },
+  {
+    "label": "Huila\t-\tAcevedo",
+    "value": "41006"
+  },
+  {
+    "label": "Huila\t-\tAgrado",
+    "value": "41013"
+  },
+  {
+    "label": "Huila\t-\tAipe",
+    "value": "41016"
+  },
+  {
+    "label": "Huila\t-\tAlgeciras",
+    "value": "41020"
+  },
+  {
+    "label": "Huila\t-\tAltamira",
+    "value": "41026"
+  },
+  {
+    "label": "Huila\t-\tBaraya",
+    "value": "41078"
+  },
+  {
+    "label": "Huila\t-\tCampoalegre",
+    "value": "41132"
+  },
+  {
+    "label": "Huila\t-\tColombia",
+    "value": "41206"
+  },
+  {
+    "label": "Huila\t-\tElias",
+    "value": "41244"
+  },
+  {
+    "label": "Huila\t-\tGarzon",
+    "value": "41298"
+  },
+  {
+    "label": "Huila\t-\tGigante",
+    "value": "41306"
+  },
+  {
+    "label": "Huila\t-\tGuadalupe",
+    "value": "41319"
+  },
+  {
+    "label": "Huila\t-\tHobo",
+    "value": "41349"
+  },
+  {
+    "label": "Huila\t-\tIquira",
+    "value": "41357"
+  },
+  {
+    "label": "Huila\t-\tIsnos",
+    "value": "41359"
+  },
+  {
+    "label": "Huila\t-\tLa Argentina",
+    "value": "41378"
+  },
+  {
+    "label": "Huila\t-\tLa Plata",
+    "value": "41396"
+  },
+  {
+    "label": "Huila\t-\tNataga",
+    "value": "41483"
+  },
+  {
+    "label": "Huila\t-\tNeiva",
+    "value": "41001"
+  },
+  {
+    "label": "Huila\t-\tOporapa",
+    "value": "41503"
+  },
+  {
+    "label": "Huila\t-\tPaicol",
+    "value": "41518"
+  },
+  {
+    "label": "Huila\t-\tPalermo",
+    "value": "41524"
+  },
+  {
+    "label": "Huila\t-\tPalestina",
+    "value": "41530"
+  },
+  {
+    "label": "Huila\t-\tPital",
+    "value": "41548"
+  },
+  {
+    "label": "Huila\t-\tPitalito",
+    "value": "41551"
+  },
+  {
+    "label": "Huila\t-\tRivera",
+    "value": "41615"
+  },
+  {
+    "label": "Huila\t-\tSaladoblanco",
+    "value": "41660"
+  },
+  {
+    "label": "Huila\t-\tSan Agustin",
+    "value": "41668"
+  },
+  {
+    "label": "Huila\t-\tSanta Maria",
+    "value": "41676"
+  },
+  {
+    "label": "Huila\t-\tSuaza",
+    "value": "41770"
+  },
+  {
+    "label": "Huila\t-\tTarqui",
+    "value": "41791"
+  },
+  {
+    "label": "Huila\t-\tTello",
+    "value": "41799"
+  },
+  {
+    "label": "Huila\t-\tTeruel",
+    "value": "41801"
+  },
+  {
+    "label": "Huila\t-\tTesalia",
+    "value": "41797"
+  },
+  {
+    "label": "Huila\t-\tTimana",
+    "value": "41807"
+  },
+  {
+    "label": "Huila\t-\tVillavieja",
+    "value": "41872"
+  },
+  {
+    "label": "Huila\t-\tYaguara",
+    "value": "41885"
+  },
+  {
+    "label": "La Guajira\t-\tAlbania",
+    "value": "44035"
+  },
+  {
+    "label": "La Guajira\t-\tBarrancas",
+    "value": "44078"
+  },
+  {
+    "label": "La Guajira\t-\tDibulla",
+    "value": "44090"
+  },
+  {
+    "label": "La Guajira\t-\tDistraccion",
+    "value": "44098"
+  },
+  {
+    "label": "La Guajira\t-\tEl Molino",
+    "value": "44110"
+  },
+  {
+    "label": "La Guajira\t-\tFonseca",
+    "value": "44279"
+  },
+  {
+    "label": "La Guajira\t-\tHatonuevo",
+    "value": "44378"
+  },
+  {
+    "label": "La Guajira\t-\tLa Jagua Del Pilar",
+    "value": "44420"
+  },
+  {
+    "label": "La Guajira\t-\tMaicao",
+    "value": "44430"
+  },
+  {
+    "label": "La Guajira\t-\tManaure",
+    "value": "44560"
+  },
+  {
+    "label": "La Guajira\t-\tRiohacha",
+    "value": "44001"
+  },
+  {
+    "label": "La Guajira\t-\tSan Juan Del Cesar",
+    "value": "44650"
+  },
+  {
+    "label": "La Guajira\t-\tUribia",
+    "value": "44847"
+  },
+  {
+    "label": "La Guajira\t-\tUrumita",
+    "value": "44855"
+  },
+  {
+    "label": "La Guajira\t-\tVillanueva",
+    "value": "44874"
+  },
+  {
+    "label": "Magdalena\t-\tAlgarrobo",
+    "value": "47030"
+  },
+  {
+    "label": "Magdalena\t-\tAracataca",
+    "value": "47053"
+  },
+  {
+    "label": "Magdalena\t-\tAriguani",
+    "value": "47058"
+  },
+  {
+    "label": "Magdalena\t-\tCerro De San Antonio",
+    "value": "47161"
+  },
+  {
+    "label": "Magdalena\t-\tChivolo",
+    "value": "47170"
+  },
+  {
+    "label": "Magdalena\t-\tCienaga",
+    "value": "47189"
+  },
+  {
+    "label": "Magdalena\t-\tConcordia",
+    "value": "47205"
+  },
+  {
+    "label": "Magdalena\t-\tEl Banco",
+    "value": "47245"
+  },
+  {
+    "label": "Magdalena\t-\tEl Pinon",
+    "value": "47258"
+  },
+  {
+    "label": "Magdalena\t-\tEl Reten",
+    "value": "47268"
+  },
+  {
+    "label": "Magdalena\t-\tFundacion",
+    "value": "47288"
+  },
+  {
+    "label": "Magdalena\t-\tGuamal",
+    "value": "47318"
+  },
+  {
+    "label": "Magdalena\t-\tNueva Granada",
+    "value": "47460"
+  },
+  {
+    "label": "Magdalena\t-\tPedraza",
+    "value": "47541"
+  },
+  {
+    "label": "Magdalena\t-\tPijino Del Carmen",
+    "value": "47545"
+  },
+  {
+    "label": "Magdalena\t-\tPivijay",
+    "value": "47551"
+  },
+  {
+    "label": "Magdalena\t-\tPlato",
+    "value": "47555"
+  },
+  {
+    "label": "Magdalena\t-\tPuebloviejo",
+    "value": "47570"
+  },
+  {
+    "label": "Magdalena\t-\tRemolino",
+    "value": "47605"
+  },
+  {
+    "label": "Magdalena\t-\tSabanas De San Angel",
+    "value": "47660"
+  },
+  {
+    "label": "Magdalena\t-\tSalamina",
+    "value": "47675"
+  },
+  {
+    "label": "Magdalena\t-\tSan Sebastian De Buenavista",
+    "value": "47692"
+  },
+  {
+    "label": "Magdalena\t-\tSan Zenon",
+    "value": "47703"
+  },
+  {
+    "label": "Magdalena\t-\tSanta Ana",
+    "value": "47707"
+  },
+  {
+    "label": "Magdalena\t-\tSanta Barbara De Pinto",
+    "value": "47720"
+  },
+  {
+    "label": "Magdalena\t-\tSanta Marta",
+    "value": "47001"
+  },
+  {
+    "label": "Magdalena\t-\tSitionuevo",
+    "value": "47745"
+  },
+  {
+    "label": "Magdalena\t-\tTenerife",
+    "value": "47798"
+  },
+  {
+    "label": "Magdalena\t-\tZapayan",
+    "value": "47960"
+  },
+  {
+    "label": "Magdalena\t-\tZona Bananera",
+    "value": "47980"
+  },
+  {
+    "label": "Meta\t-\tAcacias",
+    "value": "50006"
+  },
+  {
+    "label": "Meta\t-\tBarranca De Upia",
+    "value": "50110"
+  },
+  {
+    "label": "Meta\t-\tCabuyaro",
+    "value": "50124"
+  },
+  {
+    "label": "Meta\t-\tCastilla La Nueva",
+    "value": "50150"
+  },
+  {
+    "label": "Meta\t-\tCubarral",
+    "value": "50223"
+  },
+  {
+    "label": "Meta\t-\tCumaral",
+    "value": "50226"
+  },
+  {
+    "label": "Meta\t-\tEl Calvario",
+    "value": "50245"
+  },
+  {
+    "label": "Meta\t-\tEl Castillo",
+    "value": "50251"
+  },
+  {
+    "label": "Meta\t-\tEl Dorado",
+    "value": "50270"
+  },
+  {
+    "label": "Meta\t-\tFuentedeoro",
+    "value": "50287"
+  },
+  {
+    "label": "Meta\t-\tGranada",
+    "value": "50313"
+  },
+  {
+    "label": "Meta\t-\tGuamal",
+    "value": "50318"
+  },
+  {
+    "label": "Meta\t-\tLa Macarena",
+    "value": "50350"
+  },
+  {
+    "label": "Meta\t-\tLejanias",
+    "value": "50400"
+  },
+  {
+    "label": "Meta\t-\tMapiripan",
+    "value": "50325"
+  },
+  {
+    "label": "Meta\t-\tMesetas",
+    "value": "50330"
+  },
+  {
+    "label": "Meta\t-\tPuerto Concordia",
+    "value": "50450"
+  },
+  {
+    "label": "Meta\t-\tPuerto Gaitan",
+    "value": "50568"
+  },
+  {
+    "label": "Meta\t-\tPuerto Lleras",
+    "value": "50577"
+  },
+  {
+    "label": "Meta\t-\tPuerto Lopez",
+    "value": "50573"
+  },
+  {
+    "label": "Meta\t-\tPuerto Rico",
+    "value": "50590"
+  },
+  {
+    "label": "Meta\t-\tRestrepo",
+    "value": "50606"
+  },
+  {
+    "label": "Meta\t-\tSan Carlos De Guaroa",
+    "value": "50680"
+  },
+  {
+    "label": "Meta\t-\tSan Juan De Arama",
+    "value": "50683"
+  },
+  {
+    "label": "Meta\t-\tSan Juanito",
+    "value": "50686"
+  },
+  {
+    "label": "Meta\t-\tSan Martin",
+    "value": "50689"
+  },
+  {
+    "label": "Meta\t-\tUribe",
+    "value": "50370"
+  },
+  {
+    "label": "Meta\t-\tVillavicencio",
+    "value": "50001"
+  },
+  {
+    "label": "Meta\t-\tVistahermosa",
+    "value": "50711"
+  },
+  {
+    "label": "Narino\t-\tAlban",
+    "value": "52019"
+  },
+  {
+    "label": "Narino\t-\tAldana",
+    "value": "52022"
+  },
+  {
+    "label": "Narino\t-\tAncuya",
+    "value": "52036"
+  },
+  {
+    "label": "Narino\t-\tArboleda",
+    "value": "52051"
+  },
+  {
+    "label": "Narino\t-\tBarbacoas",
+    "value": "52079"
+  },
+  {
+    "label": "Narino\t-\tBelen",
+    "value": "52083"
+  },
+  {
+    "label": "Narino\t-\tBuesaco",
+    "value": "52110"
+  },
+  {
+    "label": "Narino\t-\tChachagüi",
+    "value": "52240"
+  },
+  {
+    "label": "Narino\t-\tColon",
+    "value": "52203"
+  },
+  {
+    "label": "Narino\t-\tConsaca",
+    "value": "52207"
+  },
+  {
+    "label": "Narino\t-\tContadero",
+    "value": "52210"
+  },
+  {
+    "label": "Narino\t-\tCordoba",
+    "value": "52215"
+  },
+  {
+    "label": "Narino\t-\tCuaspud",
+    "value": "52224"
+  },
+  {
+    "label": "Narino\t-\tCumbal",
+    "value": "52227"
+  },
+  {
+    "label": "Narino\t-\tCumbitara",
+    "value": "52233"
+  },
+  {
+    "label": "Narino\t-\tEl Charco",
+    "value": "52250"
+  },
+  {
+    "label": "Narino\t-\tEl Penol",
+    "value": "52254"
+  },
+  {
+    "label": "Narino\t-\tEl Rosario",
+    "value": "52256"
+  },
+  {
+    "label": "Narino\t-\tEl Tablon De Gomez",
+    "value": "52258"
+  },
+  {
+    "label": "Narino\t-\tEl Tambo",
+    "value": "52260"
+  },
+  {
+    "label": "Narino\t-\tFrancisco Pizarro",
+    "value": "52520"
+  },
+  {
+    "label": "Narino\t-\tFunes",
+    "value": "52287"
+  },
+  {
+    "label": "Narino\t-\tGuachucal",
+    "value": "52317"
+  },
+  {
+    "label": "Narino\t-\tGuaitarilla",
+    "value": "52320"
+  },
+  {
+    "label": "Narino\t-\tGualmatan",
+    "value": "52323"
+  },
+  {
+    "label": "Narino\t-\tIles",
+    "value": "52352"
+  },
+  {
+    "label": "Narino\t-\tImues",
+    "value": "52354"
+  },
+  {
+    "label": "Narino\t-\tIpiales",
+    "value": "52356"
+  },
+  {
+    "label": "Narino\t-\tLa Cruz",
+    "value": "52378"
+  },
+  {
+    "label": "Narino\t-\tLa Florida",
+    "value": "52381"
+  },
+  {
+    "label": "Narino\t-\tLa Llanada",
+    "value": "52385"
+  },
+  {
+    "label": "Narino\t-\tLa Tola",
+    "value": "52390"
+  },
+  {
+    "label": "Narino\t-\tLa Union",
+    "value": "52399"
+  },
+  {
+    "label": "Narino\t-\tLeiva",
+    "value": "52405"
+  },
+  {
+    "label": "Narino\t-\tLinares",
+    "value": "52411"
+  },
+  {
+    "label": "Narino\t-\tLos Andes",
+    "value": "52418"
+  },
+  {
+    "label": "Narino\t-\tMagüi",
+    "value": "52427"
+  },
+  {
+    "label": "Narino\t-\tMallama",
+    "value": "52435"
+  },
+  {
+    "label": "Narino\t-\tMosquera",
+    "value": "52473"
+  },
+  {
+    "label": "Narino\t-\tNarino",
+    "value": "52480"
+  },
+  {
+    "label": "Narino\t-\tOlaya Herrera",
+    "value": "52490"
+  },
+  {
+    "label": "Narino\t-\tOspina",
+    "value": "52506"
+  },
+  {
+    "label": "Narino\t-\tPasto",
+    "value": "52001"
+  },
+  {
+    "label": "Narino\t-\tPolicarpa",
+    "value": "52540"
+  },
+  {
+    "label": "Narino\t-\tPotosi",
+    "value": "52560"
+  },
+  {
+    "label": "Narino\t-\tProvidencia",
+    "value": "52565"
+  },
+  {
+    "label": "Narino\t-\tPuerres",
+    "value": "52573"
+  },
+  {
+    "label": "Narino\t-\tPupiales",
+    "value": "52585"
+  },
+  {
+    "label": "Narino\t-\tRicaurte",
+    "value": "52612"
+  },
+  {
+    "label": "Narino\t-\tRoberto Payan",
+    "value": "52621"
+  },
+  {
+    "label": "Narino\t-\tSamaniego",
+    "value": "52678"
+  },
+  {
+    "label": "Narino\t-\tSan Andres De Tumaco",
+    "value": "52835"
+  },
+  {
+    "label": "Narino\t-\tSan Bernardo",
+    "value": "52685"
+  },
+  {
+    "label": "Narino\t-\tSan Lorenzo",
+    "value": "52687"
+  },
+  {
+    "label": "Narino\t-\tSan Pablo",
+    "value": "52693"
+  },
+  {
+    "label": "Narino\t-\tSan Pedro De Cartago",
+    "value": "52694"
+  },
+  {
+    "label": "Narino\t-\tSandona",
+    "value": "52683"
+  },
+  {
+    "label": "Narino\t-\tSanta Barbara",
+    "value": "52696"
+  },
+  {
+    "label": "Narino\t-\tSantacruz",
+    "value": "52699"
+  },
+  {
+    "label": "Narino\t-\tSapuyes",
+    "value": "52720"
+  },
+  {
+    "label": "Narino\t-\tTaminango",
+    "value": "52786"
+  },
+  {
+    "label": "Narino\t-\tTangua",
+    "value": "52788"
+  },
+  {
+    "label": "Narino\t-\tTuquerres",
+    "value": "52838"
+  },
+  {
+    "label": "Narino\t-\tYacuanquer",
+    "value": "52885"
+  },
+  {
+    "label": "Norte De Santander\t-\tAbrego",
+    "value": "54003"
+  },
+  {
+    "label": "Norte De Santander\t-\tArboledas",
+    "value": "54051"
+  },
+  {
+    "label": "Norte De Santander\t-\tBochalema",
+    "value": "54099"
+  },
+  {
+    "label": "Norte De Santander\t-\tBucarasica",
+    "value": "54109"
+  },
+  {
+    "label": "Norte De Santander\t-\tCachira",
+    "value": "54128"
+  },
+  {
+    "label": "Norte De Santander\t-\tCacota",
+    "value": "54125"
+  },
+  {
+    "label": "Norte De Santander\t-\tChinacota",
+    "value": "54172"
+  },
+  {
+    "label": "Norte De Santander\t-\tChitaga",
+    "value": "54174"
+  },
+  {
+    "label": "Norte De Santander\t-\tConvencion",
+    "value": "54206"
+  },
+  {
+    "label": "Norte De Santander\t-\tCucuta",
+    "value": "54001"
+  },
+  {
+    "label": "Norte De Santander\t-\tCucutilla",
+    "value": "54223"
+  },
+  {
+    "label": "Norte De Santander\t-\tDurania",
+    "value": "54239"
+  },
+  {
+    "label": "Norte De Santander\t-\tEl Carmen",
+    "value": "54245"
+  },
+  {
+    "label": "Norte De Santander\t-\tEl Tarra",
+    "value": "54250"
+  },
+  {
+    "label": "Norte De Santander\t-\tEl Zulia",
+    "value": "54261"
+  },
+  {
+    "label": "Norte De Santander\t-\tGramalote",
+    "value": "54313"
+  },
+  {
+    "label": "Norte De Santander\t-\tHacari",
+    "value": "54344"
+  },
+  {
+    "label": "Norte De Santander\t-\tHerran",
+    "value": "54347"
+  },
+  {
+    "label": "Norte De Santander\t-\tLa Esperanza",
+    "value": "54385"
+  },
+  {
+    "label": "Norte De Santander\t-\tLa Playa",
+    "value": "54398"
+  },
+  {
+    "label": "Norte De Santander\t-\tLabateca",
+    "value": "54377"
+  },
+  {
+    "label": "Norte De Santander\t-\tLos Patios",
+    "value": "54405"
+  },
+  {
+    "label": "Norte De Santander\t-\tLourdes",
+    "value": "54418"
+  },
+  {
+    "label": "Norte De Santander\t-\tMutiscua",
+    "value": "54480"
+  },
+  {
+    "label": "Norte De Santander\t-\tOcana",
+    "value": "54498"
+  },
+  {
+    "label": "Norte De Santander\t-\tPamplona",
+    "value": "54518"
+  },
+  {
+    "label": "Norte De Santander\t-\tPamplonita",
+    "value": "54520"
+  },
+  {
+    "label": "Norte De Santander\t-\tPuerto Santander",
+    "value": "54553"
+  },
+  {
+    "label": "Norte De Santander\t-\tRagonvalia",
+    "value": "54599"
+  },
+  {
+    "label": "Norte De Santander\t-\tSalazar",
+    "value": "54660"
+  },
+  {
+    "label": "Norte De Santander\t-\tSan Calixto",
+    "value": "54670"
+  },
+  {
+    "label": "Norte De Santander\t-\tSan Cayetano",
+    "value": "54673"
+  },
+  {
+    "label": "Norte De Santander\t-\tSantiago",
+    "value": "54680"
+  },
+  {
+    "label": "Norte De Santander\t-\tSardinata",
+    "value": "54720"
+  },
+  {
+    "label": "Norte De Santander\t-\tSilos",
+    "value": "54743"
+  },
+  {
+    "label": "Norte De Santander\t-\tTeorama",
+    "value": "54800"
+  },
+  {
+    "label": "Norte De Santander\t-\tTibu",
+    "value": "54810"
+  },
+  {
+    "label": "Norte De Santander\t-\tToledo",
+    "value": "54820"
+  },
+  {
+    "label": "Norte De Santander\t-\tVilla Caro",
+    "value": "54871"
+  },
+  {
+    "label": "Norte De Santander\t-\tVilla Del Rosario",
+    "value": "54874"
+  },
+  {
+    "label": "Putumayo\t-\tColon",
+    "value": "86219"
+  },
+  {
+    "label": "Putumayo\t-\tMocoa",
+    "value": "86001"
+  },
+  {
+    "label": "Putumayo\t-\tOrito",
+    "value": "86320"
+  },
+  {
+    "label": "Putumayo\t-\tPuerto Asis",
+    "value": "86568"
+  },
+  {
+    "label": "Putumayo\t-\tPuerto Caicedo",
+    "value": "86569"
+  },
+  {
+    "label": "Putumayo\t-\tPuerto Guzman",
+    "value": "86571"
+  },
+  {
+    "label": "Putumayo\t-\tPuerto Leguizamo",
+    "value": "86573"
+  },
+  {
+    "label": "Putumayo\t-\tSan Francisco",
+    "value": "86755"
+  },
+  {
+    "label": "Putumayo\t-\tSan Miguel",
+    "value": "86757"
+  },
+  {
+    "label": "Putumayo\t-\tSantiago",
+    "value": "86760"
+  },
+  {
+    "label": "Putumayo\t-\tSibundoy",
+    "value": "86749"
+  },
+  {
+    "label": "Putumayo\t-\tValle Del Guamuez",
+    "value": "86865"
+  },
+  {
+    "label": "Putumayo\t-\tVillagarzon",
+    "value": "86885"
+  },
+  {
+    "label": "Quindio\t-\tArmenia",
+    "value": "63001"
+  },
+  {
+    "label": "Quindio\t-\tBuenavista",
+    "value": "63111"
+  },
+  {
+    "label": "Quindio\t-\tCalarca",
+    "value": "63130"
+  },
+  {
+    "label": "Quindio\t-\tCircasia",
+    "value": "63190"
+  },
+  {
+    "label": "Quindio\t-\tCordoba",
+    "value": "63212"
+  },
+  {
+    "label": "Quindio\t-\tFilandia",
+    "value": "63272"
+  },
+  {
+    "label": "Quindio\t-\tGenova",
+    "value": "63302"
+  },
+  {
+    "label": "Quindio\t-\tLa Tebaida",
+    "value": "63401"
+  },
+  {
+    "label": "Quindio\t-\tMontenegro",
+    "value": "63470"
+  },
+  {
+    "label": "Quindio\t-\tPijao",
+    "value": "63548"
+  },
+  {
+    "label": "Quindio\t-\tQuimbaya",
+    "value": "63594"
+  },
+  {
+    "label": "Quindio\t-\tSalento",
+    "value": "63690"
+  },
+  {
+    "label": "Risaralda\t-\tApia",
+    "value": "66045"
+  },
+  {
+    "label": "Risaralda\t-\tBalboa",
+    "value": "66075"
+  },
+  {
+    "label": "Risaralda\t-\tBelen De Umbria",
+    "value": "66088"
+  },
+  {
+    "label": "Risaralda\t-\tDosquebradas",
+    "value": "66170"
+  },
+  {
+    "label": "Risaralda\t-\tGuatica",
+    "value": "66318"
+  },
+  {
+    "label": "Risaralda\t-\tLa Celia",
+    "value": "66383"
+  },
+  {
+    "label": "Risaralda\t-\tLa Virginia",
+    "value": "66400"
+  },
+  {
+    "label": "Risaralda\t-\tMarsella",
+    "value": "66440"
+  },
+  {
+    "label": "Risaralda\t-\tMistrato",
+    "value": "66456"
+  },
+  {
+    "label": "Risaralda\t-\tPereira",
+    "value": "66001"
+  },
+  {
+    "label": "Risaralda\t-\tPueblo Rico",
+    "value": "66572"
+  },
+  {
+    "label": "Risaralda\t-\tQuinchia",
+    "value": "66594"
+  },
+  {
+    "label": "Risaralda\t-\tSanta Rosa De Cabal",
+    "value": "66682"
+  },
+  {
+    "label": "Risaralda\t-\tSantuario",
+    "value": "66687"
+  },
+  {
+    "label": "Santander\t-\tAguada",
+    "value": "68013"
+  },
+  {
+    "label": "Santander\t-\tAlbania",
+    "value": "68020"
+  },
+  {
+    "label": "Santander\t-\tAratoca",
+    "value": "68051"
+  },
+  {
+    "label": "Santander\t-\tBarbosa",
+    "value": "68077"
+  },
+  {
+    "label": "Santander\t-\tBarichara",
+    "value": "68079"
+  },
+  {
+    "label": "Santander\t-\tBarrancabermeja",
+    "value": "68081"
+  },
+  {
+    "label": "Santander\t-\tBetulia",
+    "value": "68092"
+  },
+  {
+    "label": "Santander\t-\tBolivar",
+    "value": "68101"
+  },
+  {
+    "label": "Santander\t-\tBucaramanga",
+    "value": "68001"
+  },
+  {
+    "label": "Santander\t-\tCabrera",
+    "value": "68121"
+  },
+  {
+    "label": "Santander\t-\tCalifornia",
+    "value": "68132"
+  },
+  {
+    "label": "Santander\t-\tCapitanejo",
+    "value": "68147"
+  },
+  {
+    "label": "Santander\t-\tCarcasi",
+    "value": "68152"
+  },
+  {
+    "label": "Santander\t-\tCepita",
+    "value": "68160"
+  },
+  {
+    "label": "Santander\t-\tCerrito",
+    "value": "68162"
+  },
+  {
+    "label": "Santander\t-\tCharala",
+    "value": "68167"
+  },
+  {
+    "label": "Santander\t-\tCharta",
+    "value": "68169"
+  },
+  {
+    "label": "Santander\t-\tChima",
+    "value": "68176"
+  },
+  {
+    "label": "Santander\t-\tChipata",
+    "value": "68179"
+  },
+  {
+    "label": "Santander\t-\tCimitarra",
+    "value": "68190"
+  },
+  {
+    "label": "Santander\t-\tConcepcion",
+    "value": "68207"
+  },
+  {
+    "label": "Santander\t-\tConfines",
+    "value": "68209"
+  },
+  {
+    "label": "Santander\t-\tContratacion",
+    "value": "68211"
+  },
+  {
+    "label": "Santander\t-\tCoromoro",
+    "value": "68217"
+  },
+  {
+    "label": "Santander\t-\tCuriti",
+    "value": "68229"
+  },
+  {
+    "label": "Santander\t-\tEl Carmen De Chucuri",
+    "value": "68235"
+  },
+  {
+    "label": "Santander\t-\tEl Guacamayo",
+    "value": "68245"
+  },
+  {
+    "label": "Santander\t-\tEl Penon",
+    "value": "68250"
+  },
+  {
+    "label": "Santander\t-\tEl Playon",
+    "value": "68255"
+  },
+  {
+    "label": "Santander\t-\tEncino",
+    "value": "68264"
+  },
+  {
+    "label": "Santander\t-\tEnciso",
+    "value": "68266"
+  },
+  {
+    "label": "Santander\t-\tFlorian",
+    "value": "68271"
+  },
+  {
+    "label": "Santander\t-\tFloridablanca",
+    "value": "68276"
+  },
+  {
+    "label": "Santander\t-\tGalan",
+    "value": "68296"
+  },
+  {
+    "label": "Santander\t-\tGambita",
+    "value": "68298"
+  },
+  {
+    "label": "Santander\t-\tGiron",
+    "value": "68307"
+  },
+  {
+    "label": "Santander\t-\tGuaca",
+    "value": "68318"
+  },
+  {
+    "label": "Santander\t-\tGuadalupe",
+    "value": "68320"
+  },
+  {
+    "label": "Santander\t-\tGuapota",
+    "value": "68322"
+  },
+  {
+    "label": "Santander\t-\tGuavata",
+    "value": "68324"
+  },
+  {
+    "label": "Santander\t-\tGüepsa",
+    "value": "68327"
+  },
+  {
+    "label": "Santander\t-\tHato",
+    "value": "68344"
+  },
+  {
+    "label": "Santander\t-\tJesus Maria",
+    "value": "68368"
+  },
+  {
+    "label": "Santander\t-\tJordan",
+    "value": "68370"
+  },
+  {
+    "label": "Santander\t-\tLa Belleza",
+    "value": "68377"
+  },
+  {
+    "label": "Santander\t-\tLa Paz",
+    "value": "68397"
+  },
+  {
+    "label": "Santander\t-\tLandazuri",
+    "value": "68385"
+  },
+  {
+    "label": "Santander\t-\tLebrija",
+    "value": "68406"
+  },
+  {
+    "label": "Santander\t-\tLos Santos",
+    "value": "68418"
+  },
+  {
+    "label": "Santander\t-\tMacaravita",
+    "value": "68425"
+  },
+  {
+    "label": "Santander\t-\tMalaga",
+    "value": "68432"
+  },
+  {
+    "label": "Santander\t-\tMatanza",
+    "value": "68444"
+  },
+  {
+    "label": "Santander\t-\tMogotes",
+    "value": "68464"
+  },
+  {
+    "label": "Santander\t-\tMolagavita",
+    "value": "68468"
+  },
+  {
+    "label": "Santander\t-\tOcamonte",
+    "value": "68498"
+  },
+  {
+    "label": "Santander\t-\tOiba",
+    "value": "68500"
+  },
+  {
+    "label": "Santander\t-\tOnzaga",
+    "value": "68502"
+  },
+  {
+    "label": "Santander\t-\tPalmar",
+    "value": "68522"
+  },
+  {
+    "label": "Santander\t-\tPalmas Del Socorro",
+    "value": "68524"
+  },
+  {
+    "label": "Santander\t-\tParamo",
+    "value": "68533"
+  },
+  {
+    "label": "Santander\t-\tPiedecuesta",
+    "value": "68547"
+  },
+  {
+    "label": "Santander\t-\tPinchote",
+    "value": "68549"
+  },
+  {
+    "label": "Santander\t-\tPuente Nacional",
+    "value": "68572"
+  },
+  {
+    "label": "Santander\t-\tPuerto Parra",
+    "value": "68573"
+  },
+  {
+    "label": "Santander\t-\tPuerto Wilches",
+    "value": "68575"
+  },
+  {
+    "label": "Santander\t-\tRionegro",
+    "value": "68615"
+  },
+  {
+    "label": "Santander\t-\tSabana De Torres",
+    "value": "68655"
+  },
+  {
+    "label": "Santander\t-\tSan Andres",
+    "value": "68669"
+  },
+  {
+    "label": "Santander\t-\tSan Benito",
+    "value": "68673"
+  },
+  {
+    "label": "Santander\t-\tSan Gil",
+    "value": "68679"
+  },
+  {
+    "label": "Santander\t-\tSan Joaquin",
+    "value": "68682"
+  },
+  {
+    "label": "Santander\t-\tSan Jose De Miranda",
+    "value": "68684"
+  },
+  {
+    "label": "Santander\t-\tSan Miguel",
+    "value": "68686"
+  },
+  {
+    "label": "Santander\t-\tSan Vicente De Chucuri",
+    "value": "68689"
+  },
+  {
+    "label": "Santander\t-\tSanta Barbara",
+    "value": "68705"
+  },
+  {
+    "label": "Santander\t-\tSanta Helena Del Opon",
+    "value": "68720"
+  },
+  {
+    "label": "Santander\t-\tSimacota",
+    "value": "68745"
+  },
+  {
+    "label": "Santander\t-\tSocorro",
+    "value": "68755"
+  },
+  {
+    "label": "Santander\t-\tSuaita",
+    "value": "68770"
+  },
+  {
+    "label": "Santander\t-\tSucre",
+    "value": "68773"
+  },
+  {
+    "label": "Santander\t-\tSurata",
+    "value": "68780"
+  },
+  {
+    "label": "Santander\t-\tTona",
+    "value": "68820"
+  },
+  {
+    "label": "Santander\t-\tValle De San Jose",
+    "value": "68855"
+  },
+  {
+    "label": "Santander\t-\tVelez",
+    "value": "68861"
+  },
+  {
+    "label": "Santander\t-\tVetas",
+    "value": "68867"
+  },
+  {
+    "label": "Santander\t-\tVillanueva",
+    "value": "68872"
+  },
+  {
+    "label": "Santander\t-\tZapatoca",
+    "value": "68895"
+  },
+  {
+    "label": "Sucre\t-\tBuenavista",
+    "value": "70110"
+  },
+  {
+    "label": "Sucre\t-\tCaimito",
+    "value": "70124"
+  },
+  {
+    "label": "Sucre\t-\tChalan",
+    "value": "70230"
+  },
+  {
+    "label": "Sucre\t-\tColoso",
+    "value": "70204"
+  },
+  {
+    "label": "Sucre\t-\tCorozal",
+    "value": "70215"
+  },
+  {
+    "label": "Sucre\t-\tCovenas",
+    "value": "70221"
+  },
+  {
+    "label": "Sucre\t-\tEl Roble",
+    "value": "70233"
+  },
+  {
+    "label": "Sucre\t-\tGaleras",
+    "value": "70235"
+  },
+  {
+    "label": "Sucre\t-\tGuaranda",
+    "value": "70265"
+  },
+  {
+    "label": "Sucre\t-\tLa Union",
+    "value": "70400"
+  },
+  {
+    "label": "Sucre\t-\tLos Palmitos",
+    "value": "70418"
+  },
+  {
+    "label": "Sucre\t-\tMajagual",
+    "value": "70429"
+  },
+  {
+    "label": "Sucre\t-\tMorroa",
+    "value": "70473"
+  },
+  {
+    "label": "Sucre\t-\tOvejas",
+    "value": "70508"
+  },
+  {
+    "label": "Sucre\t-\tPalmito",
+    "value": "70523"
+  },
+  {
+    "label": "Sucre\t-\tSampues",
+    "value": "70670"
+  },
+  {
+    "label": "Sucre\t-\tSan Benito Abad",
+    "value": "70678"
+  },
+  {
+    "label": "Sucre\t-\tSan Juan De Betulia",
+    "value": "70702"
+  },
+  {
+    "label": "Sucre\t-\tSan Luis De Since",
+    "value": "70742"
+  },
+  {
+    "label": "Sucre\t-\tSan Marcos",
+    "value": "70708"
+  },
+  {
+    "label": "Sucre\t-\tSan Onofre",
+    "value": "70713"
+  },
+  {
+    "label": "Sucre\t-\tSan Pedro",
+    "value": "70717"
+  },
+  {
+    "label": "Sucre\t-\tSantiago De Tolu",
+    "value": "70820"
+  },
+  {
+    "label": "Sucre\t-\tSincelejo",
+    "value": "70001"
+  },
+  {
+    "label": "Sucre\t-\tSucre",
+    "value": "70771"
+  },
+  {
+    "label": "Sucre\t-\tTolu Viejo",
+    "value": "70823"
+  },
+  {
+    "label": "Tolima\t-\tAlpujarra",
+    "value": "73024"
+  },
+  {
+    "label": "Tolima\t-\tAlvarado",
+    "value": "73026"
+  },
+  {
+    "label": "Tolima\t-\tAmbalema",
+    "value": "73030"
+  },
+  {
+    "label": "Tolima\t-\tAnzoategui",
+    "value": "73043"
+  },
+  {
+    "label": "Tolima\t-\tArmero",
+    "value": "73055"
+  },
+  {
+    "label": "Tolima\t-\tAtaco",
+    "value": "73067"
+  },
+  {
+    "label": "Tolima\t-\tCajamarca",
+    "value": "73124"
+  },
+  {
+    "label": "Tolima\t-\tCarmen De Apicala",
+    "value": "73148"
+  },
+  {
+    "label": "Tolima\t-\tCasabianca",
+    "value": "73152"
+  },
+  {
+    "label": "Tolima\t-\tChaparral",
+    "value": "73168"
+  },
+  {
+    "label": "Tolima\t-\tCoello",
+    "value": "73200"
+  },
+  {
+    "label": "Tolima\t-\tCoyaima",
+    "value": "73217"
+  },
+  {
+    "label": "Tolima\t-\tCunday",
+    "value": "73226"
+  },
+  {
+    "label": "Tolima\t-\tDolores",
+    "value": "73236"
+  },
+  {
+    "label": "Tolima\t-\tEspinal",
+    "value": "73268"
+  },
+  {
+    "label": "Tolima\t-\tFalan",
+    "value": "73270"
+  },
+  {
+    "label": "Tolima\t-\tFlandes",
+    "value": "73275"
+  },
+  {
+    "label": "Tolima\t-\tFresno",
+    "value": "73283"
+  },
+  {
+    "label": "Tolima\t-\tGuamo",
+    "value": "73319"
+  },
+  {
+    "label": "Tolima\t-\tHerveo",
+    "value": "73347"
+  },
+  {
+    "label": "Tolima\t-\tHonda",
+    "value": "73349"
+  },
+  {
+    "label": "Tolima\t-\tIbague",
+    "value": "73001"
+  },
+  {
+    "label": "Tolima\t-\tIcononzo",
+    "value": "73352"
+  },
+  {
+    "label": "Tolima\t-\tLerida",
+    "value": "73408"
+  },
+  {
+    "label": "Tolima\t-\tLibano",
+    "value": "73411"
+  },
+  {
+    "label": "Tolima\t-\tMelgar",
+    "value": "73449"
+  },
+  {
+    "label": "Tolima\t-\tMurillo",
+    "value": "73461"
+  },
+  {
+    "label": "Tolima\t-\tNatagaima",
+    "value": "73483"
+  },
+  {
+    "label": "Tolima\t-\tOrtega",
+    "value": "73504"
+  },
+  {
+    "label": "Tolima\t-\tPalocabildo",
+    "value": "73520"
+  },
+  {
+    "label": "Tolima\t-\tPiedras",
+    "value": "73547"
+  },
+  {
+    "label": "Tolima\t-\tPlanadas",
+    "value": "73555"
+  },
+  {
+    "label": "Tolima\t-\tPrado",
+    "value": "73563"
+  },
+  {
+    "label": "Tolima\t-\tPurificacion",
+    "value": "73585"
+  },
+  {
+    "label": "Tolima\t-\tRioblanco",
+    "value": "73616"
+  },
+  {
+    "label": "Tolima\t-\tRoncesvalles",
+    "value": "73622"
+  },
+  {
+    "label": "Tolima\t-\tRovira",
+    "value": "73624"
+  },
+  {
+    "label": "Tolima\t-\tSaldana",
+    "value": "73671"
+  },
+  {
+    "label": "Tolima\t-\tSan Antonio",
+    "value": "73675"
+  },
+  {
+    "label": "Tolima\t-\tSan Luis",
+    "value": "73678"
+  },
+  {
+    "label": "Tolima\t-\tSan Sebastian De Mariquita",
+    "value": "73443"
+  },
+  {
+    "label": "Tolima\t-\tSanta Isabel",
+    "value": "73686"
+  },
+  {
+    "label": "Tolima\t-\tSuarez",
+    "value": "73770"
+  },
+  {
+    "label": "Tolima\t-\tValle De San Juan",
+    "value": "73854"
+  },
+  {
+    "label": "Tolima\t-\tVenadillo",
+    "value": "73861"
+  },
+  {
+    "label": "Tolima\t-\tVillahermosa",
+    "value": "73870"
+  },
+  {
+    "label": "Tolima\t-\tVillarrica",
+    "value": "73873"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tAlcala",
+    "value": "76020"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tAndalucia",
+    "value": "76036"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tAnsermanuevo",
+    "value": "76041"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tArgelia",
+    "value": "76054"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tBolivar",
+    "value": "76100"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tBuenaventura",
+    "value": "76109"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tBugalagrande",
+    "value": "76113"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tCaicedonia",
+    "value": "76122"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tCali",
+    "value": "76001"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tCalima",
+    "value": "76126"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tCandelaria",
+    "value": "76130"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tCartago",
+    "value": "76147"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tDagua",
+    "value": "76233"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tEl Aguila",
+    "value": "76243"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tEl Cairo",
+    "value": "76246"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tEl Cerrito",
+    "value": "76248"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tEl Dovio",
+    "value": "76250"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tFlorida",
+    "value": "76275"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tGinebra",
+    "value": "76306"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tGuacari",
+    "value": "76318"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tGuadalajara De Buga",
+    "value": "76111"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tJamundi",
+    "value": "76364"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tLa Cumbre",
+    "value": "76377"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tLa Union",
+    "value": "76400"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tLa Victoria",
+    "value": "76403"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tObando",
+    "value": "76497"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tPalmira",
+    "value": "76520"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tPradera",
+    "value": "76563"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tRestrepo",
+    "value": "76606"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tRiofrio",
+    "value": "76616"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tRoldanillo",
+    "value": "76622"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tSan Pedro",
+    "value": "76670"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tSevilla",
+    "value": "76736"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tToro",
+    "value": "76823"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tTrujillo",
+    "value": "76828"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tTulua",
+    "value": "76834"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tUlloa",
+    "value": "76845"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tVersalles",
+    "value": "76863"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tVijes",
+    "value": "76869"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tYotoco",
+    "value": "76890"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tYumbo",
+    "value": "76892"
+  },
+  {
+    "label": "Valle Del Cauca\t-\tZarzal",
+    "value": "76895"
+  },
+  {
+    "label": "Vaupes\t-\tCaruru",
+    "value": "97161"
+  },
+  {
+    "label": "Vaupes\t-\tMitu",
+    "value": "97001"
+  },
+  {
+    "label": "Vaupes\t-\tPacoa",
+    "value": "97511"
+  },
+  {
+    "label": "Vaupes\t-\tPapunahua",
+    "value": "97777"
+  },
+  {
+    "label": "Vaupes\t-\tTaraira",
+    "value": "97666"
+  },
+  {
+    "label": "Vaupes\t-\tYavarate",
+    "value": "97889"
+  },
+  {
+    "label": "Vichada\t-\tCumaribo",
+    "value": "99773"
+  },
+  {
+    "label": "Vichada\t-\tLa Primavera",
+    "value": "99524"
+  },
+  {
+    "label": "Vichada\t-\tPuerto Carreno",
+    "value": "99001"
+  },
+  {
+    "label": "Vichada\t-\tSanta Rosalia",
+    "value": "99624"
+  }
+]

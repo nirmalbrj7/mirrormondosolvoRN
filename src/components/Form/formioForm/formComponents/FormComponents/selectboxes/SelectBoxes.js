@@ -159,32 +159,33 @@ export default class SelectBox extends ValueComponent {
       </Text>
     );
 
-    /* const requiredInline = (<Text>
-      {(!component.label && component.validate && component.validate.required)
-        ? '*'
-        : ''}
-    </Text>); */
+
 
     return (
       <View style={selectBoxStyle.wrapper}>
         <View style={selectBoxStyle.mainElement}>
           <View style={selectBoxStyle.labelWrapper}>
             {inputLabel}
-            {component.tooltip && (
+            {component.tooltip 
+            ? 
               <Tooltip
                 text={component.tooltip}
                 color={this.props.colors.alternateTextColor}
                 backgroundColor={this.props.colors.primary1Color}
               />
-            )}
+            :
+            null
+            
+            
+            }
           </View>
           {this.selectBoxes()}
         </View>
-        {component.description && (
+        {component.description ? (
           <Text style={selectBoxStyle.descriptionText}>
             {component.description}
           </Text>
-        )}
+        ):null}
       </View>
     );
   }

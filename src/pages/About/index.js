@@ -1,11 +1,7 @@
 import React from 'react';
 import {ScrollView, View, Text, ActivityIndicator,StyleSheet} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-
 import commonStyles from '../../globalStyles';
-
-import LogoutButton from '../../components/headerMain/LogoutButton';
-import MenuButton from '../../components/headerMain/MenuButton';
 import {Avatar,Card,Paragraph} from "react-native-paper";
 
 class About extends React.PureComponent {
@@ -72,9 +68,7 @@ class About extends React.PureComponent {
 }
 const styles = StyleSheet.create({
   image:{
-    
-alignSelf:'center'
-
+    alignSelf:'center'
   }
 });
 export default About;

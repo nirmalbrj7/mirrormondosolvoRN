@@ -1,10 +1,7 @@
 import React from 'react';
 import { TextInputMask } from 'react-native-masked-text';
-
 import InputComponent from '../sharedComponents/Input';
-
 import styles from '../styles/InputSingleLine-styles';
-
 export default class Currency extends InputComponent {
   constructor(props) {
     super(props);
@@ -36,18 +33,14 @@ export default class Currency extends InputComponent {
         id={component.key}
         data-index={index}
         name={name}
-
         value={fieldValue}
         defaultValue={fieldValue}
         placeholder={component.placeholder}
-
         disabled={!readOnly}
-
         type="money"
         options={{
           unit: 'US$ ',
         }}
-
         onChange={this.onChange}
         style={[
           styles.inputSingleLine,

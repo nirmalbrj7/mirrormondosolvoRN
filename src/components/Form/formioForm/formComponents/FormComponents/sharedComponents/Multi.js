@@ -1,11 +1,11 @@
 import React from 'react';
 import clone from 'lodash/clone';
 import PropTypes from 'prop-types';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import {Button, Text} from 'react-native-elements/src/index';
+import { Text } from 'react-native-elements/src/index';
 import Tooltip from './Tooltip';
 import ValueComponent from './Value';
 
@@ -112,12 +112,12 @@ export default class MultiComponent extends ValueComponent {
         flexDirection: 'row',
         marginTop:
           this.props.component.labelPosition === 'top' ||
-          this.props.component.labelPosition === 'bottom'
+            this.props.component.labelPosition === 'bottom'
             ? 0
             : 15,
         marginRight:
           this.props.component.labelPosition === 'left-left' ||
-          this.props.component.labelPosition === 'left-right'
+            this.props.component.labelPosition === 'left-right'
             ? 10
             : 0,
       },
@@ -154,8 +154,9 @@ export default class MultiComponent extends ValueComponent {
       },
     });
 
-    const {component} = this.props;
+    const { component } = this.props;
     let Component;
+
 
     const isRequired = component.validate && component.validate.required;
     const gotLabel = !(
@@ -168,7 +169,7 @@ export default class MultiComponent extends ValueComponent {
       <Text style={multiStyles.suffixAndPrefix}>{component.prefix}</Text>
     );
     const suffix = (
-    <Text style={multiStyles.suffixAndPrefix}>{component.type=='datetime'?<Text></Text>:<Text>{component.suffix}</Text>}</Text>
+      <Text style={multiStyles.suffixAndPrefix}>{component.type == 'datetime' ? <Text></Text> : <Text>{component.suffix}</Text>}</Text>
     );
 
     const inputLabel = gotLabel ? (
@@ -182,7 +183,7 @@ export default class MultiComponent extends ValueComponent {
 
     const data = this.state.value || {};
 
-    if (component.multiple) {
+    /*if (component.multiple) {
       const rows = data.map((value, id) => {
         this.getTableRows(value, id, multiStyles);
       });
@@ -191,49 +192,55 @@ export default class MultiComponent extends ValueComponent {
           <Text h3>{component.label}</Text>
           {rows}
           <Button
-            icon={{name: 'plus', type: 'font-awesome'}}
+            icon={{ name: 'plus', type: 'font-awesome' }}
             onPress={this.addFieldValue}>
-            Add another
+            <Text> Add another</Text>
+
           </Button>
         </View>
-      );
-    } else {
+      );*/
+   // } else {
       const error = !(this.state.isPristine || data.isValid);
       const Element = this.getSingleElement(data, 0, error);
       const errorText = error ? <Text>{data.errorMessage}</Text> : null;
 
       Component = (
-<View style={multiStyles.fieldWrapper}>
-<View style={multiStyles.mainElement}>
-  <View style={multiStyles.labelWrapper}>
-    {inputLabel}
-    {component.tooltip && (
-      <Tooltip
-        text={component.tooltip}
-        color={this.props.colors.alternateTextColor}
-        backgroundColor={this.props.colors.primary1Color}
-      />
-    )}
-  </View>
-  <View style={multiStyles.inputWrapper}>
+        <View style={multiStyles.fieldWrapper}>
+       
+          <View style={multiStyles.mainElement}>
+            <View style={multiStyles.labelWrapper}>
+              {inputLabel}
+              {component.tooltip ? (
+                <Tooltip
+                  text={component.tooltip}
+                  color={this.props.colors.alternateTextColor}
+                  backgroundColor={this.props.colors.primary1Color}
+                />
+              ) : null}
+            </View>
+            <View style={multiStyles.inputWrapper}>
 
-  {prefix}
-  {Element}
-  {suffix}
-  {isRequired && !gotLabel ? (
-  <Icon style={multiStyles.requiredIcon} name="asterisk" />
-) : null}
-  </View>
-</View>
-{errorText}
-{component.description && (
-  <Text style={multiStyles.descriptionText}>
-    {component.description}
-  </Text>
-)}
-</View>
+              {prefix}
+              {Element}
+              {suffix}
+              {isRequired && !gotLabel ? (
+                <Icon style={multiStyles.requiredIcon} name="asterisk" />
+              ) : null}
+            </View>
+          </View>
+          {errorText}
+          {component.description ? (
+            <Text style={multiStyles.descriptionText}>
+              {component.description}
+            </Text>
+          ) :
+            null
+
+          }
+
+        </View>
       );
-    }
+   // }
     return Component;
   }
 }

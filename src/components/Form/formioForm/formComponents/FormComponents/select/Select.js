@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { interpolate, serialize, raw } from '../../../util';
 import SelectComponent from '../sharedComponents/Select';
-
+import StoreActionsResource from '../../../../../../store/actions/resource';
+import firestore from '@react-native-firebase/firestore';
 class Select extends SelectComponent {
   constructor(props) {
     super(props);
@@ -12,16 +13,20 @@ class Select extends SelectComponent {
     this.loadMoreItems = this.loadMoreItems.bind(this);
     this.setResult = this.setResult.bind(this);
     this.getValueDisplay = this.getValueDisplay.bind(this);
+    this.options={};
   }
 
-  componentDidMount() {
-    switch (this.props.component.dataSrc) {
-      case 'values':
-        this.internalFilter = true;
-        this.setState({
-          selectItems: this.props.component.data.values,
-        });
-        break;
+  async componentDidMount() {
+
+
+    switch (this.props.component.data) {
+
+      /* case 'values':
+         this.internalFilter = true;
+         this.setState({
+           selectItems: this.props.component.data.values,
+         });
+         break;*/
       /* case 'json':
         try {
           if (typeof this.props.component.data.json === 'string') {
@@ -187,6 +192,288 @@ class Select extends SelectComponent {
           selectItems: [],
         });
     }
+
+
+    if (this.props.component.data.resource) {
+      const { addResource } = this.props;
+      var resourceId = this.props.component.data.resource;
+      var selectField = this.props.component.selectFields;
+      var selectFieldArray = selectField.split(',');
+      var dataArray = [];
+
+      const querySnapshot = await firestore()
+        .collection('submissions')
+        .doc(this.props.component.data.resource)
+        .collection('submissionData')
+        .get();
+      querySnapshot.forEach(async (documentSnapshot) => {
+        if (documentSnapshot.exists == true) {
+          const slug = documentSnapshot.id;
+          if (documentSnapshot.exists == true) {
+            const data = documentSnapshot.data();
+            var data2 = data.data;
+            var obj = {};
+            obj.label = data2[selectFieldArray[0]];
+            var valueArray = {};
+            Object.keys(data2)
+              .forEach((page, index) => {
+                if (selectFieldArray[0] == page) {
+                  obj.value = data2[page];
+
+                }
+                selectFieldArray.map((val, index) => {
+                  if (val == page) {
+                    var tempobj = {};
+                    tempobj[val] = data2[page];
+                    Object.assign(valueArray, tempobj);
+
+                  }
+
+
+                })
+              });
+            addResource(valueArray);
+            dataArray.push(obj);
+            this.setState({
+              selectItems: dataArray
+            });
+
+            if (this.props.currentPageSubmissionData) {
+              var currentPageSubmissionData = this.props.currentPageSubmissionData;
+              var componentkey = this.props.component.key
+              if (currentPageSubmissionData[componentkey]) {
+                this.setValue(currentPageSubmissionData[componentkey])
+              }
+            }
+          }
+        }
+      });
+
+
+
+
+      /*    firestore()
+            .collection('submissions')
+            .doc("Tuxv5IP6p2eDrL85PLId").collection("submissionData").doc("e9783f131ff645a3aadf")
+            .get()
+            .then(documentSnapshot => {
+              console.log('User exists: ', documentSnapshot.exists);
+              console.log("========================================================================");
+              console.log("========================================================================");
+              console.log("========================================================================");
+              console.log("========================================================================");
+              if (documentSnapshot.exists) {
+    
+                const data = documentSnapshot.data();
+                console.log('User data: ', data.data);
+                var data2 = data.data;
+                var obj = {};
+                obj.label =data2[selectFieldArray[0]];
+                var valueArray = {};
+                Object.keys(data2)
+                  .forEach((page, index) => {
+    
+                   
+                    selectFieldArray.map((val, index) => {
+                      if (val == page) {
+                        var tempobj={};
+                        tempobj[val]=data2[page];
+                        Object.assign(valueArray,tempobj);
+    
+                      }
+    
+    
+                    })
+                    console.log("valueArray" + JSON.stringify(valueArray));
+                   
+    
+                    // obj.value = data2[page];
+                    //obj.value={"sss":"sss","ass":"ass"};
+                    // newobj[key] = data2[page];
+                    //  newobj["sss"] = submissionData[page][key];
+                    // labelFirst= submissionData[page][key];
+    
+    
+    
+    
+                  });
+                  obj.value = valueArray;
+                  console.log("obj" + JSON.stringify(obj));
+                  dataArray.push(obj);
+                this.setState({
+                  // selectItems: [{"label":"aaa","value":"bbbb"}],
+                  selectItems: dataArray
+                });
+    
+              }
+              console.log("========================================================================");
+              console.log("========================================================================");
+              console.log("========================================================================");
+              console.log("========================================================================");
+            });
+    */
+
+
+      /* firestore()
+         .collection('submissions')
+         .where('status', '==', "Submitted")
+         .where('formId', '==', 'eafeb8d4cb2548a8aca4')
+         .get()
+         .then(querySnapshot => {
+ 
+           console.log('Total users: ', querySnapshot.size);
+ 
+           var obj = {};
+           querySnapshot.forEach(documentSnapshot => {
+ 
+             console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+             var data = documentSnapshot.data();
+ 
+ 
+             var submissionData = data.rawSubmission.data;
+             var newobj = {};
+             var labelFirst="";
+             Object.keys(submissionData)
+               .forEach((page) => {
+                 console.log("page" + JSON.stringify(page));
+ 
+                 Object.keys(submissionData[page])
+                   .forEach((key) => {
+ 
+ 
+                     if (selectFieldArray[0] == key) {
+                       console.log("match" + key);
+                       newobj[key] = submissionData[page][key];
+                     //  newobj["sss"] = submissionData[page][key];
+                       labelFirst= submissionData[page][key];
+                    
+                     }
+                  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+                   });
+ 
+ 
+               });
+ 
+             obj.label = labelFirst;
+             obj.value = newobj;
+ 
+             dataArray.push(obj);
+             console.log("newobj" + JSON.stringify(newobj));
+ 
+           });
+ 
+           console.log(dataArray);
+           this.internalFilter = true;
+ 
+           // alert(JSON.stringify(dataArray));
+           this.setState({
+             // selectItems: [{"label":"aaa","value":"bbbb"}],
+             selectItems: dataArray
+           });
+         });*/
+
+    }
+    else if (this.props.component.data.json) {
+
+      try {
+        if (typeof this.props.component.data.json === 'string') {
+          this.items = JSON.parse(this.props.component.data.json);
+        }
+        else if (typeof this.props.component.data.json === 'object') {
+          this.items = this.props.component.data.json;
+        }
+        else {
+          this.items = [];
+        }
+      }
+
+      catch (error) {
+        this.items = [];
+      }
+
+      this.options.params = {
+        limit: parseInt(this.props.component.limit) || 100,
+        skip: 0
+      };
+
+       this.refreshItems = (input, url, append) => {
+        // If they typed in a search, reset skip.
+        if ((this.lastInput || input) && this.lastInput !== input) {
+          this.lastInput = input;
+          this.options.params.skip = 0;
+        }
+        let items = this.items;
+      
+        if (input) {
+          items = items.filter(item => {
+            // Get the visible string from the interpolated item.
+            const value = interpolate(this.props.component.template, {item}).replace(/<(?:.|\n)*?>/gm, '');
+            console.log("values"+JSON.stringify( value));
+            switch (this.props.component.filter) {
+              case 'startsWith':
+                return value.toLowerCase().lastIndexOf(input.toLowerCase(), 0) === 0;
+              case 'contains':
+              default:
+                return value.toLowerCase().indexOf(input.toLowerCase()) !== -1;
+            }
+          });
+        }
+       
+        items = items.slice(this.options.params.skip, this.options.params.skip + this.options.params.limit);
+        this.setResult(items, append);
+        this.setState({
+          selectItems: items,
+        });
+      };
+      this.refreshItems();
+
+      if (this.props.currentPageSubmissionData) {
+        var currentPageSubmissionData = this.props.currentPageSubmissionData;
+        var componentkey = this.props.component.key
+        if (currentPageSubmissionData[componentkey]) {
+          this.setValue(currentPageSubmissionData[componentkey])
+
+        }
+      }
+
+
+    }
+
+    else if (this.props.component.data.values) {
+      this.internalFilter = true;
+      this.setState({
+        selectItems: this.props.component.data.values,
+      });
+      if (this.props.currentPageSubmissionData) {
+        var currentPageSubmissionData = this.props.currentPageSubmissionData;
+        var componentkey = this.props.component.key
+        if (currentPageSubmissionData[componentkey]) {
+          this.setValue(currentPageSubmissionData[componentkey])
+
+        }
+      }
+
+    }
+
+
+    else {
+
+    }
+    if (this.props.component.defaultValue != "") {
+    }
+    else {
+
+    }
+
+
+
   }
 
   getValueField() {
@@ -199,7 +486,7 @@ class Select extends SelectComponent {
     return this.props.component.valueProperty || 'value';
   }
 
-  refreshItems() {}
+  refreshItems() { }
 
   loadMoreItems(event) {
     event.stopPropagation();
@@ -281,13 +568,54 @@ class Select extends SelectComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  formUrl: state.form.formEndpoint,
-});
+
+const mapStateToProps = (state) => {
+  let currentPage = null;
+  let currentPageComponents = null;
+  let currentPageSubmissionData = null;
+  let cardSelected = state;
+  let datagridSchema = state.form.datagrid;
+  let allsubmission = state.submission;
+  const checkform = state.form && state.form.form && state.form.form.display;
+
+
+  if (state.form) {
+    if (checkform === 'wizard') {
+      currentPage = state.form.form.components[state.wizard.currentPage];
+      currentPageComponents = state.form.form.components[state.wizard.currentPage].components;
+      if (state.submission.rawSubmission) {
+        currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
+      }
+    }
+    else {
+      currentPageComponents = state.form.form.components;
+      currentPageSubmissionData = state.submission.rawSubmission.data.__root;
+    }
+  }
+  return {
+    currentPageComponents,
+    currentPageSubmissionData,
+    cardSelected,
+    datagridSchema,
+    allsubmission,
+    sub: state.submission,
+    formUrl: state.form.formEndpoint,
+
+  };
+};
+
+const mapDispatchToProps = {
+  addResource: StoreActionsResource.addResource,
+
+};
 
 const ConnectedSelect = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(Select);
+
+
+
+
 
 export default ConnectedSelect;

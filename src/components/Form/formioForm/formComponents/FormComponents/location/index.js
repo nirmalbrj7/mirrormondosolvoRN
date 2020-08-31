@@ -1,11 +1,7 @@
 import React from 'react';
-import {View,Text,PermissionsAndroid} from 'react-native';
-import { TextInputMask } from 'react-native-masked-text';
-import { Input } from 'react-native-elements';
-import {Button } from 'react-native-paper';
+import { View, Text, PermissionsAndroid } from 'react-native';
+import { Button } from 'react-native-paper';
 import InputComponent from '../sharedComponents/Input';
-
-import styles from '../styles/InputSingleLine-styles';
 import GetLocation from 'react-native-get-location'
 
 export default class Location extends InputComponent {
@@ -15,7 +11,7 @@ export default class Location extends InputComponent {
     this.getSingleElement = this.getSingleElement.bind(this);
   }
 
- async onChangeText(index) {
+  async onChangeText(index) {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -33,26 +29,26 @@ export default class Location extends InputComponent {
         GetLocation.getCurrentPosition({
           enableHighAccuracy: true,
           timeout: 150000,
-      })
+        })
           .then(location => {
-              this.setValue(location.latitude +'-'+location.longitude);
+            this.setValue(location.latitude + ',' + location.longitude);
           })
           .catch(ex => {
-              const { code, message } = ex;
-              console.warn(code, message);
-              if (code === 'CANCELLED') {
-                  Alert.alert('Location cancelled by user or by another request');
-              }
-              if (code === 'UNAVAILABLE') {
-                  Alert.alert('Location service is disabled or unavailable');
-              }
-              if (code === 'TIMEOUT') {
-                  Alert.alert('Location request timed out');
-              }
-              if (code === 'UNAUTHORIZED') {
-                  Alert.alert('Authorization denied');
-              }
-           
+            const { code, message } = ex;
+            console.warn(code, message);
+            if (code === 'CANCELLED') {
+              Alert.alert('Location cancelled by user or by another request');
+            }
+            if (code === 'UNAVAILABLE') {
+              Alert.alert('Location service is disabled or unavailable');
+            }
+            if (code === 'TIMEOUT') {
+              Alert.alert('Location request timed out');
+            }
+            if (code === 'UNAUTHORIZED') {
+              Alert.alert('Authorization denied');
+            }
+
           });
       } else {
         console.log("Camera permission denied");
@@ -60,8 +56,6 @@ export default class Location extends InputComponent {
     } catch (err) {
       console.warn(err);
     }
-  
-   
   }
 
 
@@ -71,43 +65,33 @@ export default class Location extends InputComponent {
     } = this.props;
     const fieldValue = typeof value === 'object' ? value.item : value;
     index = index || 0;
-let lat='';
-let long='';
+    let lat = '';
+    let long = '';
 
-if(fieldValue!=null && fieldValue!='' && fieldValue!==undefined){
- lat=fieldValue.split('-')[0];
- long=fieldValue.split('-')[1];
-}
-
-
+    if (fieldValue != null && fieldValue != '' && fieldValue !== undefined) {
+      lat = fieldValue.split('-')[0];
+      long = fieldValue.split('-')[1];
+    }
     return (
-      <View style={{flex:1}}>
-  
-    <Button style={{alignSelf:'center',width:250}} icon="enviroment" mode="contained" onPress={this.onChangeText}>
-    Get Location
-  </Button>
-       
-        {lat!=''&& long!=''?
-        <View >
-        <Text style={{textAlign:'center'}}>Location has been Taken</Text>
-        <View style={{flexDirection:'row',alignSelf:'center'}}>
-        <Text>Latitute:<Text>{lat} </Text></Text>
-          <Text>Longitude:<Text>{long}</Text></Text>
-        </View>
+      <View style={{ flex: 1 }}>
+        <Button style={{ alignSelf: 'center', width: 250 }} icon="enviroment" mode="contained" onPress={this.onChangeText}>
+          Get Location
+        </Button>
 
-          
-        </View>
-     :
-     <Text style={{textAlign:'center'}}>Press button to record location</Text>
+        {lat != '' && long != '' ?
+          <View >
+            <Text style={{ textAlign: 'center' }}>Location has been Taken</Text>
+            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+              <Text>Latitute:<Text>{lat} </Text></Text>
+              <Text>Longitude:<Text>{long}</Text></Text>
+            </View>
 
 
-
-      
-      }
-
+          </View>
+          :
+          <Text style={{ textAlign: 'center' }}>Press button to record location</Text>
+        }
       </View>
- 
-     
     );
   }
 }

@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  View, TouchableOpacity, TextInput, ScrollView, StyleSheet,
-} from 'react-native';
+import {View, TouchableOpacity,TextInput,StyleSheet,} from 'react-native';
 import PropTypes from 'prop-types';
 import { GoogleAutoComplete } from 'react-native-google-autocomplete';
 import { Text } from 'react-native-elements';
 import InputComponent from '../sharedComponents/Input';
-
 import globalStyles from '../styles/InputSingleLine-styles';
 
 const LocationsListItem = (props) => {
@@ -43,58 +40,37 @@ class Address extends InputComponent {
 
   onChangeAddress(value) {
     const formattedValue = Object.assign({}, value);
-    if (value && value.description) {
-      formattedValue.formatted_address = value.description;
-    }
-    this.onChange(formattedValue, 'address');
+    this.onChange(value, 'address');
   }
 
   getSingleElement(value, index) {
-    const {
-      component, name, readOnly, colors, theme,
-    } = this.props;
-
+    const {component, name, readOnly, colors, theme} = this.props;
     const isSelected = value && value.item && value.item.description;
-
     return (
       <GoogleAutoComplete
-        apiKey={component.map.key}
-        debounce={300}
-        queryTypes="geocode"
-      >
-        {({
-          inputValue, handleTextChange, locationResults,
-        }) => (
-          <View style={{ flexDirection: 'column', width: '100%' }}>
-            <TextInput
-              style={{
-                ...globalStyles.inputSingleLine,
-                borderColor: colors.borderColor,
-                lineHeight: theme.Input.lineHeight,
-              }}
-              value={isSelected ? `${value.item.description} ✅` : inputValue}
-              onChangeText={handleTextChange}
-              placeholder="Address..."
-              onFocus={() => this.onChangeAddress(null)}
-            />
-            {!!locationResults.length && (
-            <ScrollView nestedScrollEnabled style={styles.locationList}>
-              {locationResults.map((el) => (
-                <LocationsListItem
-                  key={el.id}
-                  data={el}
-                  onPress={(val) => {
-                    handleTextChange(val.description);
-                    this.onChangeAddress(val);
-                  }
-                }
-                />
-              ))}
-            </ScrollView>
-            )}
-          </View>
-        )}
-      </GoogleAutoComplete>
+      apiKey="AIzaSyBuE49w8SJ7DmoSlfunZVybPgKmMaVbyQE"
+      debounce={300}
+      queryTypes="geocode"
+    >
+      {({
+        inputValue, handleTextChange, locationResults,
+      }) => (
+        <View style={{ flexDirection: 'column', width: '100%' }}>
+         
+          <TextInput
+            style={{
+              ...globalStyles.inputSingleLine,
+              borderColor: colors.borderColor,
+              lineHeight: theme.Input.lineHeight,
+            }}
+          value={value.item?value.item:value}
+            onChangeText={(val)=>this.onChangeAddress(val)}
+            placeholder="Address..."
+          />
+        </View>
+      )}
+    </GoogleAutoComplete>
+    
     );
   }
 }

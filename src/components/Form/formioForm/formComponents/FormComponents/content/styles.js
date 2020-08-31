@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-
 const textColor = '#86939e';
 const styles = StyleSheet.create({
   content: {

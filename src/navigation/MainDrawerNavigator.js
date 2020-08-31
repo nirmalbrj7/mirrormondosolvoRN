@@ -1,10 +1,8 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import globalStyles from '../globalStyles';
 import Dimen from '../constants/dimen';
-
 import Actions from './ActionsStackNavigator';
 import Profile from './ProfileStackNavigator';
 import About from './AboutStackNavigator';

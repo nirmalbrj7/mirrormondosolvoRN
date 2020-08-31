@@ -1,28 +1,17 @@
 import React from 'react';
-import { ActivityIndicator, Text, View,ScrollView } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-
-import NetInfo from "@react-native-community/netinfo";
-import Background from '../../components/simple/Background';
-import Logo from '../../components/simple/Logo';
-import Header from '../../components/simple/Header';
 import Button from '../../components/simple/Button';
 import TextInput from '../../components/simple/TextInput';
-
-
 import Strings from '../../constants/strings';
 import globalStyles from '../../globalStyles';
 import styles from './style';
-import { theme } from '../../core/theme';
-
 export default class SectionEditProfile extends React.PureComponent {
   static navigationOptions = () => ({
     title: 'Edit Profile',
   });
-
   state = {
     email: '',
     fullName: '',
@@ -53,7 +42,6 @@ export default class SectionEditProfile extends React.PureComponent {
 
     const currentEmail = currentUser.email;
     let currentFullName;
-
     firestore()
       .collection('users')
       .doc(currentUser.uid)
@@ -173,11 +161,6 @@ export default class SectionEditProfile extends React.PureComponent {
         {Boolean(successMessage) && (
           <Text style={styles.successMessageText}>{successMessage}</Text>
         )}
-
-
-
-     
-
         <TextInput
           label="Email"
           returnKeyType="next"
@@ -190,9 +173,6 @@ export default class SectionEditProfile extends React.PureComponent {
           textContentType="emailAddress"
           keyboardType="email-address"
         />
-
-
-
         <TextInput
           label="Full name*"
           returnKeyType="next"
@@ -201,12 +181,7 @@ export default class SectionEditProfile extends React.PureComponent {
           error={Boolean(errorFullName)}
           errorText={errorFullName}
           autoCapitalize="none"
-
         />
-
-
-
-
         <TextInput
           label="Password"
           returnKeyType="done"
@@ -217,26 +192,17 @@ export default class SectionEditProfile extends React.PureComponent {
           secureTextEntry
           autoCapitalize="none"
         />
-
-
-
         {loading ? (
           <ActivityIndicator />
         ) : (
             <Button mode="contained"
-
               containerStyle={globalStyles.button}
               onPress={this.handleSave}
             >
               Save
             </Button>
           )}
-
-
        </KeyboardAwareScrollView>
-
-       
-
     );
   }
 }

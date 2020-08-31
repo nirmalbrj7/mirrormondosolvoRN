@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { Input } from 'react-native-elements';
 import Location from '../location';
-
 import InputComponent from '../sharedComponents/Input';
-
 import styles from '../styles/InputSingleLine-styles';
 
 const LOCATION_KEY = 'location';
-
 export default class Textfield extends InputComponent {
+  constructor(props) {
+    super(props);
+  }
   getSingleElement(value, index, error) {
     const { component: { tags = [] } } = this.props;
     if (tags.includes(LOCATION_KEY)) {

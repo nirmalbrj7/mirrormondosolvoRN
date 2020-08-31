@@ -93,16 +93,31 @@ export default class Time extends MultiComponent {
     }
     this.setState({
       open: false,
-    }, console.log("herecon" + this.state.open));
+    });
   }
 
   togglePicker() {
 
     this.setState({
       open: true,
-    }, console.log("here" + this.state.open))
+    })
 
   }
+  showDatePicker = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+   hideDatePicker = () => {
+    this.setState({
+      open: false,      
+    });
+  };
+   handleConfirm = (date) => {
+    this.setValue(moment(date));
+    this.hideDatePicker();
+  };
 
   getSingleElement(value, index) {
     const { component, name, readOnly } = this.props;
@@ -123,8 +138,7 @@ export default class Time extends MultiComponent {
           containerStyle={{ marginTop: 20 }}
           iconRight
           disabled={readOnly}
-          onPress={this.togglePicker}
-
+          onPress={this.showDatePicker}          
           containerViewStyle={styles.button}
           color={this.props.colors.primary1Color}
           backgroundColor="transparent"
@@ -154,8 +168,9 @@ export default class Time extends MultiComponent {
           }
           mode={this.getMode()}
           date={this.getInitialValue(value)}
-          onCancel={this.togglePicker}
-          onConfirm={this.onConfirm}
+          onConfirm={(date)=>this.handleConfirm(date)}
+          onCancel={this.hideDatePicker()}
+          
         />
       </View>
     );

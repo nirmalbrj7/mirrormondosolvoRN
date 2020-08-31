@@ -5,7 +5,6 @@ import SubmissionView from '../pages/SubmissionView';
 import MenuButton from '../components/headerMain/MenuButton';
 import LogoutButton from '../components/headerMain/LogoutButton';
 import Ionicons from 'react-native-vector-icons/AntDesign';
-import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createStackNavigator();
@@ -100,6 +99,28 @@ function SubmissionsStackSubmitted() {
     </Stack.Navigator>
   );
 }
+function SubmissionsStackSynced() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Synced"
+        component={Submissions}
+        options={({navigation}) => ({
+          headerTitle: 'My Submissions',
+          headerLeft: () => <MenuButton navigation={navigation} />,
+          headerRight: () => <LogoutButton navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="View"
+        component={SubmissionView}
+        options={{
+          headerTitle: 'View submission',
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 function SubmissionsStackUploading() {
   return (
     <Stack.Navigator>
@@ -144,9 +165,14 @@ function SubmissionsTab() {
           else if (route.name === 'Submitted') {
             iconName = focused ? 'rocket1' : 'rocket1';
           }
+          else if (route.name === 'Synced') {
+            iconName = focused ? 'rocket1' : 'rocket1';
+          }
           else if (route.name === 'Uploading') {
             iconName = focused ? 'cloud' : 'cloudo';
           }
+
+    
 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -156,11 +182,11 @@ function SubmissionsTab() {
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       }}
-      >
-       
+      >    
         <Tab.Screen name="Incompelete" component={SubmissionsStackIncomplete} />
         <Tab.Screen name="Ready" component={SubmissionsStackReady} />
         <Tab.Screen name="Submitted" component={SubmissionsStackSubmitted} />
+        <Tab.Screen name="Synced" component={SubmissionsStackSynced} />
         <Tab.Screen name="Uploading" component={SubmissionsStackUploading} />
       </Tab.Navigator>
 

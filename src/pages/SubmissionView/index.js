@@ -1,9 +1,7 @@
 import React from 'react';
-import {View, ActivityIndicator, ScrollView} from 'react-native';
+import { View, ActivityIndicator, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import {Table, Row, Rows} from 'react-native-table-component';
-
-import {Text} from 'react-native-elements';
+import { Table, Row, Rows } from 'react-native-table-component';
 import styles from '../../components/Profile/style';
 import globalStyles from '../../globalStyles';
 
@@ -14,41 +12,57 @@ function sortPage(a, b) {
 class SubmissionView extends React.PureComponent {
   state = {
     submissionData: null,
+    subData: null
   };
 
   componentDidMount() {
-    const {route} = this.props;
-    const {submissionId} = route.params;
+    const { route } = this.props;
+    const { submissionId, slug } = route.params;
     firestore()
       .collection('submissions')
-      .doc(submissionId)
+      .doc(slug).collection("submissionData").doc(submissionId)
       .get()
-      .then(docSnapshot => {
-        this.setState({submissionData: docSnapshot.data().rawSubmission});
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          const data = documentSnapshot.data();
+          this.setState({
+            subData: data.data
+          })
+        }
       });
+
   }
 
   makeArrayForTable = page =>
     page
       ? Object.entries(page).map(item => {
         var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
-var check=base64regex.test(item[1]); 
+        var check = base64regex.test(item[1]);
 
-  // TRUE
-          if (Array.isArray(item[1])) {
-            return [item[0], item[1][0].originalName];
-          }
-          if (typeof item[1] === 'object' && item[1]) {
-            return [item[0], JSON.stringify(item[1])];
-          }
-          return item;
-        })
+        // TRUE
+        if (Array.isArray(item[1])) {
+          return [item[0], JSON.stringify(item[1][0])];
+        }
+        if (typeof item[1] === 'object' && item[1]) {
+          //alert('aa');
+          return [item[0], JSON.stringify(item[1])];
+        }
+
+        if (item[1] === true) {
+          item[1] = 'True';
+        }
+        if (item[1] === "false") {
+          item[1] = 'False';
+        }
+
+        return item;
+      })
       : null;
 
   render() {
-    const {submissionData} = this.state;
+    const { submissionData, subData } = this.state;
 
-    if (!submissionData) {
+    if (!subData) {
       return (
         <View style={globalStyles.loaderScreenCentered}>
           <ActivityIndicator size="large" />
@@ -56,28 +70,21 @@ var check=base64regex.test(item[1]);
       );
     }
     const tableHead = ['Key', 'Value'];
+    const tableData = this.makeArrayForTable(subData);
     return (
       <ScrollView>
         <View style={globalStyles.scrollableTableContainer}>
-          {submissionData &&
-            Object.entries(submissionData.data)
-              .sort(sortPage)
-              .map(page => (
-                <>
-                  {page[0] !== '__root' && <Text>{page[0]}</Text>}
-                  <Table borderStyle={styles.tableBorder}>
-                    <Row
-                      data={tableHead}
-                      style={styles.tableHead}
-                      textStyle={styles.tableText}
-                    />
-                    <Rows
-                      data={this.makeArrayForTable(page[1])}
-                      textStyle={styles.tableText}
-                    />
-                  </Table>
-                </>
-              ))}
+          <Table borderStyle={styles.tableBorder}>
+            <Row
+              data={tableHead}
+              style={styles.tableHead}
+              textStyle={styles.tableText}
+            />
+            <Rows
+              data={tableData}
+              textStyle={styles.tableText}
+            />
+          </Table>
         </View>
       </ScrollView>
     );

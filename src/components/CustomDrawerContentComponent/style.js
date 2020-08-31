@@ -11,11 +11,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign:'center'
   },
   drawerHeaderText: {
     fontSize: 20,
     fontWeight: '500',
     color: Colors.DRAWER_HEADER_TEXT_COLOR,
+    textAlign:'center'
   },
 });
 

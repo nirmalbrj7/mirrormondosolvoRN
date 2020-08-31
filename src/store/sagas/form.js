@@ -1,5 +1,4 @@
 import { put, call } from 'redux-saga/effects';
-
 import Actions from '../actions/form';
 import { FETCHABLE_DATA_STATUS } from '../../constants/values';
 
@@ -9,7 +8,7 @@ export function* evaluatePages(form) {
     .map(component => ({
       title: component.title,
       key: component.key,
-    }));
+    }));   
   yield put(Actions.setWizardPages(pages));
 }
 
@@ -23,8 +22,6 @@ export function* fetchForm(form) {
 }
 
 export function* tryUpdateCurrentForm({ form, formEndpoint }) {
-  console.log("FORMENDPOINT"+formEndpoint);
-  console.log("form"+JSON.stringify(form));
   yield put(Actions.setFormDataStatus(FETCHABLE_DATA_STATUS.LOADING));
   yield put(Actions.setCurrentFormEndpoint(formEndpoint));
   yield call(fetchForm, JSON.parse(form));

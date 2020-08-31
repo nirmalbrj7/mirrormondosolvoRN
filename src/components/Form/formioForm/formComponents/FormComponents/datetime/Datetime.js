@@ -1,12 +1,10 @@
 import React from 'react';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import styles from './styles';
-
 import MultiComponent from '../sharedComponents/Multi';
 
 export default class Datetime extends MultiComponent {
@@ -25,7 +23,6 @@ export default class Datetime extends MultiComponent {
     if (!this.props) {
       return undefined;
     }
-
     const dateFormat = this.props.component.dateFirst
       ? 'DD/MM/YYYY'
       : 'MM/DD/YYYY';
@@ -35,7 +32,6 @@ export default class Datetime extends MultiComponent {
     if (this.props.component.defaultDate) {
       return moment(this.props.component.defaultDate, dateFormat).toDate();
     }
-
     return undefined;
   }
 
@@ -103,9 +99,40 @@ export default class Datetime extends MultiComponent {
 
     this.setState({
       open: true,
-    })
+    }, console.log("here" + this.state.open))
 
   }
+  showDatePicker = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+   hideDatePicker = () => {
+    this.setState({
+      open: false,
+      
+    });
+  };
+   handleConfirm = (value) => {
+    
+    const selected = moment(value);
+    this.setValue(value.toISOString());
+    /*const dateFormat = this.getResultFormat();
+    if (selected.isValid()) {
+      const date = selected.format(dateFormat).toString();
+      this.setValue(date);
+    } else {
+      // this fixes date module returning invalid date
+      // if confirm button was pressed without touching date picker.
+      value = moment()
+        .format(dateFormat)
+        .toString();
+      this.setValue(value.toISOString());
+    }
+    this.hideDatePicker();*/
+    this.hideDatePicker();
+  };
 
   getSingleElement(value, index) {
     const {component, name, readOnly} = this.props;
@@ -115,6 +142,7 @@ export default class Datetime extends MultiComponent {
     const dateTimeFormat = `${dateFormat} : hh:mm A`;
     return (
       <View style={styles.date}>
+        <Text>Date Selected {JSON.stringify(this.state.value)}</Text>
         <Button
           icon={
             <Icon
@@ -133,7 +161,8 @@ export default class Datetime extends MultiComponent {
           }}
           containerStyle={{marginTop: 20}}
           disabled={readOnly}
-          onPress={this.togglePicker}
+          //onPress={this.togglePicker}
+          onPress={this.showDatePicker}
           containerViewStyle={styles.button}
           title={
             this.state.value && this.state.value.item
@@ -146,6 +175,29 @@ export default class Datetime extends MultiComponent {
           }
           color={this.props.colors.primary1Color}
         />
+          <DateTimePicker
+        isVisible={this.state.open}
+
+
+
+ 
+        key="component"
+        data-index={index}
+        name={name}
+        placeholder={component.placeholder}
+        pickerRefCb={ref => (this.datepicker = ref)}
+        minuteInterval={
+          this.props.component.timePicker
+            ? this.props.component.timePicker.minuteStep
+            : 5
+        }
+        mode={this.getMode}
+        date={this.getInitialValue(value)}
+        onConfirm={this.handleConfirm}
+        onCancel={this.hideDatePicker}
+      />
+      {
+        /*
         <DateTimePicker
           isVisible={this.state.open}
           key="component"
@@ -160,9 +212,14 @@ export default class Datetime extends MultiComponent {
           }
           mode={this.getMode()}
           date={this.getInitialValue(value)}
-          onCancel={this.togglePicker}
-          onConfirm={this.onConfirm}
+          onConfirm={this.handleConfirm}
+          //onConfirm={(date)=>alert("11"+JSON.stringify(date)),this.handleConfirm(date)}
+          onCancel={this.hideDatePicker()}
         />
+
+        */
+      }
+
       </View>
     );
   }

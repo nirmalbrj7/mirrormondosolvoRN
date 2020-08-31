@@ -1,7 +1,7 @@
 import {FormioComponents} from '../../factories';
 
 import address from './address';
-import Button from './button/Button';
+//import Button from './button/Button';
 import Columns from './columns/Columns';
 // import container from './container';
 import Content from './content/Content';
@@ -33,16 +33,17 @@ import TextField from './textfield/TextField';
 import Time from './time/Time';
 import Location from './location';
 // import well from './well';
+import Tabs from './tab/Tab';
 
 FormioComponents.register('address', address);           //⏳
-FormioComponents.register('button', Button);          //✅
+//FormioComponents.register('button', Button);          //✅
 FormioComponents.register('columns', Columns);        //✅
 // FormioComponents.register('container', container);       //⭕️
 FormioComponents.register('content', Content);        //✅
 FormioComponents.register('currency', Currency);      //✅
 // FormioComponents.register('custom', custom);             //⭕️
 FormioComponents.register('tag', Number);         //⭕️
-// FormioComponents.register('editgrid', editgrid);         //⭕️
+FormioComponents.register('editgrid', Datagrid);         //⭕️
 FormioComponents.register('datetime', Datetime);      //✅
 FormioComponents.register('day', Day);                //✅
 FormioComponents.register('email', Email);            //✅
@@ -67,5 +68,5 @@ FormioComponents.register('textfield', TextField);    //✅
 FormioComponents.register('time', Time);              //✅
 FormioComponents.register('geolocation', Location); 
 FormioComponents.register('datagrid', Datagrid); 
-
+FormioComponents.register('tabs', Tabs); 
 // FormioComponents.register('well', well);                 //⭕️

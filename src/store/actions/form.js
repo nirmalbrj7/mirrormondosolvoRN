@@ -1,5 +1,4 @@
 import ActionTypes from './actionTypes';
-
 function tryUpdateCurrentForm({ form, formEndpoint }) {
   return {
     type: ActionTypes.TRY_UPDATE_CURRENT_FORM,
@@ -15,11 +14,13 @@ function setCurrentFormEndpoint(formEndpoint) {
   };
 }
 
-function setCurrentFormData(name, firebaseId) {
+function setCurrentFormData(name, firebaseId,datagrid,slug) {
   return {
     type: ActionTypes.SET_CURRENT_FORM_DATA,
     formName: name,
     firebaseFormId: firebaseId,
+    datagrid:datagrid,
+    slug:slug
   };
 }
 

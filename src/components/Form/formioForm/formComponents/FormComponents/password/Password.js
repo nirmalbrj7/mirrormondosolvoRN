@@ -1,21 +1,16 @@
 import React from 'react';
 import { Input } from 'react-native-elements';
-
 import InputComponent from '../sharedComponents/Input';
-
 import styles from '../styles/InputSingleLine-styles';
-
 export default class Password extends InputComponent {
   constructor(props) {
     super(props);
     this.onChangeText = this.onChangeText.bind(this);
     this.getSingleElement = this.getSingleElement.bind(this);
   }
-
   onChangeText(index, value) {
     this.setValue(value, index);
   }
-
   getSingleElement(value, index) {
     const {
       component, name, readOnly, colors, theme,

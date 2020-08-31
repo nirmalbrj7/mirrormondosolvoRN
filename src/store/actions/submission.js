@@ -1,10 +1,11 @@
 import ActionTypes from './actionTypes';
-
-function initializeSubmission(submissionId) {
+function initializeSubmission(submissionId, latitude, longitude) {
   return {
     type: ActionTypes.INITIALIZE_SUBMISSION,
     submissionId,
-  };
+    _latitude: latitude,
+    _longitude: longitude,
+  }
 }
 
 function updateSubmissionDataForPageLocally(page, data) {
@@ -23,10 +24,11 @@ function updateSubmissionDataForPageOnCloud(status) {
   };
 }
 
-function fetchSubmissionDataFromCloud(submissionId) {
+function fetchSubmissionDataFromCloud(submissionId, slug) {
   return {
     type: ActionTypes.FETCH_SUBMISSION_DATA_FROM_CLOUD,
     submissionId,
+    slug
   };
 }
 

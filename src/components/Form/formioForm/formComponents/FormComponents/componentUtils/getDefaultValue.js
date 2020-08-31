@@ -11,6 +11,7 @@ export const getDefaultValue = (value, component, getInitialValue, onChangeCusto
     if (component.hasOwnProperty('customDefaultValue')) {
       try {
         value = getCustomDefault(component);
+    
       }
       catch (e) {
         /* eslint-disable no-console */

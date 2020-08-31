@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import Colors from '../../constants/colors';
 import Dimen from '../../constants/dimen';
 
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     width: 300,
-    // height: 300,
     marginBottom: 5,
   },
   textContainerTMP: {

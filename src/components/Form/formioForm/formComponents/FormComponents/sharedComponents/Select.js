@@ -80,13 +80,14 @@ export default class SelectComponent extends ValueComponent {
       value = selected;
     }
     if (Array.isArray(value) && this.valueField()) {
+      console.log("aaaaaaaaaaa");
       value.forEach((val, index) => {
         value[index] =
           typeof val === 'object' ? get(val, this.valueField()) : val;
       });
     } else if (typeof value === 'object' && this.valueField()) {
       value = get(value, this.valueField());
-    }
+    }   
     this.setValue(value);
   }
 
@@ -154,9 +155,6 @@ export default class SelectComponent extends ValueComponent {
       },
       inputContainer: {
         padding: 0,
-        /*borderWidth: StyleSheet.hairlineWidth,
-        borderColor: 'gold',
-        borderBottomColor: 'gold',*/
       },
       label: {
         color: this.props.theme.Label.color,
@@ -205,6 +203,7 @@ export default class SelectComponent extends ValueComponent {
         {component.label}
       </Text>
     ) : null;
+  
 
     if (multiMode) {
       values =
@@ -249,12 +248,12 @@ export default class SelectComponent extends ValueComponent {
         />
       );
     }
-    return (
+   return (
       <View style={selectStyle.wrapper}>
         <View style={selectStyle.mainElement}>
           <View style={selectStyle.labelWrapper}>
-            {inputLabel}
-            {component.tooltip && (
+            {inputLabel}          
+            {component.tooltip ? (
               <Tooltip
                 text={component.tooltip}
                 color={this.props.colors.alternateTextColor}
@@ -274,17 +273,23 @@ export default class SelectComponent extends ValueComponent {
                   },
                 }}
               />
-            )}
-          </View>
+            )
+          
+          :null
+          }
+          </View>   
           {Element}
         </View>
-        {component.description && (
+        {component.description? (
           <Text style={selectStyle.descriptionText}>
             {component.description}
           </Text>
-        )}
+        )
+      :null
+      }
       </View>
     );
+    
   }
 }
 

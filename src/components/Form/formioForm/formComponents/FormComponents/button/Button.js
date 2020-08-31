@@ -10,7 +10,6 @@ export default class Button extends BaseComponent {
     this.onClick = this.onClick.bind(this);
     this.getButtonType = this.getButtonType.bind(this);
   }
-
   getButtonType() {
     switch (this.props.component.action) {
       case 'submit':
@@ -24,7 +23,6 @@ export default class Button extends BaseComponent {
         return 'button';
     }
   }
-
   onClick(event) {
     if (this.props.readOnly) {
       event.preventDefault();
@@ -60,15 +58,12 @@ export default class Button extends BaseComponent {
 
   render() {
     const {component} = this.props;
-
     let buttonWidth;
-
     if (component.block) {
       buttonWidth = '100%';
     } else {
       buttonWidth = DeviceInfo.isTablet() ? 250 : 150;
     }
-
     const styles = StyleSheet.create({
       button: {
         width: buttonWidth,

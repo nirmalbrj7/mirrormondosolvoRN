@@ -12,7 +12,6 @@ const tags = {
 };
 
 export default class HTMLElement extends BaseComponent {
-
   constructor(props) {
     super(props);
     this.onLinkPress = this.onLinkPress.bind(this);

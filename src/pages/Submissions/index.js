@@ -1,53 +1,42 @@
 import React from 'react';
-import {View, ActivityIndicator, Alert, ScrollView} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import { View, ActivityIndicator, ScrollView } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import {Table, Row, Cell, TableWrapper} from 'react-native-table-component';
+import { Table, Row, Cell, TableWrapper } from 'react-native-table-component';
 import moment from 'moment';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-
+import { connect } from 'react-redux';
 import styles from '../../components/Profile/style';
 import globalStyles from '../../globalStyles';
-
-import MenuButton from '../../components/headerMain/MenuButton';
-import LogoutButton from '../../components/headerMain/LogoutButton';
 import StoreActionsForm from '../../store/actions/form';
 import StoreActionsSubmission from '../../store/actions/submission';
-
 class Submissions extends React.PureComponent {
-  static navigationOptions = ({navigation}) => ({
-    headerTitle: 'My Submissions',
-    headerLeft: <MenuButton navigation={navigation} />,
-    headerRight: <LogoutButton navigation={navigation} />,
-  });
-
-  constructor(props,navigation,route) {
+  constructor(props, navigation, route) {
     super(props);
-    console.log("NAVIGATION"+JSON.stringify(props.route.name));
-  
     this.state = {
-      submissions: null,
-      filterType:props.route.name
+      submissions: [],
+      filterType: props.route.name
     };
-
-    const currentUid = auth().currentUser.uid;
-    this.submissionsListRef = firestore()
-      .collection('submissions')
-      .where('userId', '==', currentUid)
-      .orderBy('timestamp', 'desc');
   }
-
   async componentDidMount() {
-    this.submissionsListUnsubscribe = this.submissionsListRef.onSnapshot(
-      this.onCollectionUpdate,
-    );
+    const querySnapshot = await firestore()
+      .collection('submissions')
+      .get();
+    querySnapshot.forEach(async (documentSnapshot) => {
+      if (documentSnapshot.exists == true) {
+        const slug = documentSnapshot.id;
+        const querySnapshot = await firestore().collection('submissions')
+          .doc(slug)
+          .collection('submissionData')
+          .get()
+          .then(querySnapshot => {
+            //console.log('Total users: ', querySnapshot.size);
+            this.onCollectionUpdate(querySnapshot);
+          });
+      }
+    });
   }
 
-  componentWillUnmount() {
-    this.submissionsListUnsubscribe();
-  }
 
   onCollectionUpdate = async querySnapshot => {
     const docs = querySnapshot.docs.map(submissionDoc => {
@@ -58,47 +47,50 @@ class Submissions extends React.PureComponent {
     const forms = await firestore()
       .collection('forms')
       .get()
-      .then(doc => doc.docs.map(item => ({...item.data(), id: item.id})));
+      .then(doc => doc.docs.map(item => ({ ...item.data(), id: item.id })));
     docs.forEach(submission => {
       if (submission.formId) {
-        submission.form = forms.find(item => item.id === submission.formId);
+        forms.map((val,index)=>{
+            if(val.id===submission.formId){
+              submission["form"]=val;
+              submission["slug"]=val.slug
+            }
+        })
+        
+        this.setState({
+          submissions: [...this.state.submissions, submission]
+        })
       }
     });
-    this.setState({submissions: docs});
   };
 
   makeArrayForTable = (submissions) =>
     submissions
       ? submissions.reduce((acc, item) => {
-          if (item.form) {
-            const timestamp =
-              item.timestamp && item.timestamp.seconds
-                ? moment(item.timestamp.seconds * 1000).format('L[\n]LTS')
-                : 'Unknown';
-console.log("FILTER TYPE"+item.status);
-                if(item.status==this.state.filterType){
-                  acc.push([timestamp, item.form.name, item.status, item]);
-                }
-            
+        if (item.form) {
+          const timestamp =
+            item.timestamp && item.timestamp.seconds
+              ? moment(item.timestamp.seconds * 1000).format('L[\n]LTS')
+              : 'Unknown';
+          if (item.status == this.state.filterType) {
+            acc.push([timestamp, item.form.name, item.status, item]);
           }
-          return acc;
-        }, [])
+        }
+        return acc;
+      }, [])
       : null;
 
-  makeSubmissionActionButton = data => {
+
+  makeSubmissionActionButton = data => {   
     const {
       navigation,
       tryUpdateCurrentForm,
       setCurrentFormData,
       updateFirebaseSubmissionId,
       fetchSubmissionDataFromCloud,
-      directSubmitDataFromCloudToFormio,
     } = this.props;
-
     let buttonTitle;
     switch (data.status) {
-
-    
       case 'Incomplete':
         buttonTitle = 'Continue';
         break;
@@ -111,6 +103,9 @@ console.log("FILTER TYPE"+item.status);
       case 'Uploading':
         buttonTitle = 'Uploading...';
         break;
+      case 'Synced':
+        buttonTitle = 'View';
+        break;
       default:
         buttonTitle = 'No action';
     }
@@ -121,43 +116,40 @@ console.log("FILTER TYPE"+item.status);
       case 'Incomplete':
         onPressCallback = () => {
           navigation.navigate('FormView');
+
           tryUpdateCurrentForm({
             form: data.form.form,
             formEndpoint: data.form.formEndpoint,
           });
-          setCurrentFormData(data.form.name, data.formId);
+          setCurrentFormData(data.form.name, data.formId, data.datagrid, data.slug);
           updateFirebaseSubmissionId(data.submissionId);
-          fetchSubmissionDataFromCloud(data.submissionId);
+          fetchSubmissionDataFromCloud(data.submissionId, data.slug);
         };
         break;
       case 'Submitted':
         onPressCallback = () => {
-          navigation.navigate('View', {submissionId: data.submissionId});
+          navigation.navigate('View', { submissionId: data.submissionId, slug: data.slug });
+        };
+        break;
+      case 'Synced':
+        onPressCallback = () => {
+          navigation.navigate('View', { submissionId: data.submissionId, slug: data.slug });
         };
         break;
       case 'Ready':
-     /*   onPressCallback = () => {
+        onPressCallback = () => {
           navigation.navigate('FormView');
           tryUpdateCurrentForm({
             form: data.form.form,
             formEndpoint: data.form.formEndpoint,
           });
-          setCurrentFormData(data.form.name, data.formId);
+          setCurrentFormData(data.form.name, data.formId, data.datagrid, data.slug);
           updateFirebaseSubmissionId(data.submissionId);
-          fetchSubmissionDataFromCloud(data.submissionId);
-        };*/
-        
-        onPressCallback = () => {
-          setCurrentFormData(data.form.name, data.formId);
-          updateFirebaseSubmissionId(data.submissionId);
-          directSubmitDataFromCloudToFormio(
-            data.submissionId,
-            data.form.formEndpoint,
-          );
+          fetchSubmissionDataFromCloud(data.submissionId, data.slug);
         };
         break;
       case 'Submitted':
-        onPressCallback = () => {};
+        onPressCallback = () => { };
         break;
       default:
         isButtonActive = false;
@@ -175,9 +167,9 @@ console.log("FILTER TYPE"+item.status);
   };
 
   render() {
-    const {submissions} = this.state;
+    const { submissions } = this.state;
 
-    if (!submissions) {
+    if (submissions.length == 0) {
       return (
         <View style={globalStyles.loaderScreenCentered}>
           <ActivityIndicator size="large" />
@@ -187,9 +179,9 @@ console.log("FILTER TYPE"+item.status);
 
     const tableHead = ['Timestamp', 'Form Name', 'Status', 'Actions'];
     const tableData = this.makeArrayForTable(submissions);
+      return (
+      <ScrollView style={[globalStyles.screenContainer, { paddingVertical: 0 }]}>
 
-    return (
-      <ScrollView style={[globalStyles.screenContainer, {paddingVertical: 0}]}>
         <View style={globalStyles.scrollableTableContainer}>
           {tableData ? (
             <Table borderStyle={styles.tableBorder}>
@@ -200,18 +192,18 @@ console.log("FILTER TYPE"+item.status);
               />
               {tableData.map((rowData, index) => (
                 <TableWrapper key={index} style={styles.tableRow}>
-                  {rowData.map((cellData, cellIndex) => 
-                  
-                  (<Cell
-                    textStyle={styles.tableText}
-                    key={cellIndex}
-                    data={
-                      cellIndex === 3
-                      ? this.makeSubmissionActionButton(cellData)
-                      : cellData
-                    }
+                  {rowData.map((cellData, cellIndex) =>
+
+                    (<Cell
+                      textStyle={styles.tableText}
+                      key={cellIndex}
+                      data={
+                        cellIndex === 3
+                          ? this.makeSubmissionActionButton(cellData)
+                          : cellData
+                      }
                     />)
- 
+
 
 
                   )}
@@ -221,7 +213,7 @@ console.log("FILTER TYPE"+item.status);
           ) : null}
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
@@ -252,3 +244,4 @@ const ConnectedSubmissions = connect(
 )(Submissions);
 
 export default ConnectedSubmissions;
+

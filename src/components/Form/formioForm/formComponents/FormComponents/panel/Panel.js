@@ -9,11 +9,11 @@ import styles from './styles';
 const Panel = (props) => {
   const title = (props.component.title && !props.component.hideLabel ? props.component.title : undefined);
   const titleStyle = {...StyleSheet.flatten(styles.title), color: props.colors.secondaryTextColor};
-
     return (
       <Card containerStyle={styles.panel} title={title} titleStyle={titleStyle}>
+ 
         <View style={styles.componentsWrapper}>
-          <FormioComponentsList
+        <FormioComponentsList
             {...props}
             components={props.component.components}
           ></FormioComponentsList>

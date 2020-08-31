@@ -1,10 +1,10 @@
 import React from 'react';
-import { ScrollView, Text, View, Image } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { DrawerItemList } from '@react-navigation/drawer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import firestore from '@react-native-firebase/firestore';
-import { StyleSheet, Linking, Alert } from 'react-native';
-import { Appbar, Avatar, useTheme, Title, Caption, Button } from 'react-native-paper';
+import { StyleSheet, Alert } from 'react-native';
+import { Avatar, Title, Button } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import styles from './style';
 
@@ -33,7 +33,7 @@ class CustomDrawerContentComponent extends React.PureComponent {
     });
   };
   handleLogout = () => {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     auth()
       .signOut()
       .then(() => navigation.navigate('SignIn'))
@@ -54,11 +54,16 @@ class CustomDrawerContentComponent extends React.PureComponent {
             horizontal: 'never',
           }}>
           <View style={styles2.userInfoSection}>
-            <Avatar.Image
-              source={require('../../assets/images/logo.png')}
-              size={80}
-            />
-            <Title style={styles.drawerHeader}>Hey,Admin</Title>
+            <View>
+
+              <Avatar.Image
+                style={{ alignSelf: 'center' }}
+                source={require('../../assets/images/logo.png')}
+                size={80}
+              />
+              <Title style={styles.drawerHeader}>Hey,Admin</Title>
+            </View>
+
             <View
               style={{
                 marginHorizontal: 5,
@@ -73,7 +78,7 @@ class CustomDrawerContentComponent extends React.PureComponent {
             onPress={this.handleLogout}
           >
             logout
-      </Button>
+        </Button>
 
           <View style={{ width: '100%', height: 2, marginBottom: 5, backgroundColor: 'purple ' }}></View>
           <DrawerItemList {...this.props} />

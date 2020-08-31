@@ -9,6 +9,7 @@ import {
   directSubmitDataFromCloudToFormio,
 } from './submission';
 
+
 export default function* watcherSaga() {
   yield takeEvery(Actions.TRY_UPDATE_CURRENT_FORM, tryUpdateCurrentForm);
   yield takeEvery(Actions.FETCH_FORM, fetchForm);

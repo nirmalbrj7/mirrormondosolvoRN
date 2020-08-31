@@ -1,21 +1,15 @@
 import React from 'react';
-import { ActivityIndicator, Text, View, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
-
+import { ActivityIndicator, Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
-
-import NetInfo from "@react-native-community/netinfo";
 import Background from '../../components/simple/Background';
 import Logo from '../../components/simple/Logo';
 import Header from '../../components/simple/Header';
 import Button from '../../components/simple/Button';
 import TextInput from '../../components/simple/TextInput';
-
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import commonStyles from '../../globalStyles';
 import styles from './style';
-
 import Strings from '../../constants/strings';
 import { theme } from '../../core/theme';
 
@@ -126,98 +120,98 @@ export default class SignUp extends React.PureComponent {
 
     return (
       <ScrollView>
-<Background>
+        <Background>
 
-        <Logo />
+          <Logo />
 
-        <Header>SignUp Screen</Header>
-        {Boolean(errorMessage) && (
-          <Text style={styles.errorMessageText}>{errorMessage}</Text>
-        )}
-<TextInput
-        label="Email"
-        returnKeyType="next"
-        value={email}
-        onChangeText={this.handleInputChange('email')}
-        error={Boolean(errorEmail)}
-        errorText={errorEmail}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
+          <Header>SignUp Screen</Header>
+          {Boolean(errorMessage) && (
+            <Text style={styles.errorMessageText}>{errorMessage}</Text>
+          )}
+          <TextInput
+            label="Email"
+            returnKeyType="next"
+            value={email}
+            onChangeText={this.handleInputChange('email')}
+            error={Boolean(errorEmail)}
+            errorText={errorEmail}
+            autoCapitalize="none"
+            autoCompleteType="email"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+          />
 
-<TextInput
-        label="Password"
-        returnKeyType="done"
-        value={password}
-        onChangeText={this.handleInputChange('password')}
-        error={Boolean(errorPassword)}
-        errorText={errorPassword}
-        secureTextEntry
-        autoCapitalize="none"
-      />
+          <TextInput
+            label="Password"
+            returnKeyType="done"
+            value={password}
+            onChangeText={this.handleInputChange('password')}
+            error={Boolean(errorPassword)}
+            errorText={errorPassword}
+            secureTextEntry
+            autoCapitalize="none"
+          />
 
-<TextInput
-        label="Repeat Password*"
-        returnKeyType="next"
-        value={passwordRepeat}
-        onChangeText={this.handleInputChange('passwordRepeat')}
-        error={Boolean(errorPasswordRepeat)}
-        errorText={errorPasswordRepeat}
-        secureTextEntry
-        autoCapitalize="none"
-      />
+          <TextInput
+            label="Repeat Password*"
+            returnKeyType="next"
+            value={passwordRepeat}
+            onChangeText={this.handleInputChange('passwordRepeat')}
+            error={Boolean(errorPasswordRepeat)}
+            errorText={errorPasswordRepeat}
+            secureTextEntry
+            autoCapitalize="none"
+          />
 
-<TextInput
-        label="Full name*"
-        returnKeyType="next"
-        value={fullName}
-        onChangeText={this.handleInputChange('fullName')}
-        error={Boolean(errorFullName)}
-        errorText={errorFullName}
-     
-        autoCapitalize="none"
-      /> 
-<TextInput
-        label="Phone number"
-        returnKeyType="done"
-        value={phone}
-        onChangeText={this.handleInputChange('phone')}
+          <TextInput
+            label="Full name*"
+            returnKeyType="next"
+            value={fullName}
+            onChangeText={this.handleInputChange('fullName')}
+            error={Boolean(errorFullName)}
+            errorText={errorFullName}
 
-        autoCapitalize="none"
-        autoCompleteType="tel"
-        keyboardType="phone-pad"
-        textContentType="telephoneNumber"
-      />
+            autoCapitalize="none"
+          />
+          <TextInput
+            label="Phone number"
+            returnKeyType="done"
+            value={phone}
+            onChangeText={this.handleInputChange('phone')}
+
+            autoCapitalize="none"
+            autoCompleteType="tel"
+            keyboardType="phone-pad"
+            textContentType="telephoneNumber"
+          />
 
 
           {loading ? (
             <ActivityIndicator />
           ) : (
               <>
-                <Button mode="contained" 
-                title={loading ? 'Loading' : 'Sign Up'}
-                onPress={this.handleSignUp}
-                containerStyle={commonStyles.button}
-              >
-{loading ? 'Loading' : 'Sign Up'}
-              </Button>
-          
-              <View style={styles2.row}>
-        <Text style={styles2.label}>Already have an account?  </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
-          <Text style={styles2.link}>Login</Text>
-        </TouchableOpacity>
-      </View>
-         
+                <Button mode="contained"
+                  title={loading ? 'Loading' : 'Sign Up'}
+                  onPress={this.handleSignUp}
+                  containerStyle={commonStyles.button}
+                >
+                  {loading ? 'Loading' : 'Sign Up'}
+                </Button>
+
+                <View style={styles2.row}>
+                  <Text style={styles2.label}>Already have an account?  </Text>
+                  <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+                    <Text style={styles2.link}>Login</Text>
+                  </TouchableOpacity>
+                </View>
+
               </>
             )}
 
-      </Background>
+        </Background>
 
       </ScrollView>
-      
+
     );
   }
 }

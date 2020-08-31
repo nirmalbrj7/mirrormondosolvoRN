@@ -1,19 +1,15 @@
-import clone from 'lodash/clone';
 import PropTypes from 'prop-types';
-import { deepEqual } from '../../../util';
 import BaseComponent from './Base';
 import { validate } from '../componentUtils/validators';
 import { safeSingleToMultiple } from '../componentUtils/safeSingleToMultiple';
 import { getDefaultValue } from '../componentUtils/getDefaultValue';
-
-export default class ValueComponent extends BaseComponent {
+import store from "../../../../../../store/store";
+class ValueComponent extends BaseComponent {
   constructor(props) {
     super(props);
     const value = getDefaultValue(this.props.value, this.props.component, this.getInitialValue, this.onChangeCustom);
     const valid = this.validate(value);
     this.state = {
-      cardId:'11111111111',
-      cardObject:[],
       open: false,
       showSignaturePad: false,
       value,
@@ -34,6 +30,7 @@ export default class ValueComponent extends BaseComponent {
   }
 
   componentDidMount() {
+   
     this.unmounting = false;
     if (!this.props.options || !this.props.options.skipInit || !this.props.options.isInit) {
       this.setValue(this.state.value, null, true);
@@ -50,58 +47,83 @@ export default class ValueComponent extends BaseComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { component } = prevProps;
+  componentDidUpdate=(prevProps)=> {
+    const { component } = prevProps; 
     let value;
-    if (component.hasOwnProperty('calculateValue') && component.calculateValue) {
-      if (!deepEqual(this.data, this.props.data)) {
-        this.data = clone(this.props.data);
-        try {
-          const result = eval(`(function(data, row) { const value = [];${component.calculateValue.toString()}; return value; })(this.data, this.props.row)`);
-          if (this.state.value !== result) {
-            this.setValue(result);
-          }
-        } catch (e) {
-          /* eslint-disable no-console */
-          console.warn(`An error occurred calculating a value for ${component.key}`, e);
-          /* eslint-enable no-console */
-        }
-      }
-    }
-
-    if (this.props.value && (!prevProps.value || prevProps.value !== this.props.value)) {
+    if (
+      this.props.value &&
+      (!prevProps.value || prevProps.value !== this.props.value)
+    ) {
       value = safeSingleToMultiple(this.props.value, this.props.component);
+
     }
 
     // This occurs when a datagrid row is deleted.
-    const defaultValue = getDefaultValue(value, this.props.component, this.getInitialValue, this.onChangeCustom);
+    let defaultValue = getDefaultValue(
+      value,
+      this.props.component,
+      this.getInitialValue,
+      this.onChangeCustom
+    );
     if (value === null && this.state.value !== defaultValue) {
       value = defaultValue;
       this.setState({
-        isPristine: true,
+        isPristine: true
       });
+
     }
-    if (typeof value !== 'undefined' && value !== null) {
+    if (typeof value !== "undefined" && value !== null) {
       const valid = this.validate(value);
       this.setState({
-        value: valid,
+        //value: c,
+        value:valid,
         isValid: valid.isValid,
         errorType: valid.errorType,
-        errorMessage: valid.errorMessage,
+        errorMessage:valid.errorMessage
       });
+
     }
-    if (typeof this.willReceiveProps === 'function') {
+    if (typeof this.willReceiveProps === "function") {
+
       this.willReceiveProps(this.props);
     }
-  }
+
+  };
 
   validate(value) {
+if(this.props.component){
+  if(this.props.component.data){
+    if(this.props.component.data.resource){
+     console.log("this"+JSON.stringify(value));
+     if(value){
+  var store2=store;
+  var store3=store.getState().resourcereducer;
+if(store3.length>0){
+  var selectField=this.props.component.selectFields;
+  var selectFieldArray = selectField.split(',');
+ var key2=selectFieldArray[0];
+  store3.map((val,index)=>{
+    if(val[key2]==value){
+var obj=val;
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {         
+          this.props.data[key]=obj[key] ;          
+        }
+      }
+    }
+  })
+}
+     }
+    }
+  }
+}
     return validate(value, this.props.component, this.props.data, this.validateCustom);
   }
 
   // Evoked from component when it changes
   onChange(event, type) {
-    if (type === 'file' || type === 'location' || type === 'address') {
+    if (type === 'file' || type === 'location' || type === 'address' || type === 'number') {
+      console.log('ENVOKED');
       this.setValue(event);
       return;
     }
@@ -115,17 +137,13 @@ export default class ValueComponent extends BaseComponent {
   }
 
   setValue(value, index, pristine) {
-    this.setState({
-      open:false
-    })
     if (index === undefined) {
       index = null;
     }
     let newValue;
     if (index !== null && Array.isArray(this.state.value)) {
-      // Clone so we keep state immutable.
-      newValue = clone(this.state.value);
       newValue[index] = value;
+
     } else {
       newValue = value;
     }
@@ -133,7 +151,6 @@ export default class ValueComponent extends BaseComponent {
     this.setState({
       isPristine: !!pristine,
       value: validatedValue,
-     
     }, () => {
       if (typeof this.props.onChange === 'function') {
         if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
@@ -182,3 +199,7 @@ ValueComponent.propTypes = {
   attachToForm: PropTypes.func,
   detachFromForm: PropTypes.func,
 };
+
+
+
+export default ValueComponent;

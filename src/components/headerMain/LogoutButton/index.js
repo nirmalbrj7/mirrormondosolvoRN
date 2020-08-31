@@ -3,7 +3,6 @@ import {Button} from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import PropTypes from 'prop-types';
 import Alert from 'react-native';
-
 import styles from '../style';
 
 export default class LogoutButton extends React.PureComponent {
@@ -24,8 +23,7 @@ export default class LogoutButton extends React.PureComponent {
           name: 'sign-out',
           type: 'font-awesome',
           style: {marginRight: 0},
-        }}
-    
+        }}  
         buttonStyle={{
           backgroundColor:'#fff'
         }}

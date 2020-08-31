@@ -1,20 +1,18 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import {ActivityIndicator, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
-
 import commonStyles from '../../globalStyles';
 import styles from './style';
-
 import FormsListItem from './FormListItem';
 import {FETCHABLE_DATA_STATUS} from '../../constants/values';
 
 export default class FormsGroup extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.formsCollectionRef = null;
+    this.formsCollectionRef = null;  
   }
-
   state = {
     forms: [],
     status: FETCHABLE_DATA_STATUS.LOADING,
@@ -24,9 +22,11 @@ export default class FormsGroup extends React.PureComponent {
     const {
       group: {type},
     } = this.props;
+    const currentUid = auth().currentUser.uid;
     this.formsCollectionRef = firestore()
       .collection('forms')
-      .where('Status', '==', type === 'Preview' ? 'Preview' : 'Publish');
+      .where('Status', '==', type === 'Preview' ? 'Preview' : 'Publish')
+      .where('userIds', 'array-contains', currentUid);
     this.formsListUnsubscribe = this.formsCollectionRef.onSnapshot(
       this.onCollectionUpdate,
     );
@@ -39,25 +39,23 @@ export default class FormsGroup extends React.PureComponent {
   onCollectionUpdate = () => {
     const {group} = this.props;
     const forms = [];
-
+    const currentUid = auth().currentUser.uid;
     firestore()
       .collection('forms')
       .where('Status', '==', group.type === 'Preview' ? 'Preview' : 'Publish')
+      .where('userIds', 'array-contains', currentUid)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           const {name, Icon, formEndpoint, orderNo} = doc.data();
-
-          if (group.forms.some(form => form.value === doc.id)) {
-            forms.push({
-              key: doc.id, // Document ID
-              doc, // DocumentSnapshot
-              name,
-              Icon,
-              formEndpoint,
-              orderNo,
-            });
-          }
+          forms.push({
+            key: doc.id, // Document ID
+            doc, // DocumentSnapshot
+            name,
+            Icon,
+            formEndpoint,
+            orderNo,
+          });
         });
         let status;
         if (!forms.length) {
@@ -75,7 +73,6 @@ export default class FormsGroup extends React.PureComponent {
   getGroupContent = status => {
     const {forms} = this.state;
     const {handleFormsListItemPress} = this.props;
-
     const formsOrdered = forms.sort((a, b) => a.orderNo - b.orderNo);
 
     switch (status) {
@@ -106,13 +103,12 @@ export default class FormsGroup extends React.PureComponent {
   render() {
     const {status} = this.state;
     const {
-      group: {name, description},
+      group: {name},
     } = this.props;
 
     return (
       <View style={styles.groupsListItemContainer}>
         <Text style={commonStyles.header2}>{name}</Text>
-        {/*description && <Text style={commonStyles.text}>{description}</Text>*/}
         {this.getGroupContent(status)}
       </View>
     );

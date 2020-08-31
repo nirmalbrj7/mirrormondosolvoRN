@@ -1,8 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-
 import InputComponent from '../sharedComponents/Input';
-
 import styles from '../styles/InputSingleLine-styles';
 
 export default class Email extends InputComponent {
@@ -28,17 +26,13 @@ export default class Email extends InputComponent {
         id={component.key}
         data-index={index}
         name={name}
-
         value={fieldValue}
         defaultValue={fieldValue}
         placeholder={component.placeholder}
-
         disabled={!readOnly}
-
         autoCompleteType="email"
         keyboardType="email-address"
         textContentType="emailAddress"
-
         onChange={this.onChange}
         style={[styles.inputSingleLine, { borderColor: colors.borderColor, lineHeight: theme.Input.lineHeight }]}
       />

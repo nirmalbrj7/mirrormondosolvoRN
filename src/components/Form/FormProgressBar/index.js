@@ -2,12 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import globalStyles from '../../../globalStyles';
-
-
 import styles from './style';
-
 class FormProgressBar extends React.PureComponent {
   render() {
     const { wizard: { pages, currentPage } } = this.props;
@@ -24,7 +20,6 @@ class FormProgressBar extends React.PureComponent {
     );
   }
 }
-
 FormProgressBar.propTypes = {
   wizard: PropTypes.shape({
     pages: PropTypes.arrayOf(PropTypes.shape({
@@ -34,11 +29,9 @@ FormProgressBar.propTypes = {
     currentPage: PropTypes.number,
   }).isRequired,
 };
-
 const mapStateToProps = state => ({
   wizard: state.wizard,
 });
-
 const ConnectedFormProgressBar = connect(
   mapStateToProps,
   null,

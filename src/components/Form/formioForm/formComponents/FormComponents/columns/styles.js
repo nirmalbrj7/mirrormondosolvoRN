@@ -1,6 +1,5 @@
 
 import {StyleSheet} from 'react-native';
-
 const styles = StyleSheet.flatten({
   columns: {
     flex: 1,
@@ -9,5 +8,4 @@ const styles = StyleSheet.flatten({
     paddingVertical: 20,
   },
 });
-
 export default styles;

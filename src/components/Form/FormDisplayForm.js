@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  View, ActivityIndicator, Text, Alert,
-} from 'react-native';
+import {View, ActivityIndicator, Text, Alert} from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
-
 import styles from './style';
 import Strings from '../../constants/strings';
-
 import FormWizardPage from './FormWizardPage';
 import FormProgressBar from './FormProgressBar';
 import { FETCHABLE_DATA_STATUS, UPDATE_DATA_STATUSES } from '../../constants/values';
@@ -17,15 +13,14 @@ import StoreActionsSubmission from '../../store/actions/submission';
 import StoreActionsCommon from '../../store/actions/common';
 
 const UPLOAD_ERROR = 'Uploading Error';
-
-
 class FormDisplayForm extends React.PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {
       getDataFromCurrentPage: null,
       submitted: false,
+      saveFlag:false,
+      submitFlag:false
     };
   }
 
@@ -38,6 +33,16 @@ class FormDisplayForm extends React.PureComponent {
       try {
         this.updateDataFromPage(UPDATE_DATA_STATUSES.INCOMPLETE);
       } catch (e) {}
+    }
+  }
+  componentDidMount(){
+    const { status } = this.props;
+    if (status === "SUCCESS") {
+      try {
+        this.updateDataFromPage(UPDATE_DATA_STATUSES.INCOMPLETE);
+      } catch (e) {
+        console.log("error"+e);
+      }
     }
   }
 
@@ -74,16 +79,19 @@ class FormDisplayForm extends React.PureComponent {
 
     if (withStatus === UPDATE_DATA_STATUSES.SUBMIT) {
       submitCurrentDataToFormio();
+      this.setState({ submitted: true,submitFlag:false });
     } else {
       updateSubmissionDataForPageOnCloud(withStatus);
+      this.setState({ submitted: true,submitFlag:false });
     }
   };
 
   handleSaveButtonPress = () => {
     try {
-      this.setState({ submitted: true });
+      this.setState({ submitted: true,saveFlag:true });
       this.updateDataFromPage(UPDATE_DATA_STATUSES.READY);
     } catch (e) {
+      this.setState({ submitted: true,saveFlag:false });
       if (e.message === UPLOAD_ERROR) {
         Alert.alert('Please wait for the files to be uploaded.');
         return;
@@ -94,9 +102,10 @@ class FormDisplayForm extends React.PureComponent {
 
   handleSubmitButtonPress = () => {
     try {
-      this.setState({ submitted: true });
+      this.setState({ submitted: true,submitFlag:true });
       this.updateDataFromPage(UPDATE_DATA_STATUSES.SUBMIT);
     } catch (e) {
+      this.setState({ submitted: true,submitFlag:false });
       if (e.message === UPLOAD_ERROR) {
         Alert.alert('Please wait for the files to be uploaded.');
         return;
@@ -104,7 +113,17 @@ class FormDisplayForm extends React.PureComponent {
       Alert.alert('Please fix the following errors before submitting.');
     }
   };
-
+  handleNextButtonPress2 = () => {
+    try {
+      this.updateDataFromPage("FirstTime");
+    } catch (e) {
+      if (e.message === UPLOAD_ERROR) {
+        Alert.alert('Please wait for the files to be uploaded.');
+        return;
+      }
+      alert(JSON.stringify(e));
+    }
+  };
   render() {
     const { status, errorMessageText } = this.props;
 
@@ -125,20 +144,31 @@ class FormDisplayForm extends React.PureComponent {
       <View style={styles.fromFlowWizardContainer}>
         <FormProgressBar />
         <View style={styles.wizardPageContainer}>
-          <FormWizardPage
+        <Button
+            style={{width:0,height:0,opacity:0}}
+              containerStyle={{width:0,height:0,opacity:0}}
+              title="Next"
+              onLayout={()=>{this.handleNextButtonPress2()}}
+            />
+                   <FormWizardPage
             receiverOfCallbackForDataRetrieval={this.receiveCallbackForDataRetrieval}
           />
+           
         </View>
         <View style={styles.buttonBar}>
           <Button
             containerStyle={styles.saveButton}
             title="Save"
             onPress={this.handleSaveButtonPress}
+            disabled={this.state.saveFlag==true?true:false}
+            loading={this.state.saveFlag==true?true:false}
           />
           <Button
             containerStyle={styles.nextButton}
             title="Submit"
             onPress={this.handleSubmitButtonPress}
+            disabled={this.state.submitFlag==true?true:false}
+            loading={this.state.submitFlag==true?true:false}
           />
         </View>
       </View>
@@ -163,6 +193,7 @@ FormDisplayForm.defaultProps = {
 const mapStateToProps = state => ({
   status: state.form.formDataStatus,
   errorMessageText: state.form.formDataErrorMessage,
+  submission:state.submission
 });
 
 const mapDispatchToProps = {

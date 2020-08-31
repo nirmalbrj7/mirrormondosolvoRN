@@ -111,7 +111,7 @@ export const validate = (value, component, data, validateCustom) => {
     }
   }
   // Validate each item if multiple.
-  if (component.multiple) {
+  if (component.multiple && component.type!=='file') {
     const items = [];
     value.forEach(item => {
       if (state.isValid) {

@@ -1,6 +1,7 @@
 import ActionTypes from '../actions/actionTypes';
-
 const submissionInitialState = {
+  _latitude: null,
+  _longitude: null,
   submissionId: null,
   isNew: true, // true if we haven't load any data about this submission to firebase
   status: undefined,
@@ -9,6 +10,7 @@ const submissionInitialState = {
   },
 };
 
+
 export default function submission(state = submissionInitialState, action) {
   switch (action.type) {
     /* ---*---*---*--- */
@@ -16,8 +18,9 @@ export default function submission(state = submissionInitialState, action) {
     case ActionTypes.INITIALIZE_SUBMISSION: {
       const newState = {
         submissionId: action.submissionId,
-      };
-
+        _longitude: action._longitude,
+        _latitude: action._latitude,
+      }
       return Object.assign({}, state, newState);
     }
 
@@ -26,7 +29,6 @@ export default function submission(state = submissionInitialState, action) {
     case ActionTypes.UPDATE_SUBMISSION_DATA_ALL_PAGES_LOCALLY: {
       const newState = Object.assign({}, state);
       newState.rawSubmission = action.data.rawSubmission;
-
       return newState;
     }
 
@@ -35,7 +37,6 @@ export default function submission(state = submissionInitialState, action) {
     case ActionTypes.UPDATE_SUBMISSION_DATA_FOR_PAGE_LOCALLY: {
       const newState = Object.assign({}, state);
       newState.rawSubmission.data[action.page] = action.data;
-
       return newState;
     }
 

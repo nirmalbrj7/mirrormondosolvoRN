@@ -16,7 +16,7 @@ class Profile extends React.PureComponent {
 
     const currentUser = {};
     currentUser.defaultData = auth().currentUser;
-
+   
     this.state = {
       currentUser,
       isConfirmed: false,
@@ -29,6 +29,7 @@ class Profile extends React.PureComponent {
   }
 
   componentDidMount() {
+ 
     auth().onAuthStateChanged(user => {
       if (user && user.emailVerified) {
         this.setState({

@@ -1,13 +1,10 @@
 import React from 'react';
 import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types';
-
 import styles from '../style';
-
 export default class MenuButton extends React.PureComponent {
   render() {
     const {navigation} = this.props;
-
     return (
       <Button
         icon={{

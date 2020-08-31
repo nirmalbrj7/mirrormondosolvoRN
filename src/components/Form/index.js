@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import {View,Text} from 'react-native';
+import {View,Text, Alert} from 'react-native';
 import FormDisplayForm from './FormDisplayForm';
 import WizardDisplayForm from './WizardDisplayForm';
 
@@ -12,11 +12,14 @@ const Form = () => {
   const formDisplay = useSelector(
     state => state.form && state.form.form && state.form.form.display,
   );
-  const newform=useSelector(state=>state);
+  const formDisplay2 = useSelector(
+    state => state.form,
+  );
+
+
 
   return (
-    formDisplay &&
-    (formDisplay === 'form' ? <FormDisplayForm /> : <WizardDisplayForm />)
+    formDisplay === 'wizard' ? <WizardDisplayForm /> : <FormDisplayForm />
   );
 };
 

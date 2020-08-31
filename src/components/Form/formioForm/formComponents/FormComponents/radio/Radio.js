@@ -1,6 +1,6 @@
 import React from 'react';
 import InputComponent from '../sharedComponents/Input';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,View,Text} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import styles from './styles';
 
@@ -22,6 +22,7 @@ export default class Radio extends InputComponent {
   getRadioButton(v, id, key, index, horizontal) {
     return (
       <RadioButton labelHorizontal={horizontal} key={id} style={styles.radioButton}>
+        <View style={{flex:1,flexDirection:'row'}}>
         <RadioButtonInput
           obj={v}
           index={index}
@@ -42,6 +43,8 @@ export default class Radio extends InputComponent {
           labelStyle={styles.label}
           labelWrapStyle={{}}
         />
+        </View>
+ 
       </RadioButton>
     );
   }
@@ -55,15 +58,18 @@ export default class Radio extends InputComponent {
 
     const radioFormStyle = {...StyleSheet.flatten(styles.radioForm), marginLeft: this.props.component.inline ? 20 : 0};
     return (
-      <RadioForm
-        formHorizontal={this.props.component.inline}
+ 
+        <RadioForm
+        formHorizontal={false}
         animation={true}
         style={radioFormStyle}
       >
         {this.props.component.values.map((v, id) => {
-          return this.getRadioButton(v, id, key, index, this.props.component.inline);
+          return this.getRadioButton(v, id, key, index, false);
         })}
      </RadioForm>
+    
+
     );
   }
 

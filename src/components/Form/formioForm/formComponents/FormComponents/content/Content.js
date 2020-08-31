@@ -11,7 +11,6 @@ export default class Content extends BaseComponent {
     this.onLinkPress = this.onLinkPress.bind(this);
     this.getHtmlStyles = this.getHtmlStyles.bind(this);
   }
-
   getHtmlStyles() {
     return {
       p: {
@@ -20,13 +19,11 @@ export default class Content extends BaseComponent {
       },
     };
   }
-
   onLinkPress(url) {
     Linking.openURL(url).catch(e => {
       return e;
     });
   }
-
   render() {
     return (
       <View style={styles.content}>
