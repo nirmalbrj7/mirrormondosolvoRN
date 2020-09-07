@@ -6,10 +6,9 @@ import Dimen from '../constants/dimen';
 import Actions from './ActionsStackNavigator';
 import Profile from './ProfileStackNavigator';
 import About from './AboutStackNavigator';
+import Logout from './../pages/Logout';
 import DrawerContentComponent from '../components/CustomDrawerContentComponent';
 import Submissions from './SumbissionsStackNavigator';
-import MenuButton from '../components/headerMain/MenuButton';
-import LogoutButton from '../components/headerMain/LogoutButton';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,9 +24,10 @@ function MainDrawerNavigator() {
         name="Forms"
         component={Actions}
         options={{
-          headerTitle: 'Form',
-          headerLeft: <MenuButton />,
-          headerRight: <LogoutButton />,
+          headerTitle: 'Forms',
+          
+       //   headerLeft: <MenuButton />,
+
           drawerIcon: ({tintColor}) => (
             <AntIcon
               name="form"
@@ -76,6 +76,7 @@ function MainDrawerNavigator() {
           ),
         }}
       />
+         
     </Drawer.Navigator>
   );
 }

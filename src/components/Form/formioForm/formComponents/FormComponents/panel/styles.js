@@ -6,10 +6,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 0,
     paddingBottom: 20,
+    marginBottom:20
   },
   title: {
     alignSelf: 'flex-start',
     margin: 10,
+    
   },
   componentsWrapper: {
     flex: 1,

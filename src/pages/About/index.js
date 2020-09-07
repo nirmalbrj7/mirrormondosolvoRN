@@ -4,6 +4,8 @@ import firestore from '@react-native-firebase/firestore';
 import commonStyles from '../../globalStyles';
 import {Avatar,Card,Paragraph} from "react-native-paper";
 
+import Icons from 'react-native-vector-icons/AntDesign';
+import Icons2 from 'react-native-vector-icons/FontAwesome';
 class About extends React.PureComponent {
   state = {
     aboutText: null,
@@ -48,27 +50,40 @@ class About extends React.PureComponent {
               source={require('../../assets/images/logo.png')}
               size={80}
             />
-            <Text style={{textAlign:'center',fontSize:20,color:'purple',fontWeight:'bold'}}>FormCollector App</Text>
-            <Text style={{textAlign:'center'}}>Version:0.0.1</Text>
+            <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold'}}>FormCollector App</Text>
+            <Text style={{textAlign:'center',marginTop:5,fontSize:12,color:'gray'}}>Version:0.0.1</Text>
 
           </Card.Content>
         </Card>
 
-            <Card>
+            <Card style={{marginTop:20}}>
               <Card.Content>
                 <Paragraph>
-                <Text style={commonStyles.text}>{aboutText}</Text>
+                <Text style={{textAlign:'center',marginTop:5,fontSize:13,color:'gray'}}>{aboutText}</Text>
                 </Paragraph>
               </Card.Content>
             </Card>
        
+
+            <Card style={{marginTop:20,marginBottom:20}}>
+              <Card.Content>
+              <Text style={{textAlign:'center',fontSize:20,fontWeight:'bold',marginBottom:20}}>Our Social Media</Text>
+                <View style={{flex:1,flexDirection:'row',justifyContent: 'space-around',}}>
+                <Icons name="youtube" size={30} color="red" onPress={()=>{ Linking.openURL('https://www.youtube.com/user/BuildChange')}}/>
+                <Icons2 name="facebook" size={28} color="blue" onPress={()=>{ Linking.openURL('https://www.facebook.com/BuildChange')}}/>
+                  <Icons name="twitter" size={30} color="#1da1f2"  onPress={()=>{ Linking.openURL('https://twitter.com/BuildChange')}}/>
+
+                               </View>
+              </Card.Content>
+            </Card>
       </ScrollView>
     );
   }
 }
 const styles = StyleSheet.create({
   image:{
-    alignSelf:'center'
+    alignSelf:'center',
+    backgroundColor:'#fff'
   }
 });
 export default About;

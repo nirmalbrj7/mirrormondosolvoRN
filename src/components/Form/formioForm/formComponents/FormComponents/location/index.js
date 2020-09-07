@@ -69,12 +69,15 @@ export default class Location extends InputComponent {
     let long = '';
 
     if (fieldValue != null && fieldValue != '' && fieldValue !== undefined) {
-      lat = fieldValue.split('-')[0];
-      long = fieldValue.split('-')[1];
+      lat = fieldValue.split(',')[0];
+      long = fieldValue.split(',')[1];
     }
     return (
-      <View style={{ flex: 1 }}>
-        <Button style={{ alignSelf: 'center', width: 250 }} icon="enviroment" mode="contained" onPress={this.onChangeText}>
+      <View style={{ flex: 1,marginTop:5 }}>
+        <Button style={{ alignSelf: 'center', width: 250 }}
+        
+        uppercase={false}
+        icon="enviroment" mode="outlined" onPress={this.onChangeText}>
           Get Location
         </Button>
 
@@ -82,8 +85,8 @@ export default class Location extends InputComponent {
           <View >
             <Text style={{ textAlign: 'center' }}>Location has been Taken</Text>
             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <Text>Latitute:<Text>{lat} </Text></Text>
-              <Text>Longitude:<Text>{long}</Text></Text>
+              <Text>Latitute:<Text style={{fontWeight:'bold'}}>{lat} </Text></Text>
+              <Text>Longitude:<Text style={{fontWeight:'bold'}}>{long}</Text></Text>
             </View>
 
 

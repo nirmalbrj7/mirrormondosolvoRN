@@ -91,6 +91,20 @@ class ValueComponent extends BaseComponent {
   };
 
   validate(value) {
+    if(this.props.component.type=='selectboxes'){
+     // {"":false}
+      if(value[""]==false){
+        console.log("selectbox value2"+JSON.stringify(value));
+        this.setState({
+          isPristine: false,
+        });
+
+//this.props.data["selectBoxes1"]={"aaa":true} ;
+        return validate({}, this.props.component, this.props.data, this.validateCustom);
+      }
+    //  console.log("selectbox value"+JSON.stringify(value));
+
+    }
 if(this.props.component){
   if(this.props.component.data){
     if(this.props.component.data.resource){
@@ -148,7 +162,22 @@ var obj=val;
       newValue = value;
     }
     const validatedValue = this.validate(newValue);
-    this.setState({
+if(this.props.component.type=='selectboxes'){
+  this.setState({
+    //  isPristine: !!pristine,
+      isPristine: false,
+      value: validatedValue,
+    }, () => {
+      if (typeof this.props.onChange === 'function') {
+        if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
+          this.props.onChange(this);
+        }
+      }
+    });
+}
+else{
+  this.setState({
+    //  isPristine: !!pristine,
       isPristine: !!pristine,
       value: validatedValue,
     }, () => {
@@ -158,6 +187,8 @@ var obj=val;
         }
       }
     });
+}
+
   }
 
   getDisplay(component, value) {

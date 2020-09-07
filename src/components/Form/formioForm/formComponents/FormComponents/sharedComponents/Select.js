@@ -10,7 +10,7 @@ import DeviceInfo from 'react-native-device-info';
 import ValueComponent from './Value';
 import Tooltip from './Tooltip';
 import colors from '../../../defaultTheme/colors';
-
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 export default class SelectComponent extends ValueComponent {
   constructor(props) {
     super(props);
@@ -188,8 +188,15 @@ export default class SelectComponent extends ValueComponent {
     const labelText =
       component.label && !component.hideLabel ? component.label : '';
     const requiredInline =
-      !component.label && component.validate && component.validate.required ? (
-        <Icon name="asterisk" />
+      component.label && component.validate && component.validate.required ? (
+        <FontAwesomeIcon 
+        style={{
+          marginHorizontal: 10,
+          color: 'red',
+          marginLeft:5
+        }} 
+        name="asterisk" />
+
       ) : (
         ''
       );
@@ -199,8 +206,9 @@ export default class SelectComponent extends ValueComponent {
 
     const inputLabel = labelText ? (
       <Text>
-        {requiredInline}
+       
         {component.label}
+        {requiredInline}
       </Text>
     ) : null;
   
@@ -249,9 +257,28 @@ export default class SelectComponent extends ValueComponent {
       );
     }
    return (
-      <View style={selectStyle.wrapper}>
+      <View style={{
+        flex: 1,
+        padding: 15,
+        backgroundColor:'#fff',
+       // borderWidth:1,
+       // borderColor:'#000',
+        borderRadius:4,
+        marginBottom:5,
+        marginHorizontal:5,
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
+      }}>
         <View style={selectStyle.mainElement}>
           <View style={selectStyle.labelWrapper}>
+  
             {inputLabel}          
             {component.tooltip ? (
               <Tooltip

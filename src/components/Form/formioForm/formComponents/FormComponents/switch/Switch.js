@@ -38,6 +38,26 @@ export default class SwitchComponent extends ValueComponent {
     const { value } = this.state;
     return (
       <View style={{
+        flex: 1,
+        padding: 15,
+        backgroundColor:'#fff',
+       // borderWidth:1,
+       // borderColor:'#000',
+        borderRadius:4,
+        marginBottom:5,
+        marginHorizontal:5,
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
+      }}>
+
+<View style={{
         flex: 1, flexDirection: 'row', marginTop: 10,
         marginLeft: 15, padding: 5
       }}>
@@ -51,6 +71,9 @@ export default class SwitchComponent extends ValueComponent {
           {!(component.hideLabel && component.datagridLabel === false) ? component.label : ''}
         </Text>
       </View>
+
+      </View>
+
     );
   }
 

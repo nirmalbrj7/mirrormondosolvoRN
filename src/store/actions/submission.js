@@ -1,5 +1,7 @@
 import ActionTypes from './actionTypes';
+import { Alert } from 'react-native';
 function initializeSubmission(submissionId, latitude, longitude) {
+  
   return {
     type: ActionTypes.INITIALIZE_SUBMISSION,
     submissionId,

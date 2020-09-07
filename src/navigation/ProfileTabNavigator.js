@@ -20,7 +20,13 @@ function ProfileSectionsTabNavigator() {
           backgroundColor: Colors.TAB_NAVIGATOR_INDICATOR_COLOR,
         },
       }}>
-      <Tab.Screen name="Groups" component={SectionGroups} />
+        {
+          /**
+           * <Tab.Screen name="Groups" component={SectionGroups} />
+           * 
+           */
+        }
+      
       <Tab.Screen name="EditProfile" component={EditProfile} />
       <Tab.Screen name="ChangePassword" component={SectionChangePassword} />
     </Tab.Navigator>

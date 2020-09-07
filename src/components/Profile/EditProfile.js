@@ -42,9 +42,32 @@ export default class SectionEditProfile extends React.PureComponent {
 
     const currentEmail = currentUser.email;
     let currentFullName;
+
+
     firestore()
+    .collection('users')
+    .get()
+    .then(querySnapshot => {
+      console.log('Total users: ', querySnapshot.size);
+  
+      querySnapshot.forEach(documentSnapshot => {
+    var emailData=documentSnapshot.data().email;
+    if(emailData==currentEmail){
+      const { fullName } = documentSnapshot.data();
+      currentFullName = fullName;
+      this.setState({
+        email: currentEmail,
+        fullName: currentFullName,
+      });
+    }
+        console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+      });
+    });
+
+
+ /*   firestore()
       .collection('users')
-      .doc(currentUser.uid)
+      .doc('32cd6fad5d414973872a')
       .get()
       .then(documentSnapshot => {
         const { fullName } = documentSnapshot.data();
@@ -56,7 +79,7 @@ export default class SectionEditProfile extends React.PureComponent {
           email: currentEmail,
           fullName: currentFullName,
         });
-      });
+      });*/
   };
 
   handleSave = () => {

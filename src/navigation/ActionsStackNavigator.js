@@ -4,7 +4,8 @@ import FormView from '../pages/FormView';
 import Actions from '../pages/Actions';
 import MenuButton from '../components/headerMain/MenuButton';
 import LogoutButton from '../components/headerMain/LogoutButton';
-
+import SyncButton from '../components/headerMain/SyncButton';
+import { View } from 'react-native';
 const Stack = createStackNavigator();
 
 function ActionsStack() {
@@ -16,7 +17,12 @@ function ActionsStack() {
         options={({navigation}) => ({
           headerTitle: 'Forms',
           headerLeft: () => <MenuButton navigation={navigation} />,
-          headerRight: () => <LogoutButton navigation={navigation} />,
+          headerRight: () => <View style={{flex:1,flexDirection:'row'}}>
+            <SyncButton navigation={navigation} />
+          
+          <LogoutButton navigation={navigation} />
+          </View>
+          ,
         })}
       />
       <Stack.Screen

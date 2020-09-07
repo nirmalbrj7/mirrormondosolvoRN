@@ -1,16 +1,19 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import { DrawerItemList } from '@react-navigation/drawer';
+import { DrawerItemList,DrawerItem } from '@react-navigation/drawer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import firestore from '@react-native-firebase/firestore';
-import { StyleSheet, Alert } from 'react-native';
+import { StyleSheet, Alert,Text } from 'react-native';
 import { Avatar, Title, Button } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import styles from './style';
-
+import AntIcon from 'react-native-vector-icons/AntDesign';
+import Dimen from '../../constants/dimen';
 class CustomDrawerContentComponent extends React.PureComponent {
   state = {
     appName: '',
+    userName: '',
+    userEmail:'',
   };
 
   homepageSettingsRef = firestore()
@@ -18,6 +21,11 @@ class CustomDrawerContentComponent extends React.PureComponent {
     .doc('homepage');
 
   async componentDidMount() {
+    const user = auth().currentUser;
+    this.setState({
+      userName: user.displayName,
+      userEmail:user.email
+    });
     this.homepageSettingsUnsubscribe = this.homepageSettingsRef.onSnapshot(
       this.onCollectionUpdate,
     );
@@ -43,7 +51,7 @@ class CustomDrawerContentComponent extends React.PureComponent {
   };
 
   render() {
-    const { appName } = this.state;
+    const { appName, userName,userEmail } = this.state;
 
     return (
       <ScrollView>
@@ -57,11 +65,13 @@ class CustomDrawerContentComponent extends React.PureComponent {
             <View>
 
               <Avatar.Image
-                style={{ alignSelf: 'center' }}
-                source={require('../../assets/images/logo.png')}
+                style={{ backgroundColor: '#fff',marginBottom:20 }}
+                source={require('../../assets/images/user.png')}
                 size={80}
+
               />
-              <Title style={styles.drawerHeader}>Hey,Admin</Title>
+              <Text style={styles.drawerHeader}>{userName}</Text>
+              <Text style={styles.drawerHeaderSubText}>{userEmail}</Text>
             </View>
 
             <View
@@ -72,16 +82,39 @@ class CustomDrawerContentComponent extends React.PureComponent {
                 borderColor: 'black',
               }}></View>
           </View>
-          <Button
+          {
+            /*    <Button
             mode="contained"
             style={{ marginLeft: 18, marginRight: 18, marginTop: 2 }}
             onPress={this.handleLogout}
           >
             logout
         </Button>
+        */
+          }
+      
+<View style={{backgroundColor:'gray',height:1,width:'90%',alignSelf:'center',marginTop:25,marginBottom:10}}></View>
 
-          <View style={{ width: '100%', height: 2, marginBottom: 5, backgroundColor: 'purple ' }}></View>
+         
           <DrawerItemList {...this.props} />
+
+          <DrawerItem
+              icon={({ color, size }) =>  <AntIcon
+              name="sync"
+              color={"#000"}
+              size={Dimen.DRAWER_ICONS_SIZE}
+            />}
+              label='Logout'
+              labelStyle={{color:'#000',fontSize:15}}
+             /* focused={getActiveRouteState(
+                props.state.routes,
+                props.state.index,
+                'Home'
+              )}*/
+              onPress={() => {
+                this.handleLogout()
+              }}
+            />
         </SafeAreaView>
       </ScrollView>
     );
@@ -92,8 +125,8 @@ const styles2 = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
-    paddingLeft: 20,
-    marginTop: 20
+    paddingLeft: 30,
+    marginTop: 25
   },
   title: {
     marginTop: 20,

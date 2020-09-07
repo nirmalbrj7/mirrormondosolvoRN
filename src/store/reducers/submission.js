@@ -1,4 +1,5 @@
 import ActionTypes from '../actions/actionTypes';
+import { Alert } from 'react-native';
 const submissionInitialState = {
   _latitude: null,
   _longitude: null,
@@ -16,6 +17,7 @@ export default function submission(state = submissionInitialState, action) {
     /* ---*---*---*--- */
 
     case ActionTypes.INITIALIZE_SUBMISSION: {
+   
       const newState = {
         submissionId: action.submissionId,
         _longitude: action._longitude,

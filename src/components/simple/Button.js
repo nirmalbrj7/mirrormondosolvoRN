@@ -13,6 +13,8 @@ const Button = ({ mode, style, children, ...props }: Props) => (
       style,
     ]}
     labelStyle={styles.text}
+    uppercase={false}
+    icon="login"
     mode={mode}
     {...props}
   >

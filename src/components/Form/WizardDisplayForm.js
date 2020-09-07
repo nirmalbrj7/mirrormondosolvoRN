@@ -59,6 +59,8 @@ if(withStatus=='FirstTime' && submission.isNew==true){
   const page = wizard.pages[wizard.currentPage].key;
   updateSubmissionDataForPageLocally(page, data);
   updateSubmissionDataForPageOnCloud(UPDATE_DATA_STATUSES.INCOMPLETE);
+  
+  //this.updateDataFromPage(UPDATE_DATA_STATUSES.INCOMPLETE);
   this.setState({ submitted: true,saveFlag:false });
   return true;
 }
@@ -133,7 +135,7 @@ if(withStatus=='FirstTime' && submission.isNew==true){
     try {
       this.setState({ submitted: true,saveFlag:true });
       this.updateDataFromPage(UPDATE_DATA_STATUSES.READY);
-      this.props.navigation.navigate('Home');
+    //  this.props.navigation.navigate('Home');
       
     } catch (e) {
       this.setState({ submitted: true,saveFlag:false });

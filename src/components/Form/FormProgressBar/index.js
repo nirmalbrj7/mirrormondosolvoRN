@@ -11,10 +11,16 @@ class FormProgressBar extends React.PureComponent {
     return (
       <View style={styles.progressBarContainer}>
         {pages.map((page, i) => {
-          if (i !== currentPage) {
-            return <Text key={page.key} style={globalStyles.text}>{page.title}</Text>;
-          }
-          return <Text key={page.key} style={[globalStyles.text, { fontWeight: 'bold' }]}>{page.title}</Text>;
+          //if (i !== currentPage) {
+           // return <Text key={page.key} style={globalStyles.text}>{page.title}</Text>;
+           //return <Text></Text>;
+          //}
+          if (i === currentPage) 
+          return <Text key={page.key} 
+          
+          style={[
+            globalStyles.text, 
+            { flex:1,fontWeight: 'bold',textAlign:'center',alignSelf:'center' }]}>{page.title}</Text>;
         })}
       </View>
     );

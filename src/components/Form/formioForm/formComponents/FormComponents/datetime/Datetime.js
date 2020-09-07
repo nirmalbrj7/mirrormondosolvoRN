@@ -131,7 +131,11 @@ export default class Datetime extends MultiComponent {
       this.setValue(value.toISOString());
     }
     this.hideDatePicker();*/
-    this.hideDatePicker();
+  //r  this.hideDatePicker();
+  this.setState({
+    open: false,
+    
+  });
   };
 
   getSingleElement(value, index) {
@@ -142,7 +146,7 @@ export default class Datetime extends MultiComponent {
     const dateTimeFormat = `${dateFormat} : hh:mm A`;
     return (
       <View style={styles.date}>
-        <Text>Date Selected {JSON.stringify(this.state.value)}</Text>
+
         <Button
           icon={
             <Icon
@@ -166,21 +170,20 @@ export default class Datetime extends MultiComponent {
           containerViewStyle={styles.button}
           title={
             this.state.value && this.state.value.item
-              ? moment(this.state.value.item, dateTimeFormat).format(
+              ? 
+              /*moment(this.state.value.item, dateTimeFormat).format(
                   this.getDisplayFormat(),
-                )
+                )*/
+                moment(this.state.value.item).format( this.getDisplayFormat())
               : component.type === 'day'
               ? 'Select date'
               : 'Select date and time'
           }
           color={this.props.colors.primary1Color}
         />
+     
           <DateTimePicker
         isVisible={this.state.open}
-
-
-
- 
         key="component"
         data-index={index}
         name={name}
@@ -196,30 +199,7 @@ export default class Datetime extends MultiComponent {
         onConfirm={this.handleConfirm}
         onCancel={this.hideDatePicker}
       />
-      {
-        /*
-        <DateTimePicker
-          isVisible={this.state.open}
-          key="component"
-          data-index={index}
-          name={name}
-          placeholder={component.placeholder}
-          pickerRefCb={ref => (this.datepicker = ref)}
-          minuteInterval={
-            this.props.component.timePicker
-              ? this.props.component.timePicker.minuteStep
-              : 5
-          }
-          mode={this.getMode()}
-          date={this.getInitialValue(value)}
-          onConfirm={this.handleConfirm}
-          //onConfirm={(date)=>alert("11"+JSON.stringify(date)),this.handleConfirm(date)}
-          onCancel={this.hideDatePicker()}
-        />
-
-        */
-      }
-
+      
       </View>
     );
   }

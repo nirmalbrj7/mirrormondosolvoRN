@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   buttonBar: {
     marginTop: 'auto',
+    marginBottom:10,
     paddingTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',

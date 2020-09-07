@@ -24,6 +24,24 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     width: 300,
     height: 150,
+    flex: 1,
+    padding: 15,
+    backgroundColor:'red',
+   // borderWidth:1,
+   // borderColor:'#000',
+    borderRadius:4,
+    marginBottom:5,
+    marginHorizontal:5,
+    shadowColor: "#000",
+shadowOffset: {
+width: 0,
+height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
+    
   },
   signaturePadWrapper: {
     flex: 1,

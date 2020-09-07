@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { clone } from 'lodash';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Text } from 'react-native';
+import { Text,View } from 'react-native';
 import FormioComponentsList from '../formioForm/formComponents/FormioComponentsList';
 import '../formioForm/formComponents/FormComponents';
 import theme from '../formioForm/defaultTheme';
 import colors from '../formioForm/defaultTheme/colors';
 import { checkCondition, evaluate, checkCalculated } from '../formio/utils/utils';
 import StoreActionsSubmission from '../../../store/actions/submission';
+
 
 
 class FormWizardPage extends React.PureComponent {
@@ -316,9 +317,13 @@ class FormWizardPage extends React.PureComponent {
         isPristine: false,
       });
     }
-  if(this.props.currentPage.key){
-    this.props.updateSubmissionDataAllPagesLocally(this.props.currentPage.key, this.data);
-  }   
+    //alert(this.props.checkform);
+    if(this.props.checkform=='wizard'){
+      if(this.props.currentPage.key){
+        this.props.updateSubmissionDataAllPagesLocally(this.props.currentPage.key, this.data);
+      }   
+    }
+
     this.props.updateSubmissionDataAllPagesLocally('__root', this.data);
     this.validate();
     this.rerender = true;
@@ -332,15 +337,21 @@ class FormWizardPage extends React.PureComponent {
     } = this.props;
     const { isSubmitting, isValid, isPristine } = this.state;
     return (
-      <KeyboardAwareScrollView>{
-        /**
-         *     <Text>this.data{JSON.stringify(this.data)}</Text>        
+      <View style={{backgroundColor:'#f1f2f3'}}>
+      <KeyboardAwareScrollView>
+
+        {
+          /**
+           *            <Text>this.data{JSON.stringify(this.data)}</Text>        
     <Text>this.state{JSON.stringify(currentPageSubmissionData)}</Text>
     <Text>this.state{JSON.stringify(this.props.sub)}</Text>
-         * 
-         */
+           * 
+           */
         }
 
+
+         
+  
         <FormioComponentsList
           components={currentPageComponents}        
          values={currentPageSubmissionData}
@@ -369,6 +380,7 @@ class FormWizardPage extends React.PureComponent {
           formPristine={isPristine}
         />
       </KeyboardAwareScrollView>
+      </View>
     );
   }
 }
@@ -419,7 +431,7 @@ let allsubmission=state.submission;
         console.log("************************************************");
         console.log("************************************************");
         console.log("************************************************");
-        currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
+       currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
         //this.data=currentPageSubmissionData;
 console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
         console.log("************************************************");
@@ -430,7 +442,7 @@ console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
     }
     else {
       currentPageComponents = state.form.form.components;
-      currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
+  currentPageSubmissionData = state.submission.rawSubmission.data.__root;
     
       //console.log(JSON.stringify("SIMPLE"+JSON.stringify(state.form)));
       //alert(JSON.stringify("SIMPLE"+JSON.stringify(state.form)));
@@ -458,7 +470,8 @@ console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
     allsubmission,
     sub:state.submission,
     resource:state.resourcereducer,
-    currentPage
+    currentPage,
+    checkform
   };
 };
 

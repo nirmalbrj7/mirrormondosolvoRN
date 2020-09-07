@@ -5,12 +5,24 @@ import globalStyles from '../../globalStyles';
 import styles from './style';
 import { Avatar } from 'react-native-paper';
 function ProfileTopSection(props) {
-  const { name, email} = props;
+  const { name, email } = props;
   return (
     <View style={styles.headSectionContainer}>
-      <Avatar.Icon size={80} icon="user" />
+      <Avatar.Image
+        style={{ backgroundColor: '#fff', marginBottom: 20 }}
+        source={require('../../assets/images/user.png')}
+        size={80}
+
+      />
+      {
+        /**
+         * 
+         *  <Avatar.Icon size={80} icon="user" />
+         */
+      }
+     
       <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <Text style={globalStyles.text}>{name}</Text>
+        <Text style={[globalStyles.text,{fontWeight:'bold'}]}>{name}</Text>
         <Text style={globalStyles.text}>
           {email}
         </Text>

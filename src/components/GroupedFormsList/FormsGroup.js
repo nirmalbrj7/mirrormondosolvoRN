@@ -108,7 +108,13 @@ export default class FormsGroup extends React.PureComponent {
 
     return (
       <View style={styles.groupsListItemContainer}>
-        <Text style={commonStyles.header2}>{name}</Text>
+        {
+          /**
+           *  <Text style={commonStyles.header2}>{name}</Text>
+           * 
+           */
+        }
+       
         {this.getGroupContent(status)}
       </View>
     );

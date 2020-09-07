@@ -106,6 +106,21 @@ export default class MultiComponent extends ValueComponent {
       fieldWrapper: {
         flex: 1,
         padding: 15,
+        backgroundColor:'#fff',
+       // borderWidth:1,
+       // borderColor:'#000',
+        borderRadius:4,
+        marginBottom:5,
+        marginHorizontal:5,
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
       },
       mainElement: this.elementLayout(this.props.component.labelPosition),
       labelWrapper: {
@@ -202,11 +217,12 @@ export default class MultiComponent extends ValueComponent {
    // } else {
       const error = !(this.state.isPristine || data.isValid);
       const Element = this.getSingleElement(data, 0, error);
-      const errorText = error ? <Text>{data.errorMessage}</Text> : null;
+      const errorText = error ? <Text style={{fontWeight:'bold'}}>{data.errorMessage}</Text> : null;
 
       Component = (
         <View style={multiStyles.fieldWrapper}>
        
+    
           <View style={multiStyles.mainElement}>
             <View style={multiStyles.labelWrapper}>
               {inputLabel}

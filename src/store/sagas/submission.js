@@ -14,14 +14,18 @@ const takeCurrentSubmissionFromState = state => state.submission;
 const takeCurrentFormIdFromState = state => state.form.firebaseFormId;
 const takeCurrentSlugIdFromState = state => state.form.slug;
 
-export function* updateSubmissionDataForPageOnCloud(action) {
+export  function* updateSubmissionDataForPageOnCloud(action) {
   try {
     const currentSubmission = yield select(takeCurrentSubmissionFromState);
     const currentFormId = yield select(takeCurrentFormIdFromState);
     const currentSlugId = yield select(takeCurrentSlugIdFromState);
     const submissionId = yield call(actualizeDataOnFirestore,
-      currentSubmission, currentFormId, currentSlugId, action.status);
-    yield put(Actions.updateFirebaseSubmissionId(submissionId));
+    currentSubmission, currentFormId, currentSlugId, action.status);
+    
+    if(submissionId!=undefined && submissionId!=null){
+      yield put(Actions.updateFirebaseSubmissionId(submissionId));
+    }
+   
     if (action.status === 'Ready') {
       alert('Your form saved successfully');
     }
@@ -36,8 +40,27 @@ export function* submitCurrentDataToFormio() {
   const currentFormId = yield select(takeCurrentFormIdFromState);
   currentSubmission.formId = currentFormId;
   const currentSlugId = yield select(takeCurrentSlugIdFromState);
+
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+console.log("currentSubmission"+currentSubmission);
+console.log("currentSubmission.formId"+currentSubmission.formId);
+console.log("currentSlugId"+currentSlugId);
+
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
   try {
-    yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
+    const currentSlugId2 = yield select(takeCurrentSlugIdFromState);
+    console.log("yesma aayo0"+currentSlugId2);
+    yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId2, 'Uploading');
+
+    //yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
+ console.log("yesma aayo1");
+    console.log("yesma aayo2"+currentSlugId2);
+
+  
     const fieldForUpdate = [];
     if (currentSubmission.rawSubmission.data.length === 1 && currentSubmission.data.__root) {
       Object.keys(currentSubmission.rawSubmission.data.__root)
@@ -69,7 +92,9 @@ export function* submitCurrentDataToFormio() {
             });
         });
     }
-    yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
+   // yield call(actualizeDataOnFirestore,currentSubmission, currentFormId, currentSlugId, 'Uploading');
+   yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId2, 'Uploading');
+   // yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
     const preparedData = {
       data: {},
     };
@@ -115,12 +140,15 @@ export function* submitCurrentDataToFormio() {
         console.error(error);
       });
     const currentSlugId = yield select(takeCurrentSlugIdFromState);
-
-    yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Submitted');
+  //  yield call(actualizeDataOnFirestore,currentSubmission, currentFormId, currentSlugId, 'Submitted');
+   // yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Submitted');
+   yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId, 'Submitted');
     alert('Your form submitted successfully');
   } catch (e) {
     console.log("OPTeeeeeeeeeeeeeeeeIOeeeeeeeeN1" + JSON.stringify(e));
-    yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Ready');
+    //yield call(actualizeDataOnFirestore,currentSubmission, currentFormId, currentSlugId, 'Ready');
+   // yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Ready');
+   yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId, 'Ready');
     if (e.message === 'Network Error') {
       alert('You\'re not connected to the internet now. When you reconnect, '
         + 'go to Submissions and click \'Submit\' to complete this submission.');

@@ -116,7 +116,8 @@ export default class Login extends React.PureComponent {
               <Button mode="contained"
                 title={loading ? 'Loading' : 'Login'}
                 onPress={this.handleLogin}
-                containerStyle={commonStyles.button}
+                style={{borderRadius:6}}
+              //  containerStyle={commonStyles.button}
               >
                 {loading ? 'Loading' : 'Login'}
               </Button>

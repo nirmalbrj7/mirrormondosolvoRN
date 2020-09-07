@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ActivityIndicator, Alert} from 'react-native';
+import { View, ActivityIndicator, Alert, Text } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
@@ -16,28 +16,57 @@ class Profile extends React.PureComponent {
 
     const currentUser = {};
     currentUser.defaultData = auth().currentUser;
-   
+    const userEmail = auth().currentUser.email;
     this.state = {
       currentUser,
       isConfirmed: false,
       sentEmail: false,
+      documentId: null
     };
 
-    this.userDataRef = firestore()
+
+   /* await firestore()
       .collection('users')
-      .doc(currentUser.defaultData.uid);
+      // .where('email', '==', userEmail)
+      .get()
+      .then(querySnapshot => {
+        console.log('Total users: ', querySnapshot.size);
+
+        querySnapshot.forEach(documentSnapshot => {
+          var data = documentSnapshot.data();
+          var email = data.email;
+
+          if (userEmail == email) {
+            console.log('email: ', documentSnapshot.id);
+            this.setState({
+              documentId: documentSnapshot.id
+            },
+               this.userDataRef = await firestore()
+                .collection('users')
+                .doc(this.state.documentId)
+
+            )
+
+
+          }
+        });
+      });*/
+
+    /*   this.userDataRef = firestore()
+       .collection('users')*/
+    // .where('email', '==', userEmail)
   }
 
-  componentDidMount() {
- 
-    auth().onAuthStateChanged(user => {
+  async componentDidMount() {
+
+  /*  auth().onAuthStateChanged(user => {
       if (user && user.emailVerified) {
         this.setState({
           isConfirmed: true,
         });
       } else {
         this.checkForVerifiedInterval = setInterval(() => {
-          const {currentUser} = auth();
+          const { currentUser } = auth();
           if (currentUser) {
             currentUser.reload().then(() => {
               if (auth().currentUser.emailVerified) {
@@ -53,26 +82,27 @@ class Profile extends React.PureComponent {
         }, 3000);
       }
     });
-    this.userDataUnsubscribe = this.userDataRef.onSnapshot(
+    this.userDataUnsubscribe = await this.userDataRef.onSnapshot(
       this.onCollectionUpdate,
-    );
+    );*/
   }
 
   componentWillUnmount() {
-    clearInterval(this.checkForVerifiedInterval);
-    this.userDataUnsubscribe();
+   // clearInterval(this.checkForVerifiedInterval);
+    //this.userDataUnsubscribe();
   }
 
   onCollectionUpdate = docSnapshot => {
-    const {navigation} = this.props;
+    console.log("snapshot" + JSON.stringify(docSnapshot.data()));
+    const { navigation } = this.props;
 
     if (!docSnapshot.data()) {
-      auth()
-        .signOut()
-        .then(() => navigation.navigate('SignIn'))
-        .catch(error => {
-          Alert.alert(error.message);
-        });
+      /* auth()
+         .signOut()
+         .then(() => navigation.navigate('SignIn'))
+         .catch(error => {
+           Alert.alert(error.message);
+         });*/
     } else {
       this.setState(prevState =>
         Object.assign(prevState.currentUser, docSnapshot.data()),
@@ -94,17 +124,19 @@ class Profile extends React.PureComponent {
   };
 
   render() {
-    const {currentUser, isConfirmed, sentEmail} = this.state;
-    const {navigation} = this.props;
+    const { currentUser, isConfirmed, sentEmail } = this.state;
+    const { navigation } = this.props;
 
     if (
       !currentUser ||
-      !currentUser.defaultData ||
-      !currentUser.email ||
-      !currentUser.fullName
+      !currentUser.defaultData 
+      //||
+     // !currentUser.email ||
+     // !currentUser.fullName
     ) {
       return (
         <View style={globalStyles.loaderScreenCentered}>
+          
           <ActivityIndicator size="large" />
         </View>
       );
@@ -114,8 +146,8 @@ class Profile extends React.PureComponent {
       <View style={globalStyles.screenContainer}>
         <View style={styles.headSectionContainer}>
           <ProfileTopSection
-            name={currentUser.fullName}
-            email={currentUser.email}
+            name={currentUser.defaultData.displayName}
+            email={currentUser.defaultData.email}
             isConfirmed={isConfirmed}
             sentEmail={sentEmail}
             sendEmailVerification={this.sendEmailVerification}

@@ -64,6 +64,7 @@ class FormDisplayForm extends React.PureComponent {
     let data;
     try {
       data = getDataFromCurrentPage();
+      alert("datat"+JSON.stringify(data));
     } catch (e) {
       if (e.message === 'Validation error') {
         throw e;
@@ -104,13 +105,14 @@ class FormDisplayForm extends React.PureComponent {
     try {
       this.setState({ submitted: true,submitFlag:true });
       this.updateDataFromPage(UPDATE_DATA_STATUSES.SUBMIT);
+      this.props.navigation.navigate('Home');
     } catch (e) {
       this.setState({ submitted: true,submitFlag:false });
       if (e.message === UPLOAD_ERROR) {
         Alert.alert('Please wait for the files to be uploaded.');
         return;
       }
-      Alert.alert('Please fix the following errors before submitting.');
+     Alert.alert('Please fix the following errors before submitting.');
     }
   };
   handleNextButtonPress2 = () => {
