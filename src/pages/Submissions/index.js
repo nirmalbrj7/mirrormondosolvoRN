@@ -50,110 +50,94 @@ class Submissions extends React.Component {
   getData = async () => {
 
     const currentUid = auth().currentUser.uid;
-
-    firestore()
+    this.setState({
+      submissions: []
+    });
+  
+    await firestore()
       .collection('forms')
       .where('userIds', 'array-contains', currentUid)
       .get()
       .then(querySnapshot => {
-        console.log('Total users: ', querySnapshot.size);
+        //console.log('Total users: ', querySnapshot.size);
 
-        querySnapshot.forEach(documentSnapshot => {
-          console.log('User ID: ', documentSnapshot.id, documentSnapshot.data().name);
+        querySnapshot.forEach(async documentSnapshot => {
+          //r  console.log('User ID: ', documentSnapshot.id, documentSnapshot.data().name);
           this.setState({
             forms: [...this.state.forms, { 'value': documentSnapshot.data().name }],
           })
+
+          var slugId = documentSnapshot.id;
+          var formData = documentSnapshot.data();
+          const querySnapshot = await firestore().collection('submissions')
+            .doc(slugId)
+            .collection('submissionData')
+            .get()
+            .then(querySnapshot => {
+              console.log('Total users: ', querySnapshot.size);
+              //this.onCollectionUpdate(querySnapshot);
+              querySnapshot.forEach(async documentSnapshot => {
+
+                var submission = documentSnapshot.data();
+                if (slugId == submission.formId) {
+                  console.log("formDta" + JSON.stringify(formData.name));
+                  submission["formName"] = formData.name;
+                  submission["form"] = formData;
+                  submission["slug"] = slugId;
+                  submission["submissionId"] = documentSnapshot.id;
+                  this.setState({
+                    submissions: [...this.state.submissions, submission],
+
+                  },
+                    //r   console.log(JSON.stringify(this.state.submissions))
+
+                  )
+                  this.arrayholder = this.state.submissions;
+
+                }
+
+              });
+
+
+
+
+
+            });
+
+
+
+
         });
       });
 
 
-    this.setState({
-      submissions: []
-    });
-    const querySnapshot = await firestore()
-      .collection('submissions')
 
-      .get();
-    querySnapshot.forEach(async (documentSnapshot) => {
-      if (documentSnapshot.exists == true) {
-        const slug = documentSnapshot.id;
-        const querySnapshot = await firestore().collection('submissions')
-          .doc(slug)
-          .collection('submissionData')
-          .get()
-          .then(querySnapshot => {
-            console.log('Total users: ', querySnapshot.size);
-            this.onCollectionUpdate(querySnapshot);
-          });
-      }
-    });
+    /*s    const querySnapshot = await firestore()
+          .collection('submissions')
+          .get();
+    
+    
+        querySnapshot.forEach(async (documentSnapshot) => {
+          if (documentSnapshot.exists == true) {
+            const slug = documentSnapshot.id;
+            const querySnapshot = await firestore().collection('submissions')
+              .doc(slug)
+              .collection('submissionData')
+              .get()
+              .then(querySnapshot => {
+                console.log('Total users: ', querySnapshot.size);
+                this.onCollectionUpdate(querySnapshot);
+              });
+          }
+        });*/
   }
 
 
-  onCollectionUpdate = async querySnapshot => {
-    const docs = querySnapshot.docs.map(submissionDoc => {
-      const data = submissionDoc.data();
-      data.submissionId = submissionDoc.id;
-      return data;
-    });
-    const currentUid = auth().currentUser.uid;
-    const forms = await firestore()
-      .collection('forms')
-      .where('userIds', 'array-contains', currentUid)
-      .get()
-      .then(doc => doc.docs.map(item => ({
-        ...item.data(),
-        id: item.id,
-      })));
-    docs.forEach(submission => {
-      if (submission.formId) {
-        forms.map((val, index) => {
 
-          if (val.id == submission.formId) {
-            console.log("formDta" + JSON.stringify(val.name));
-            submission["formName"] = val.name;
-            submission["form"] = val;
-            submission["slug"] = val.slug
-          }
-        })
-
-        this.setState({
-          submissions: [...this.state.submissions, submission],
-
-        },
-          //r   console.log(JSON.stringify(this.state.submissions))
-
-        )
-        this.arrayholder = this.state.submissions
-      }
-    });
-
-
-
-    this.setState({ isFetching: false });
-  };
   onRefresh() {
     this.setState({ isFetching: true, }, () => { this.getData(); });
   }
-  makeArrayForTable = (submissions) =>
-    submissions
-      ? submissions.reduce((acc, item) => {
-        //console.log("item"+JSON.stringify(item.submissionId));
-        if (item.form) {
-          const timestamp =
-            item.timestamp && item.timestamp.seconds
-              ? moment(item.timestamp.seconds * 1000).format('L[:]LTS')
-              : 'Unknown';
-          if (item.status == this.state.filterType) {
 
-            acc.push([timestamp, item.form.name, item.status, item, [item.submissionId, item.formId]]);
-
-          }
-        }
-
-        return acc;
-      }, [])
-      : null;
 
 
   makeSubmissionActionButton = data => {
@@ -234,7 +218,7 @@ class Submissions extends React.Component {
       <Button
         title="Continue"
         type="clear"
-
+        onPress={onPressCallback}
         buttonStyle={{ backgroundColor: 'transparent', fontSize: 20, color: 'green' }}
 
       //backgroundColor="red"
@@ -262,6 +246,31 @@ class Submissions extends React.Component {
           25,
           50
         );
+        console.log(' fheree!');
+        firestore()
+          .collection('media')
+          .get()
+          .then(querySnapshot => {
+            //console.log('Total users: ', querySnapshot.size);
+
+            querySnapshot.forEach(async documentSnapshot => {
+              var data = documentSnapshot.data();
+              console.log('1'+data.submissionId);
+              console.log('2'+submissionId);
+              if (data.submissionId == submissionId) {
+                console.log('3match'+submissionId);
+        firestore()
+        .collection('media').doc(documentSnapshot.id).
+                  delete()
+                  .then(() => {
+                    console.log(' media deleted!');
+                  });
+              }
+
+            });
+          });
+
+
         /*if(item==true){
           //alert('aaa'+JSON.stringify(this.state.value.item));
          let filteredArray =  this.state.value.item.filter(item => item.id != id);
@@ -339,10 +348,10 @@ class Submissions extends React.Component {
         if (item.status == this.state.filterType) {
           if (currentFormName == 'all') {
             this.arrayholder.sort((a, b) => {
-  
+
               if (a.form && b.form) {
                 if (a.status == this.state.filterType) {
-                  console.log('a.form.name < b.form.name'+a.form.name + b.form.name+a.form.name < b.form.name);
+                  console.log('a.form.name < b.form.name' + a.form.name + b.form.name + a.form.name < b.form.name);
                   if (a.form.name < b.form.name) { return -1; }
                   if (a.form.name > b.form.name) { return 1; }
                   return 0;
@@ -616,6 +625,7 @@ class Submissions extends React.Component {
                   <Text style={{ color: 'gray' }}>{timestamp}</Text>
                   <Text style={{ marginTop: 20 }}>{item.status}</Text>
                   <Text style={{ color: 'gray' }}>Id:{item.submissionId}</Text>
+
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'column' }}>

@@ -64,7 +64,7 @@ class FormDisplayForm extends React.PureComponent {
     let data;
     try {
       data = getDataFromCurrentPage();
-      alert("datat"+JSON.stringify(data));
+     // alert("datat"+JSON.stringify(data));
     } catch (e) {
       if (e.message === 'Validation error') {
         throw e;

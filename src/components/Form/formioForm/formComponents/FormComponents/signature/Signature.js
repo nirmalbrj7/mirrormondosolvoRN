@@ -110,6 +110,7 @@ elevation: 5,
         alignSelf: 'flex-end',
         fontSize: 10,
         color: this.props.colors.errorColor,
+        color:'red'
       },
       descriptionText: {
         fontSize: DeviceInfo.isTablet() ? 12 : 10,
@@ -148,7 +149,7 @@ elevation: 5,
     const error= data.isValid== false || this.state.isPristine==true?true:false
     //alert(this.state.isPristine || data.isValid );
     //const Element = this.getSingleElement(data, 0, error);
-    const errorText = error ? <Text style={{marginLeft:15,fontWeight:'bold'}}>{data.errorMessage}</Text> : null;
+    const errorText = error ? <Text style={{marginLeft:15,fontWeight:'bold',color:'red'}}>{data.errorMessage}</Text> : null;
 
 
     const image = typeof this.state.value === 'object' ? this.state.value.item : this.state.value;

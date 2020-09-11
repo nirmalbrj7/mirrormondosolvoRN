@@ -217,7 +217,7 @@ elevation: 5,
    // } else {
       const error = !(this.state.isPristine || data.isValid);
       const Element = this.getSingleElement(data, 0, error);
-      const errorText = error ? <Text style={{fontWeight:'bold'}}>{data.errorMessage}</Text> : null;
+      const errorText = error ? <Text style={{fontWeight:'bold',color:'red'}}>{data.errorMessage}</Text> : null;
 
       Component = (
         <View style={multiStyles.fieldWrapper}>

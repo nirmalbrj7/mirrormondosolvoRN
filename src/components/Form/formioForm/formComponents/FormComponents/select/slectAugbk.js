@@ -265,7 +265,7 @@ class Select extends SelectComponent {
             selectItems: dataArray
           });
 
-         Alert("DATAARRAY"+JSON.stringify(data));
+         //Alert("DATAARRAY"+JSON.stringify(data));
         }
 
 
