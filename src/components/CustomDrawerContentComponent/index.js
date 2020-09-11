@@ -1,14 +1,16 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View,Text } from 'react-native';
 import { DrawerItemList,DrawerItem } from '@react-navigation/drawer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import firestore from '@react-native-firebase/firestore';
-import { StyleSheet, Alert,Text } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { Avatar, Title, Button } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import styles from './style';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import Dimen from '../../constants/dimen';
+
+import {AppVersion} from "../../config/constant";
 class CustomDrawerContentComponent extends React.PureComponent {
   state = {
     appName: '',
@@ -115,6 +117,8 @@ class CustomDrawerContentComponent extends React.PureComponent {
                 this.handleLogout()
               }}
             />
+
+            <Text style={{textAlign:'center',paddingTop:10,marginTop:20}}>Version:{AppVersion}</Text>
         </SafeAreaView>
       </ScrollView>
     );

@@ -2,9 +2,9 @@ import React from 'react';
 import {Button as ButtonElement} from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import PropTypes from 'prop-types';
-import Alert from 'react-native';
-import styles from '../style';
 
+import styles from '../style';
+import { ActivityIndicator, ScrollView, Text, View, PermissionsAndroid, ToastAndroid,Alert } from 'react-native';
 
 import RNFetchBlob from "rn-fetch-blob";
 import RNFS from "react-native-fs";
@@ -13,7 +13,7 @@ import storage from '@react-native-firebase/storage';
 import { Button } from 'react-native-paper';
 import GetLocation from 'react-native-get-location'
 import { openDatabase } from 'react-native-sqlite-storage';
-
+import firestore from '@react-native-firebase/firestore';
 var db = openDatabase({ name: 'UserDatabase.db' });
 export default class SyncButton extends React.PureComponent {
   state = {
@@ -341,6 +341,7 @@ export default class SyncButton extends React.PureComponent {
 
 
   syncImage4 = async () => {
+
     await db.transaction(async (tx) => {
       await tx.executeSql('SELECT * FROM table_user', [],
         async (tx, results) => {
@@ -373,6 +374,7 @@ export default class SyncButton extends React.PureComponent {
   }
 
   syncImage3 = async () => {
+
     await db.transaction((tx) => {
       tx.executeSql(
         'SELECT * FROM table_user', [],
