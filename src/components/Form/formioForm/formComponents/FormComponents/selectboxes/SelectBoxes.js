@@ -22,21 +22,14 @@ export default class SelectBox extends ValueComponent {
 
   onChangeItems(item) {
     const selectedItems =
-      this.state.value && this.state.value.item ? this.state.value.item : [];
-    const isSelected = Object.keys(selectedItems).find(i => i === item.value);
-    if (isSelected && selectedItems[isSelected] === true) {
-      if(selectedItems[item.value]!=""){
-        selectedItems[item.value] = false;
-      }
-      
-    } else {
-      if(selectedItems[item.value]!=""){
-        selectedItems[item.value] = true;
-      }
-    }
-    console.log("from onchangeitem"+JSON.stringify(selectedItems));
-  //  alert(JSON.stringify(selectedItems));
-    this.setValue(selectedItems,false);
+    this.state.value && this.state.value.item ? this.state.value.item : [];
+  const isSelected = Object.keys(selectedItems).find(i => i === item.value);
+  if (isSelected && selectedItems[isSelected] === true) {
+    selectedItems[item.value] = false;
+  } else {
+    selectedItems[item.value] = true;
+  }
+  this.setValue(selectedItems);
   }
 
   elementLayout(position) {

@@ -205,26 +205,39 @@ class Select extends SelectComponent {
         .collection('submissions')
         .doc(this.props.component.data.resource)
         .collection('submissionData')
+        .where('status', '==', 'Synced')
+   //     Synced
         .get();
       querySnapshot.forEach(async (documentSnapshot) => {
         if (documentSnapshot.exists == true) {
           const slug = documentSnapshot.id;
+          console.log("resource"+this.props.component.data.resource);
+          console.log("slug"+slug);
           if (documentSnapshot.exists == true) {
             const data = documentSnapshot.data();
             var data2 = data.data;
+            console.log("DATA2"+JSON.stringify(data));
+            console.log("selectFieldArray"+JSON.stringify(selectFieldArray));
+            console.log("selectFieldArray[0]"+JSON.stringify(selectFieldArray[0]));
             var obj = {};
             obj.label = data2[selectFieldArray[0]];
+         //obj.label='aaa';
             var valueArray = {};
             Object.keys(data2)
               .forEach((page, index) => {
                 if (selectFieldArray[0] == page) {
-                  obj.value = data2[page];
+                 // obj.value = data2;
+                 //obj.value = data2[page];
 
                 }
                 selectFieldArray.map((val, index) => {
                   if (val == page) {
                     var tempobj = {};
-                    tempobj[val] = data2[page];
+                    tempobj[val] = data2[val];
+                    console.log("val=="+JSON.stringify(val));
+                    console.log("page=="+JSON.stringify(page));
+                    console.log("data2=="+JSON.stringify(data2));
+                   //  tempobj[val] = data2[page];
                     Object.assign(valueArray, tempobj);
 
                   }
@@ -232,8 +245,12 @@ class Select extends SelectComponent {
 
                 })
               });
+              obj.value = valueArray;
+
             addResource(valueArray);
             dataArray.push(obj);
+            console.log("VALUEARRAY"+JSON.stringify(valueArray));
+            console.log("DATAARRAY"+JSON.stringify(dataArray));
             this.setState({
               selectItems: dataArray
             });

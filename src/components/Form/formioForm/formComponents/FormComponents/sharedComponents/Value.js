@@ -4,6 +4,8 @@ import { validate } from '../componentUtils/validators';
 import { safeSingleToMultiple } from '../componentUtils/safeSingleToMultiple';
 import { getDefaultValue } from '../componentUtils/getDefaultValue';
 import store from "../../../../../../store/store";
+import { Alert } from 'react-native';
+
 class ValueComponent extends BaseComponent {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class ValueComponent extends BaseComponent {
   }
 
   componentDidMount() {
-   
+
     this.unmounting = false;
     if (!this.props.options || !this.props.options.skipInit || !this.props.options.isInit) {
       this.setValue(this.state.value, null, true);
@@ -47,8 +49,8 @@ class ValueComponent extends BaseComponent {
     }
   }
 
-  componentDidUpdate=(prevProps)=> {
-    const { component } = prevProps; 
+  componentDidUpdate = (prevProps) => {
+    const { component } = prevProps;
     let value;
     if (
       this.props.value &&
@@ -76,10 +78,10 @@ class ValueComponent extends BaseComponent {
       const valid = this.validate(value);
       this.setState({
         //value: c,
-        value:valid,
+        value: valid,
         isValid: valid.isValid,
         errorType: valid.errorType,
-        errorMessage:valid.errorMessage
+        errorMessage: valid.errorMessage
       });
 
     }
@@ -91,46 +93,115 @@ class ValueComponent extends BaseComponent {
   };
 
   validate(value) {
-    if(this.props.component.type=='selectboxes'){
-     // {"":false}
-      if(value[""]==false){
-        console.log("selectbox value2"+JSON.stringify(value));
+    console.log("VVVVVVVVVVVVVVVV"+JSON.stringify(value));
+    if (this.props.component.type == 'selectboxes') {
+      // {"":false}
+      if (value[""] == false) {
+        console.log("selectbox value2" + JSON.stringify(value));
         this.setState({
           isPristine: false,
         });
 
-//this.props.data["selectBoxes1"]={"aaa":true} ;
+        //this.props.data["selectBoxes1"]={"aaa":true} ;
         return validate({}, this.props.component, this.props.data, this.validateCustom);
       }
-    //  console.log("selectbox value"+JSON.stringify(value));
+      //  console.log("selectbox value"+JSON.stringify(value));
 
     }
-if(this.props.component){
-  if(this.props.component.data){
-    if(this.props.component.data.resource){
-     console.log("this"+JSON.stringify(value));
-     if(value){
-  var store2=store;
-  var store3=store.getState().resourcereducer;
-if(store3.length>0){
-  var selectField=this.props.component.selectFields;
-  var selectFieldArray = selectField.split(',');
- var key2=selectFieldArray[0];
-  store3.map((val,index)=>{
-    if(val[key2]==value){
-var obj=val;
-      for (var key in obj) {
-        if (obj.hasOwnProperty(key)) {         
-          this.props.data[key]=obj[key] ;          
+
+    if (this.props.component) {
+      if (this.props.component.data) {
+        if (this.props.component.data.resource) {
+
+          if (value) {
+            this.props.data[this.props.component.key]=value;
+
+var propsData=this.props.data;
+            var componentkey = this.props.component.key;
+            console.log("this" + JSON.stringify(value));
+            var store2 = store;
+            var store3 = store.getState().resourcereducer;
+           console.log("store3" + JSON.stringify(store3));
+
+            var allData = JSON.stringify(store3[0]);
+
+
+            if( (typeof value === "object" || typeof value === 'function') && (value !== null) )
+            {
+              Object.keys(value).map((key, index)=>{
+               console.log("key"+key);
+              console.log("index"+index);
+              this.props.data[key] = 'aaaaaaaaaaa';
+                //console.log("value[index]"+value[key]); 
+                //console.log("this.props.data"+JSON.stringify(propsData)); 
+                if (isNaN(value[key])) {
+                  if(this.props.data[key]!=undefined)
+                  this.props.data[key] = value[key];
+
+                }
+                else {
+                  if(this.props.data[key]!=undefined)
+                  this.props.data[key] = JSON.stringify(value[key]);
+
+                }
+
+              })
+
+            }
+
+
+
+
+          }
         }
       }
     }
-  })
-}
-     }
-    }
-  }
-}
+
+
+  /*  if (this.props.component) {
+      if (this.props.component.data) {
+        if (this.props.component.data.resource) {
+
+          if (value) {
+            var componentkey = this.props.component.key;
+            console.log("this" + JSON.stringify(value));
+            var store2 = store;
+            var store3 = store.getState().resourcereducer;
+            console.log("store3" + JSON.stringify(store3));
+
+            var allData = JSON.stringify(store3[0]);
+
+            if (store3.length > 0) {
+              var selectField = this.props.component.selectFields;
+              var selectFieldArray = selectField.split(',');
+              var key2 = selectFieldArray[0];
+              store3.map((val, index) => {
+                if (val[key2] == value) {
+
+                  var obj = Number.isInteger(val) == true ? JSON.stringify(val) : val;
+
+                  for (var key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+
+                      if (isNaN(obj[key])) {
+                        this.props.data[key] = obj[key];
+
+                      }
+                      else {
+                        this.props.data[key] = JSON.stringify(obj[key]);
+
+                      }
+                    }
+                  }
+                }
+              })
+            }
+
+            this.rerender = true;
+          }
+        }
+      }
+    }*/
     return validate(value, this.props.component, this.props.data, this.validateCustom);
   }
 
@@ -162,32 +233,32 @@ var obj=val;
       newValue = value;
     }
     const validatedValue = this.validate(newValue);
-if(this.props.component.type=='selectboxes'){
-  this.setState({
-    //  isPristine: !!pristine,
-      isPristine: false,
-      value: validatedValue,
-    }, () => {
-      if (typeof this.props.onChange === 'function') {
-        if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
-          this.props.onChange(this);
+    if (this.props.component.type == 'selectboxes') {
+      this.setState({
+        //  isPristine: !!pristine,
+        isPristine: false,
+        value: validatedValue,
+      }, () => {
+        if (typeof this.props.onChange === 'function') {
+          if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
+            this.props.onChange(this);
+          }
         }
-      }
-    });
-}
-else{
-  this.setState({
-    //  isPristine: !!pristine,
-      isPristine: !!pristine,
-      value: validatedValue,
-    }, () => {
-      if (typeof this.props.onChange === 'function') {
-        if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
-          this.props.onChange(this);
+      });
+    }
+    else {
+      this.setState({
+        //  isPristine: !!pristine,
+        isPristine: !!pristine,
+        value: validatedValue,
+      }, () => {
+        if (typeof this.props.onChange === 'function') {
+          if (!this.state.isPristine || (this.props.value && this.props.value.item !== this.state.value.item)) {
+            this.props.onChange(this);
+          }
         }
-      }
-    });
-}
+      });
+    }
 
   }
 

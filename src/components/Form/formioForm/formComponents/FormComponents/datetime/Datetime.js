@@ -1,5 +1,8 @@
 import React from 'react';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+
+
+import DatePicker from 'react-native-modern-datepicker';
 import {View, Text, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import moment from 'moment';
@@ -17,6 +20,8 @@ export default class Datetime extends MultiComponent {
     this.onConfirm = this.onConfirm.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
     this.getSingleElement = this.getSingleElement.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
+    
   }
 
   getInitialValue(value) {
@@ -115,9 +120,14 @@ export default class Datetime extends MultiComponent {
     });
   };
    handleConfirm = (value) => {
+    this.setState({
+      open: false
+      
+    });
+     console.log('datevalue'+JSON.stringify(value));
     
     const selected = moment(value);
-    this.setValue(value.toISOString());
+    this.setValue(value);
     /*const dateFormat = this.getResultFormat();
     if (selected.isValid()) {
       const date = selected.format(dateFormat).toString();
@@ -133,7 +143,7 @@ export default class Datetime extends MultiComponent {
     this.hideDatePicker();*/
   //r  this.hideDatePicker();
   this.setState({
-    open: false,
+    open: false
     
   });
   };
@@ -146,6 +156,7 @@ export default class Datetime extends MultiComponent {
     const dateTimeFormat = `${dateFormat} : hh:mm A`;
     return (
       <View style={styles.date}>
+
 
         <Button
           icon={
@@ -182,6 +193,9 @@ export default class Datetime extends MultiComponent {
           color={this.props.colors.primary1Color}
         />
      
+
+
+
           <DateTimePicker
         isVisible={this.state.open}
         key="component"

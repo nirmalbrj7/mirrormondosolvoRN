@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import jsonLogic from 'json-logic-js';
 import moment from 'moment';
-import {lodashOperators} from './jsonlogic/operators';
+import { lodashOperators } from './jsonlogic/operators';
+import { Alert } from 'react-native';
 
 // Configure JsonLogic
 lodashOperators.forEach((name) => jsonLogic.add_operation(`_${name}`, _[name]));
@@ -21,7 +22,7 @@ jsonLogic.add_operation('relativeMaxDate', (relativeMaxDate) => {
   return moment().add(relativeMaxDate, 'days').toISOString();
 });
 
-export {jsonLogic};
+export { jsonLogic };
 
 /**
  * Evaluate a method.
@@ -32,10 +33,12 @@ export {jsonLogic};
  */
 export function evaluate(func, args, ret, tokenize) {
   let returnVal = null;
-  const component = args.component ? args.component : {key: 'unknown'};
+  args.component = args.component ? _.cloneDeep(args.component) : { key: 'unknown' };
   if (!args.form && args.instance) {
     args.form = _.get(args.instance, 'root._form', {});
   }
+  args.form = _.cloneDeep(args.form);
+  const componentKey = args.component.key;
   if (typeof func === 'string') {
     if (ret) {
       func += `;return ${ret}`;
@@ -59,21 +62,21 @@ export function evaluate(func, args, ret, tokenize) {
 
     try {
       func = new Function(...params, func);
+      args = _.values(args);
     }
     catch (err) {
-      console.warn(`An error occured within the custom function for ${component.key}`, err); //eslint-disable-line no-console
+      console.warn(`An error occured within the custom function for ${componentKey}`, err);
       returnVal = null;
       func = false;
     }
   }
   if (typeof func === 'function') {
-    const values = _.values(args);
     try {
-      returnVal = func(...values);
+      returnVal = Array.isArray(args) ? func(...args) : func(args);
     }
     catch (err) {
       returnVal = null;
-      console.warn(`An error occured within custom function for ${component.key}`, err); //eslint-disable-line no-console
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
     }
   }
   else if (typeof func === 'object') {
@@ -82,13 +85,20 @@ export function evaluate(func, args, ret, tokenize) {
     }
     catch (err) {
       returnVal = null;
-      console.warn(`An error occured within custom function for ${component.key}`, err); //eslint-disable-line no-console
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
     }
   }
   else if (func) {
-    console.warn(`Unknown function type for ${component.key}`); //eslint-disable-line no-console
+    console.warn(`Unknown function type for ${componentKey}`);
   }
-  return returnVal;
+  //if(returnVal=='')
+console.log("returnVal"+returnVal);
+  if(isNaN(returnVal)){
+   return returnVal;
+   }else{
+    return JSON.stringify(returnVal);
+   }
+  //return returnVal;
 }
 
 export function getRandomComponentId() {
@@ -415,9 +425,22 @@ export function escapeRegExCharacters(value) {
 export function checkCalculated(component, submission, rowData) {
   // Process calculated value stuff if present.
   if (component.calculateValue) {
+    console.log('ppppp' + component.key);
+    console.log('ppppp' + JSON.stringify(rowData));
+    console.log('ppppp' + JSON.stringify(submission));
+    console.log('ppppp' + JSON.stringify(component.calculateValue));
+    var gg = _.set(rowData, component.key, evaluate(component.calculateValue, {
+      value: undefined,
+      data: submission ? submission : rowData,
+      row: rowData,
+      util: this,
+      component
+    }, 'value'));
+
+    console.log('gggggggggg' + JSON.stringify(gg));
     _.set(rowData, component.key, evaluate(component.calculateValue, {
       value: undefined,
-      data: submission ? submission.data : rowData,
+      data: submission ? submission : rowData,
       row: rowData,
       util: this,
       component
@@ -437,10 +460,10 @@ export function checkCalculated(component, submission, rowData) {
 export function checkSimpleConditional(component, condition, row, data) {
   let value = null;
   if (row) {
-    value = getValue({data: row}, condition.when);
+    value = getValue({ data: row }, condition.when);
   }
   if (data && _.isNil(value)) {
-    value = getValue({data: data}, condition.when);
+    value = getValue({ data: data }, condition.when);
   }
   // FOR-400 - Fix issue where falsey values were being evaluated as show=true
   if (_.isNil(value)) {
@@ -473,7 +496,7 @@ export function checkCustomConditional(component, custom, row, data, form, varia
   }
   const value = (instance && instance.evaluate) ?
     instance.evaluate(custom) :
-    evaluate(custom, {row, data, form});
+    evaluate(custom, { row, data, form });
   if (value === null) {
     return onError;
   }
@@ -642,10 +665,10 @@ export function uniqueName(name) {
 
 export function guid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = Math.random()*16|0;
+    const r = Math.random() * 16 | 0;
     const v = c === 'x'
       ? r
-      : (r&0x3|0x8);
+      : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }

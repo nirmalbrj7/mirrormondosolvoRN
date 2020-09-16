@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, ActivityIndicator, Alert, Text } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
-
 import styles from './style';
 import globalStyles from '../../globalStyles';
-
 import ProfileTopSection from '../../components/Profile/ProfileTopSection';
 import ProfileSectionsTabNavigator from '../../navigation/ProfileTabNavigator';
 
@@ -16,6 +13,7 @@ class Profile extends React.PureComponent {
 
     const currentUser = {};
     currentUser.defaultData = auth().currentUser;
+    console.log('Auth'+JSON.stringify(auth()));
     const userEmail = auth().currentUser.email;
     this.state = {
       currentUser,
@@ -23,92 +21,8 @@ class Profile extends React.PureComponent {
       sentEmail: false,
       documentId: null
     };
-
-
-   /* await firestore()
-      .collection('users')
-      // .where('email', '==', userEmail)
-      .get()
-      .then(querySnapshot => {
-        console.log('Total users: ', querySnapshot.size);
-
-        querySnapshot.forEach(documentSnapshot => {
-          var data = documentSnapshot.data();
-          var email = data.email;
-
-          if (userEmail == email) {
-            console.log('email: ', documentSnapshot.id);
-            this.setState({
-              documentId: documentSnapshot.id
-            },
-               this.userDataRef = await firestore()
-                .collection('users')
-                .doc(this.state.documentId)
-
-            )
-
-
-          }
-        });
-      });*/
-
-    /*   this.userDataRef = firestore()
-       .collection('users')*/
-    // .where('email', '==', userEmail)
   }
 
-  async componentDidMount() {
-
-  /*  auth().onAuthStateChanged(user => {
-      if (user && user.emailVerified) {
-        this.setState({
-          isConfirmed: true,
-        });
-      } else {
-        this.checkForVerifiedInterval = setInterval(() => {
-          const { currentUser } = auth();
-          if (currentUser) {
-            currentUser.reload().then(() => {
-              if (auth().currentUser.emailVerified) {
-                this.setState({
-                  isConfirmed: true,
-                });
-                clearInterval(this.checkForVerifiedInterval);
-              }
-            });
-          } else {
-            clearInterval(this.checkForVerifiedInterval);
-          }
-        }, 3000);
-      }
-    });
-    this.userDataUnsubscribe = await this.userDataRef.onSnapshot(
-      this.onCollectionUpdate,
-    );*/
-  }
-
-  componentWillUnmount() {
-   // clearInterval(this.checkForVerifiedInterval);
-    //this.userDataUnsubscribe();
-  }
-
-  onCollectionUpdate = docSnapshot => {
-    console.log("snapshot" + JSON.stringify(docSnapshot.data()));
-    const { navigation } = this.props;
-
-    if (!docSnapshot.data()) {
-      /* auth()
-         .signOut()
-         .then(() => navigation.navigate('SignIn'))
-         .catch(error => {
-           Alert.alert(error.message);
-         });*/
-    } else {
-      this.setState(prevState =>
-        Object.assign(prevState.currentUser, docSnapshot.data()),
-      );
-    }
-  };
 
   sendEmailVerification = () => {
     const user = auth().currentUser;
@@ -130,13 +44,9 @@ class Profile extends React.PureComponent {
     if (
       !currentUser ||
       !currentUser.defaultData 
-      //||
-     // !currentUser.email ||
-     // !currentUser.fullName
     ) {
       return (
-        <View style={globalStyles.loaderScreenCentered}>
-          
+        <View style={globalStyles.loaderScreenCentered}>       
           <ActivityIndicator size="large" />
         </View>
       );

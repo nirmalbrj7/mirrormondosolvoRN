@@ -7,14 +7,13 @@ import AppContainer from './src/navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AwesomeIcon from 'react-native-vector-icons/AntDesign';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { ThemeProvider, Button } from 'react-native-elements';
+import { ThemeProvider} from 'react-native-elements';
 
 const theme = {
   Button: {
     buttonStyle: {
       backgroundColor: '#600EE6'
     }
-
   },
 };
 const App: () => React$Node = () => {

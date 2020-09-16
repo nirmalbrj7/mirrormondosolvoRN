@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dropdown} from 'react-native-material-dropdown';
 import MultiSelect from 'react-native-multiple-select';
@@ -71,6 +71,7 @@ export default class SelectComponent extends ValueComponent {
   }
 
   onChangeSelect(selected) {
+    
     let value;
     if (this.props.component.multiple) {
       value = this.state.selectItems
@@ -86,8 +87,18 @@ export default class SelectComponent extends ValueComponent {
           typeof val === 'object' ? get(val, this.valueField()) : val;
       });
     } else if (typeof value === 'object' && this.valueField()) {
-      value = get(value, this.valueField());
-    }   
+     
+
+      if (this.props.component.data.resource) {
+
+      }
+      else{
+        value = get(value, this.valueField());
+      }
+     
+     
+    }  
+    
     this.setValue(value);
   }
 

@@ -41,7 +41,7 @@ export function* submitCurrentDataToFormio() {
   currentSubmission.formId = currentFormId;
   const currentSlugId = yield select(takeCurrentSlugIdFromState);
 
-  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+/*console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
   console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
   console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 console.log("currentSubmission"+currentSubmission);
@@ -50,17 +50,10 @@ console.log("currentSlugId"+currentSlugId);
 
   console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
   console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");*/
   try {
     const currentSlugId2 = yield select(takeCurrentSlugIdFromState);
-    console.log("yesma aayo0"+currentSlugId2);
     yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId2, 'Uploading');
-
-    //yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
- console.log("yesma aayo1");
-    console.log("yesma aayo2"+currentSlugId2);
-
-  
     const fieldForUpdate = [];
     if (currentSubmission.rawSubmission.data.length === 1 && currentSubmission.data.__root) {
       Object.keys(currentSubmission.rawSubmission.data.__root)
@@ -92,9 +85,7 @@ console.log("currentSlugId"+currentSlugId);
             });
         });
     }
-   // yield call(actualizeDataOnFirestore,currentSubmission, currentFormId, currentSlugId, 'Uploading');
    yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId2, 'Uploading');
-   // yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Uploading');
     const preparedData = {
       data: {},
     };
@@ -145,7 +136,7 @@ console.log("currentSlugId"+currentSlugId);
    yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId, 'Submitted');
     alert('Your form submitted successfully');
   } catch (e) {
-    console.log("OPTeeeeeeeeeeeeeeeeIOeeeeeeeeN1" + JSON.stringify(e));
+    //.log("OPTeeeeeeeeeeeeeeeeIOeeeeeeeeN1" + JSON.stringify(e));
     //yield call(actualizeDataOnFirestore,currentSubmission, currentFormId, currentSlugId, 'Ready');
    // yield call(actualizeDataOnFirestore, currentSubmission, currentSubmission.formId, currentSlugId, 'Ready');
    yield call(actualizeDataOnFirestore, currentSubmission, currentFormId, currentSlugId, 'Ready');

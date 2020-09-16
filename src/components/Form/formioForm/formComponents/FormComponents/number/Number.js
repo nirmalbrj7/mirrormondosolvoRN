@@ -1,44 +1,79 @@
 import React from 'react';
-import { TextInput } from 'react-native';
+import { StyleSheet} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import { Input } from 'react-native-elements';
+import Location from '../location';
 import InputComponent from '../sharedComponents/Input';
 import styles from '../styles/InputSingleLine-styles';
+import { Component } from 'react';
 
+const LOCATION_KEY = 'location';
 export default class Number extends InputComponent {
   constructor(props) {
     super(props);
-    this.onChangeText = this.onChangeText.bind(this);
-    this.getSingleElement = this.getSingleElement.bind(this);
   }
+  getSingleElement(value, index, error) {
+    const { component: { tags = [] } } = this.props;
+    
+    if (tags.includes(LOCATION_KEY)) {
+      return <Location value={value} onChangeValue={this.onChange} />;
+    }
+    const themeStyle = this.props.theme.Input;
+   
+    const style = StyleSheet.create({
+      container: {
+        borderColor: error ? themeStyle.borderColorOnError : themeStyle.borderColor,
+        flex: 1,
+        maxWidth: DeviceInfo.isTablet() ? 580 : 210,
+        //backgroundColor:this.props.component.disabled==true?'gray':'#ffff'
+      },
+      input: {
+        color: themeStyle.color,
+       // color:this.props.component.disabled==true?'gray':themeStyle.color,
+        fontSize: themeStyle.fontSize,
+        lineHeight: themeStyle.lineHeight,
+      },
+    });
 
-  onChangeText(index, value) {
-    this.setValue(value, index);
-  }
 
-  getSingleElement(value, index) {
-    const {
-      component, name, readOnly, colors, theme,
-    } = this.props;
-    const fieldValue = typeof value === 'object' ? value.item : value;
     index = index || 0;
+    const item = typeof value === 'string' ? value : value.item;
+    const { component, name, readOnly } = this.props;
+    const mask = component.inputMask || '';
+    const disable=this.props.component.disabled==true?false:true;
+    const properties = {
+      disabled:true,
+      //type: component.inputType !== 'number' ? component.inputType : 'text',
+      type:'number',
+      key: index,
+      id: component.key,
+      'data-index': index,
+      name,
+      shake: true,
+      defaultValue: item,
+      value: item,
+      editable: disable,
+      placeholder: component.placeholder,
+      placeholderTextColor: this.props.theme.Input.placeholderTextColor,
+      onChangeText: this.onChangeInput,
+      onBlur: this.onBlur,
+      ref: input => this.element = input,
+    };
+
     return (
-      <TextInput// Mask
-        key={index}
-        id={component.key}
-        data-index={index}
-        name={name}
-        value={fieldValue}
-        defaultValue={fieldValue}
-        placeholder={component.placeholder}
-        disabled={!readOnly}
-        keyboardType="numeric"
-        onChange={this.onChange}
-        style={[
+      <Input
+        inputStyle={[
           styles.inputSingleLine,
           {
-            borderColor: colors.borderColor,
-            lineHeight: theme.Input.lineHeight,
+            borderColor: themeStyle.borderColor,
+            lineHeight: themeStyle.lineHeight,
           },
         ]}
+        keyboardType="numeric"
+        containerStyle={styles.inputSingleLineContainer}
+        inputContainerStyle={styles.inputSingleLineInputContainer}
+
+        {...properties}
       />
     );
   }

@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 10,
     marginBottom: 0,
+    marginRight:10
   },
   p: {
     fontSize: 16,

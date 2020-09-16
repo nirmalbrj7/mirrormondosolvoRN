@@ -1,22 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
-import { ActivityIndicator, ScrollView, Text, View, PermissionsAndroid, ToastAndroid } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 import globalStyles from '../../globalStyles';
 import StoreActionsForm from '../../store/actions/form';
 import StoreActionsSubmission from '../../store/actions/submission';
 import GroupedFormsList from '../../components/GroupedFormsList';
-
-import RNFetchBlob from "rn-fetch-blob";
-import RNFS from "react-native-fs";
-import AsyncStorage from '@react-native-community/async-storage'
-import storage from '@react-native-firebase/storage';
-import { Button } from 'react-native-paper';
 import GetLocation from 'react-native-get-location'
-import { openDatabase } from 'react-native-sqlite-storage';
 
-//var db = openDatabase({ name: 'UserDatabase.db' });
 class Actions extends React.PureComponent {
   state = {
     appData: {
@@ -74,9 +66,6 @@ class Actions extends React.PureComponent {
     setCurrentFormData(payload.name, payload.doc.id, datagrid, slug);
     initializeSubmission(null, latitude, longitude);
   };
- 
-
-
 
   render() {
     const { loading } = this.state;
@@ -91,8 +80,6 @@ class Actions extends React.PureComponent {
 
     return (
       <ScrollView style={globalStyles.screenContainerScrollView}>
-
-
         <View style={globalStyles.screenContainer}>
           <GroupedFormsList
             handleFormsListItemPress={async (payload) => {
@@ -111,13 +98,10 @@ class Actions extends React.PureComponent {
                   const { code, message } = error;
                   console.warn(code, message);
                 })
-
             }
 
             }
           />
-
-
         </View>
       </ScrollView>
     );

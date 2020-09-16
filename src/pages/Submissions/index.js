@@ -39,6 +39,7 @@ class Submissions extends React.Component {
       currentDateType: true,//for descending
       currentFormType: null,//true for descending false for assending
       currentFormName: 'all',
+      value:''
     };
     this.arrayholder = [];
     this.onChangeSelect = this.onChangeSelect.bind(this);
@@ -352,8 +353,8 @@ class Submissions extends React.Component {
               if (a.form && b.form) {
                 if (a.status == this.state.filterType) {
                   console.log('a.form.name < b.form.name' + a.form.name + b.form.name + a.form.name < b.form.name);
-                  if (a.form.name < b.form.name) { return -1; }
-                  if (a.form.name > b.form.name) { return 1; }
+                  if (a.form.name > b.form.name) { return -1; }
+                  if (a.form.name < b.form.name) { return 1; }
                   return 0;
                 }
               }
@@ -632,7 +633,7 @@ class Submissions extends React.Component {
                   {this.makeSubmissionActionButton(item)}
                   <View>
                     {
-                      this.state.currentSelected == item.submissionId ?
+                      this.state.currentSelected == item.submissionId && (item.status =='Incomplete' || item.status =='Ready' || item.status =='Submitted' ) ?
                         <Button
                           title="Delete"
                           type="clear"
@@ -667,15 +668,15 @@ class Submissions extends React.Component {
 
   }
   render() {
-    const { submissions } = this.state;
-    /*
-        if (submissions.length == 0) {
+    const { submissions,value } = this.state;
+    
+        if (submissions.length == 0 && value=='') {
           return (
             <View style={globalStyles.loaderScreenCentered}>
               <ActivityIndicator size="large" />
             </View>
           );
-        }*/
+        }
 
     const tableHead = ['Timestamp', 'Form Name', 'Status', 'Actions', 'Delete'];
     // const tableData = this.makeArrayForTable(submissions);

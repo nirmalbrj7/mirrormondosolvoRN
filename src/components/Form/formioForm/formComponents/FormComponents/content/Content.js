@@ -1,9 +1,14 @@
 import React from 'react';
 import {View, Linking} from 'react-native';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Text} from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import BaseComponent from '../sharedComponents/Base';
+
+import { ScrollView, Dimensions } from "react-native";
+import HTML from "react-native-render-html";
+
 import styles from './styles';
+
 
 export default class Content extends BaseComponent {
   constructor(props) {
@@ -27,12 +32,12 @@ export default class Content extends BaseComponent {
   render() {
     return (
       <View style={styles.content}>
-        <HTMLView
-          value={this.props.component.html}
-          addLineBreaks={false}
-          stylesheet={this.getHtmlStyles()}
-          onLinkPress={this.onLinkPress}
+        <Text>{this.props.component.label}</Text>
+        <HTML
+          html={this.props.component.html}
+          imagesMaxWidth={Dimensions.get("window").width-50}
         />
+     
       </View>
     );
   }
