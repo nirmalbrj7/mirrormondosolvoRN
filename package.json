@@ -1,6 +1,6 @@
 {
   "name": "@imsakararyal/bcform",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": false,
   "scripts": {
     "android": "react-native run-android",
@@ -98,7 +98,12 @@
     "type": "git",
     "url": "git+https://github.com/imsakararyal/bcform.git"
     },
+    "files": [
+      "src",
+      "App.js",
+      "package.json"
+    ],
     "publishConfig": {
-      "registry":"https://npm.pkg.github.com/@imsakararyal"
+      "registry":"https://npm.pkg.github.com/"
     }
 }
