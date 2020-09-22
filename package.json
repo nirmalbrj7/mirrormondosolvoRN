@@ -1,5 +1,5 @@
 {
-  "name": "formtoplatformclient",
+  "name": "@imsakararyal/bcform",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -93,5 +93,11 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "repository": {
+      "url": "git://github.com/imsakararyal/bcform.git"
+    },
+    "publishConfig": {
+      "registry":"https://npm.pkg.github.com/@imsakararyal"
+    }
 }
