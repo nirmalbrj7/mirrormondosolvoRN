@@ -1,6 +1,6 @@
 {
   "name": "@imsakararyal/bcform",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": false,
   "scripts": {
     "android": "react-native run-android",
