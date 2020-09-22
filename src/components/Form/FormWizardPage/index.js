@@ -5069,8 +5069,7 @@ class FormWizardPage extends React.PureComponent {
     return (
       <View style={{backgroundColor:'#f1f2f3'}}>
       <KeyboardAwareScrollView>
-
-
+   
         <FormioComponentsList
        //  components={formId=='hqlhW0T1oyJyICDXzHZu'?staticdata:currentPageComponents}   
        components={currentPageComponents}             

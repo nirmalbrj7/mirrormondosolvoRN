@@ -4,7 +4,7 @@
 import React from 'react';
 import { View, ToastAndroid, ActivityIndicator, ScrollView, Alert, Button as ButtonRN, FlatList, Text, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { Table, Row, Cell, TableWrapper } from 'react-native-table-component';
+
 import auth from '@react-native-firebase/auth';
 import moment from 'moment';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -81,7 +81,7 @@ class Submissions extends React.Component {
 
                 var submission = documentSnapshot.data();
                 if (slugId == submission.formId) {
-                  console.log("formDta" + JSON.stringify(formData.name));
+                //  console.log("formDta" + JSON.stringify(formData.name));
                   submission["formName"] = formData.name;
                   submission["form"] = formData;
                   submission["slug"] = slugId;
@@ -341,6 +341,102 @@ class Submissions extends React.Component {
   )
 
   renderHeader = () => <View style={styles.header} />
+
+  ApplyFilterDescending=()=>{
+    console.log("from descending");
+        const { dateSorting, formSorting, currentFormName, submissions } = this.state;
+    const newData = this.arrayholder.filter(item => {
+      if (item.form) {
+        if (item.status == this.state.filterType) {
+         
+            this.arrayholder.sort((a, b) => {
+
+              if (a.form && b.form) {
+                if (a.status == this.state.filterType) {
+                  console.log('a.form.name < b.form.name' + a.form.name + b.form.name + a.form.name < b.form.name);
+                  if (a.form.name < b.form.name) { return -1; }
+                  if (a.form.name > b.form.name) { return 1; }
+                  return 0;
+                }
+              }
+
+            })
+              .map((item2, i) => {
+
+                if (item2.form) {
+                  if (item2.status == this.state.filterType) {
+                    console.log('sort' + JSON.stringify(item2.form.name));
+                    return item2;
+                  }
+                }
+
+              });
+
+
+
+            return item;
+          
+
+
+
+
+        }
+      }
+
+
+    });
+    this.setState({
+      submissions: newData,
+    });
+  }
+  ApplyFilterAscending=()=>{
+    console.log("from ascending");
+        const { dateSorting, formSorting, currentFormName, submissions } = this.state;
+    const newData = this.arrayholder.filter(item => {
+      if (item.form) {
+        if (item.status == this.state.filterType) {
+         
+            this.arrayholder.sort((a, b) => {
+
+              if (a.form && b.form) {
+                if (a.status == this.state.filterType) {
+                  console.log('a.form.name < b.form.name' + a.form.name + b.form.name + a.form.name < b.form.name);
+                  if (a.form.name > b.form.name) { return -1; }
+                  if (a.form.name < b.form.name) { return 1; }
+                  return 0;
+                }
+              }
+
+            })
+              .map((item2, i) => {
+
+                if (item2.form) {
+                  if (item2.status == this.state.filterType) {
+                    console.log('sort' + JSON.stringify(item2.form.name));
+                    return item2;
+                  }
+                }
+
+              });
+
+
+
+            return item;
+          
+
+
+
+
+        }
+      }
+
+
+    });
+    this.setState({
+      submissions: newData,
+    });
+  }
+
   ApplyFilter = () => {
 
     const { dateSorting, formSorting, currentFormName, submissions } = this.state;
@@ -684,6 +780,14 @@ class Submissions extends React.Component {
     return (
       <View style={styles2.container}>
 
+<Button title="Sort Ascending"
+
+onPress={()=>this.ApplyFilterAscending()}
+/>
+<Button title="Sort Descending"
+
+onPress={()=>this.ApplyFilterDescending()}
+/>
         <BottomSheet
           ref={this.bsFilter}
           snapPoints={[400, 0]}

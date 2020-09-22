@@ -8,7 +8,7 @@ import {
   PixelRatio,
   StyleSheet,
   Dimensions,
-  PermissionsAndroid, ToastAndroid, Text,Alert
+  PermissionsAndroid, ToastAndroid, Text
 } from 'react-native';
 //import {  Icon } from 'react-native-elements/src/index';
 import { connect } from 'react-redux';
@@ -30,13 +30,6 @@ import ImagePicker2 from "react-native-image-crop-picker";
 
 import { openDatabase } from 'react-native-sqlite-storage';
 import MultiComponent from '../sharedComponents/Multi';
-
-
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
-
-
-import Modal from 'react-native-modalbox';
 
 var db = openDatabase({ name: 'UserDatabase.db' });
 
@@ -239,11 +232,11 @@ class File extends MultiComponent {
 
 
 
-  /**n
+  /**
    * 
   ASYNCSTORAGE 
    */
-  /*async componentDidMount() {
+  async componentDidMount() {
     try {
       const offlineObject = await AsyncStorage.getItem('OfflineImage4')
 
@@ -259,7 +252,7 @@ class File extends MultiComponent {
 
     }
   }
-*/
+
 
 
   changeUploadProgress = val => {
@@ -826,32 +819,13 @@ class File extends MultiComponent {
       console.log("Main try catch" + JSON.stringify(e));
     }
   }
-selectPhotoTappedAlert = async ()=>{
-  Alert.alert(
-    'Alert Title',
-    'Pick or Capture IMage',
-    [
-      {
-        text: 'Open Camera',
-        onPress: () => this.selectPhotoTappedCamera()
-      },
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel'
-      },
-      { text: 'Open Gallery', onPress: () => this.selectPhotoTappedLibrary()}
-    ],
-    { cancelable: false }
-  );
-}
-  selectPhotoTappedLibrary = async () => {
+
+  selectPhotoTapped = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    //    this.refs.modal1.open();
         const options = {
           quality: 1.0,
           maxWidth: 500,
@@ -861,7 +835,7 @@ selectPhotoTappedAlert = async ()=>{
           },
         };
 
-        ImagePicker.launchImageLibrary(options, async (response) => {
+        ImagePicker.showImagePicker(options, async (response) => {
 
           if (response.didCancel) {
             console.log('User cancelled photo picker');
@@ -881,7 +855,6 @@ selectPhotoTappedAlert = async ()=>{
               data: response.data,
               storage,
             };
-            console.log("fileObject" + JSON.stringify(response.uri));
             NetInfo.fetch().then(async (state) => {
               if (state.isConnected == true) {
 
@@ -917,94 +890,6 @@ selectPhotoTappedAlert = async ()=>{
 
           }
         });
-      }
-      else {
-        alert('Permission Denied');
-      }
-    }
-    catch (e) {
-
-    }
-
-
-  };
-
-  selectPhotoTappedCamera = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    //    this.refs.modal1.open();
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
-
-    ImagePicker.launchCamera(options, async (response) => {
-
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        alert(`ImagePicker Error: ${response.error}`);
-        this.clear();
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const {
-          component: { storage, url: urlStorage },
-        } = this.props;
-        const fileObject = {
-          uri: response.uri,
-          type: response.type,
-          name: response.fileName || uuidv4(),
-          data: response.data,
-          storage,
-        };
-        console.log("fileObject" + JSON.stringify(response.uri));
-        NetInfo.fetch().then(async (state) => {
-          if (state.isConnected == true) {
-
-            /**creating blob */
-            const photoData = await fetch(response.uri)
-            const blob = await photoData.blob();
-            console.log("blob" + JSON.stringify(blob));
-            /**uploading */
-            //  this.saveLocalBLOB(blob, fileObject);
-
-
-            const subId = this.props.submission.submissionId;
-            const formId = this.props.form._id;
-            const componentkey = this.props.component.key;
-            const currentUid = auth().currentUser.uid;
-            var myObject = {};
-            myObject.formId = formId;
-            myObject.componentkey = componentkey;
-            myObject.mediaurl = fileObject.uri;
-            myObject.type = fileObject.type;
-            myObject.userId = currentUid;
-            myObject.file = fileObject;
-            myObject.submissionId = subId;
-            await this.UploadCloudFile3(fileObject, blob, myObject);
-
-          }
-          else {
-
-            var copyResult = await this.CopyFile(fileObject.name, fileObject.uri, fileObject);
-          }
-
-        });
-
-      }
-    });
-
-
-
-  
       }
       else {
         alert('Permission Denied');
@@ -1139,33 +1024,6 @@ selectPhotoTappedAlert = async ()=>{
 
 
   };
-  fall = new Animated.Value(1)
-  bs = React.createRef()
-
-
-  renderInner = () => (
-
-    <View style={styles.panel}>
-
-
-      <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: '#000s' }}>Delete</Text>
-
-
-
-
-
-      <Text>Do you want to delete this submission having Id
-    <Text style={{ fontWeight: 'bold' }}>{" "}{this.state.currentSelected}</Text></Text>
-      <Text><Text style={{ fontWeight: 'bold' }}>Disclaimer:</Text>After deleting data its associated media data will also will be deleted</Text>
-    </View>
-
-
-  )
-
-  renderHeader = () => <View style={styles.header} />
-
-
-
 
   getSingleElement(value, index) {
     // const { component, name, readOnly } = this.props;
@@ -1203,7 +1061,7 @@ selectPhotoTappedAlert = async ()=>{
           <TouchableOpacity onPress={() =>
             imageOrFile == true ?
               singleOrMultiple == true ? this.selectPhotoTappedMultiple() :
-                this.selectPhotoTappedAlert()
+                this.selectPhotoTapped()
               :
               singleOrMultiple == true ? this.selectFileTappedMultiple() :
                 this.selectFileTappedSingle()
@@ -1340,79 +1198,5 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     height: 20,
     width: 20,
-  },
-
-
-
-
-
-  panelContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  panel: {
-    height: 600,
-    padding: 20,
-    // backgroundColor: 'red',
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 5,
-    shadowOpacity: 0.6,
-    backgroundColor: '#e0ebff'
-  },
-  header: {
-    width: '100%',
-    height: 50,
-    position: 'absolute',
-    zIndex: 10000000,
-    // backgroundColor:'red'
-  },
-  panelHeader: {
-    alignItems: 'center',
-  },
-  panelHandle: {
-    width: 40,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#00000040',
-    marginBottom: 10,
-  },
-  panelTitle: {
-    fontSize: 27,
-    height: 35,
-  },
-  panelSubtitle: {
-    fontSize: 14,
-    color: 'gray',
-    height: 30,
-    marginBottom: 10,
-  },
-  panelButton: {
-    padding: 15,
-    borderRadius: 10,
-    // backgroundColor: '#292929',
-    alignItems: 'center',
-    marginVertical: 10,
-    minWidth: 100
-  },
-  panelButtonTitle: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  photo: {
-    width: '100%',
-    height: 225,
-    marginTop: 30,
-  },
-  map: {
-    height: '100%',
-    width: '100%',
   },
 });
