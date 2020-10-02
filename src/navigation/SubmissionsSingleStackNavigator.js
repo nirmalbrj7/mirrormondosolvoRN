@@ -1,12 +1,12 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Submissions from '../pages/Submissions';
+import Submissions from '../pages/SubmissionsSingle';
 import SubmissionView from '../pages/SubmissionView';
 import MenuButton from '../components/headerMain/MenuButton';
 import LogoutButton from '../components/headerMain/LogoutButton';
+import FilterButton from '../components/headerMain/FilterButton'
 import Ionicons from 'react-native-vector-icons/AntDesign';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FilterButton from '../components/headerMain/FilterButton'
 import {View} from 'react-native';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,6 +72,9 @@ function SubmissionsStackReady() {
           headerTitle: 'My Submissions',
           headerLeft: () => <MenuButton navigation={navigation} />,
           headerRight: () => <LogoutButton navigation={navigation} />,
+          headerStyle: {
+            elevation: 0,
+          },
         })}
       />
       <Stack.Screen
@@ -94,6 +97,9 @@ function SubmissionsStackSubmitted() {
           headerTitle: 'My Submissions',
           headerLeft: () => <MenuButton navigation={navigation} />,
           headerRight: () => <LogoutButton navigation={navigation} />,
+          headerStyle: {
+            elevation: 0,
+          },
         })}
       />
       <Stack.Screen
@@ -116,6 +122,9 @@ function SubmissionsStackSynced() {
           headerTitle: 'My Submissions',
           headerLeft: () => <MenuButton navigation={navigation} />,
           headerRight: () => <LogoutButton navigation={navigation} />,
+          headerStyle: {
+            elevation: 0,
+          },
         })}
       />
       <Stack.Screen
@@ -138,6 +147,9 @@ function SubmissionsStackUploading() {
           headerTitle: 'My Submissions',
           headerLeft: () => <MenuButton navigation={navigation} />,
           headerRight: () => <LogoutButton navigation={navigation} />,
+          headerStyle: {
+            elevation: 0,
+          },
         })}
       />
       <Stack.Screen

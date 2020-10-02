@@ -10,7 +10,15 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: Colors.BASIC_CONTAINER_BACKGROUND_COLOR,
-    paddingVertical: 15,
+    paddingHorizontal: 15,
+    paddingHorizontal: Dimen.SCREEN_PADDING_HORIZONTAL,
+  },
+  screenContainerAction: {
+    flex: 1,
+    backgroundColor: Colors.BASIC_CONTAINER_BACKGROUND_COLOR,
+   // paddingTop: 15,
+    paddingBottom:80,
+
     paddingHorizontal: Dimen.SCREEN_PADDING_HORIZONTAL,
   },
   screenContainerNoPadding: {

@@ -1,6 +1,9 @@
 
 
 
+
+
+
 import React from 'react';
 import { View, ToastAndroid, ActivityIndicator, ScrollView, Alert, Button as ButtonRN, FlatList, Text, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
@@ -24,10 +27,8 @@ import globalStyles from '../../globalStyles';
 import StoreActionsForm from '../../store/actions/form';
 import StoreActionsSubmission from '../../store/actions/submission';
 
-import { Chip, Title } from 'react-native-paper';
+import { Chip } from 'react-native-paper';
 import { IconButton, Colors } from 'react-native-paper';
-
-import { Button as PaperButton } from 'react-native-paper';
 
 class Submissions extends React.Component {
   constructor(props, navigation, route) {
@@ -61,7 +62,7 @@ class Submissions extends React.Component {
     await this.getData();
   }
   getData = async () => {
-
+    const currentFormDocumentId=this.props.currentFormDocumentId;
     const currentUid = auth().currentUser.uid;
     this.setState({
       submissions: []
@@ -69,7 +70,7 @@ class Submissions extends React.Component {
 
     await firestore()
       .collection('forms')
-      .where('userIds', 'array-contains', currentUid)
+      .where('slug', '==', currentFormDocumentId)
       .get()
       .then(querySnapshot => {
         //console.log('Total users: ', querySnapshot.size);
@@ -313,47 +314,40 @@ class Submissions extends React.Component {
     <View style={styles2.panel}>
 
 
-     <Title>Delete:</Title>
+      <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: '#000s' }}>Delete</Text>
+
 
 
 
 
       <Text>Do you want to delete this submission having Id
   <Text style={{ fontWeight: 'bold' }}>{" "}{this.state.currentSelected}</Text></Text>
-      <Text style={{marginTop:10}}><Text style={{ fontWeight: 'bold',marginTop:10 }}>Disclaimer:</Text>After deleting data its associated media data will also will be deleted</Text>
-      
-      <View style={{
-        flexDirection: 'row',
-        justifyContent: 'space-around', marginTop: 20
-      }}>
-        <PaperButton style={{ backgroundColor: 'purple', paddingVertical: 5 }} icon="checkcircleo" mode="contained" onPress={() => console.log('Pressed')}
-          onPress={() =>
+      <Text><Text style={{ fontWeight: 'bold' }}>Disclaimer:</Text>After deleting data its associated media data will also will be deleted</Text>
+      <TouchableOpacity onPress={() =>
 
-            this.deleteSubmission(this.state.currentSelectedFormId, this.state.currentSelected)
+        this.deleteSubmission(this.state.currentSelectedFormId, this.state.currentSelected)
 
 
-          }
 
-        >
-          Confirm Delete
-  </PaperButton>
-        <PaperButton style={{ backgroundColor: 'blue', paddingVertical: 5 }} icon="closecircleo" mode="contained" onPress={() => console.log('Pressed')}
-          onPress={() => {
-            this.bs.current.snapTo(1)
-    
-            this.setState({
-              currentSelected: null
-            })
-          }}
-        >
-          Close
-  </PaperButton>
+      }>
+        <View style={[styles2.panelButton, { backgroundColor: 'red' }]}>
+          <Text style={[styles2.panelButtonTitle]}>Confirm Delete</Text>
+        </View>
 
-      </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {
+        this.bs.current.snapTo(1)
 
-      
-      
+        this.setState({
+          currentSelected: null
+        })
+      }
+      }>
+        <View style={[styles2.panelButton, { backgroundColor: 'green' }]}>
+          <Text style={[styles2.panelButtonTitle]}>Close</Text>
+        </View>
 
+      </TouchableOpacity>
     </View>
 
 
@@ -526,49 +520,37 @@ class Submissions extends React.Component {
     <View style={styles2.panel}>
 
 
+      <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: '#000s' }}>Filter</Text>
+      <Text>Sort By</Text>
 
-      <Title>Filter By :</Title>
-      <View
-        style={{
-          flexDirection: "row",
-          // backgroundColor: "yellow",
-          // flex: 1,
-          justifyContent: "space-around"
-        }}
-      >
-        <Chip style={{ paddingHorizontal: 10, paddingVertical: 5 }} icon="clockcircleo" onPress={() =>
+      <CheckBox containerStyle={{ backgroundColor: '#e0ebff' }}
+
+        title='Date'
+        checked={this.state.dateSorting}
+        onPress={() => {
           this.setState({
             dateSorting: true,
             formSorting: false
           })
+        }}
+      />
+      <CheckBox containerStyle={{ backgroundColor: '#e0ebff' }}
 
-        }
-          selected={this.state.dateSorting}
-          selectedColor="purple"
-
-        >Date</Chip>
-        <Chip style={{ paddingHorizontal: 10, paddingVertical: 5 }} icon="form"
-          onPress={() =>
-            this.setState({
-              dateSorting: false,
-              formSorting: true
-            })
-
-          }
-          selected={this.state.formSorting}
-          selectedColor="purple"
-
-
-        >Form Name</Chip>
-
-      </View>
+        title='Form Name'
+        checked={this.state.formSorting}
+        onPress={() => {
+          this.setState({
+            dateSorting: false,
+            formSorting: true
+          })
+        }}
+      />
 
 
 
-      <View style={{ marginTop: 20 }} />
-      <Title>Select Form:</Title>
+      <Text>Select Form</Text>
       <Dropdown
-        // label='Forms'
+        label='Forms'
 
 
 
@@ -579,33 +561,32 @@ class Submissions extends React.Component {
 
       // onPress={() => { }}
       />
-
       <View style={{
-        flexDirection: 'row',
+        flex: 1, flexDirection: 'row',
         justifyContent: 'space-around', marginTop: 20
       }}>
-        <PaperButton style={{ backgroundColor: 'purple', paddingVertical: 5 }} icon="checkcircleo" mode="contained" onPress={() => console.log('Pressed')}
-          onPress={() =>
+        <TouchableOpacity onPress={() =>
 
-            this.ApplyFilter()
-
+          this.ApplyFilter()
 
 
-          }
 
-        >
-          Apply
-  </PaperButton>
-        <PaperButton style={{ backgroundColor: 'blue', paddingVertical: 5 }} icon="closecircleo" mode="contained" onPress={() => console.log('Pressed')}
-          onPress={() => this.bsFilter.current.snapTo(1)}
+        }>
 
-        >
-          Close
-  </PaperButton>
+
+          <View style={[styles2.panelButton, { backgroundColor: 'red' }]}>
+            <Text style={[styles2.panelButtonTitle]}>Apply</Text>
+          </View>
+
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.bsFilter.current.snapTo(1)}>
+          <View style={[styles2.panelButton, { backgroundColor: 'green' }]}>
+            <Text style={[styles2.panelButtonTitle]}>Close</Text>
+          </View>
+
+        </TouchableOpacity>
 
       </View>
-
-
 
 
     </View>
@@ -685,24 +666,9 @@ class Submissions extends React.Component {
       if (item.status == this.state.filterType) {
         return (
 
-          <TouchableOpacity
-          onPress={() => {
-            this.setState({
-              currentSelected: item.submissionId,
-              currentSelectedFormId: item.formId
-            });
-            // this.bs.current.snapTo(0)
-          }}
-          
-          >
+          <TouchableOpacity>
             <Card containerStyle={{ paddingVertical: 5, paddingVertical: 10, marginBottom: 15, marginHorizontal: 10, borderRadius: 6 }}
-              onPress={() => {
-                this.setState({
-                  currentSelected: item.submissionId,
-                  currentSelectedFormId: item.formId
-                });
-                // this.bs.current.snapTo(0)
-              }}
+
 
             >
               <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -716,11 +682,11 @@ class Submissions extends React.Component {
 
                   </View>
                   {
-                    this.state.currentSelected == item.submissionId && (item.status == 'Incomplete' || item.status == 'Ready' || item.status == 'Submitted') ?
+                      this.state.currentSelected == item.submissionId && (item.status == 'Incomplete' || item.status == 'Ready' || item.status == 'Submitted') ?
 
-                      <Text style={{ color: 'gray' }}>Id:{item.submissionId}</Text>
-                      :
-                      null}
+                  <Text style={{ color: 'gray' }}>Id:{item.submissionId}</Text>
+                  :
+                  null}
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'column' }}>
@@ -738,31 +704,20 @@ class Submissions extends React.Component {
                         this.bs.current.snapTo(0)
                       }}
                     />
-                    <TouchableOpacity onPress={() => {
-                      console.log('aaaaaaaaaaaaaas'),
-                        this.setState({
-                          currentSelected: item.submissionId,
-                          currentSelectedFormId: item.formId
-                        })
-
-                    }}>
-                      <IconsFeather
-                        name="more-vertical"
-                        color='gray'
-                        size={20}
-                        style={{ marginTop: -50 }}
-                        onPress={() => {
-                          console.log('aaaaaaaaaaaaaas'),
-                            this.setState({
-                              currentSelected: item.submissionId,
-                              currentSelectedFormId: item.formId
-                            });
-                        }}
-                      />
-
-
-                    </TouchableOpacity>
-
+ 
+                    <IconsFeather
+                                          name="more-vertical"
+                                          color='gray'
+                                          size={20}
+                                          style={{marginTop:-50}}
+                                          onPress={() => {
+                                            console.log('aaaaaaaaaaaaaas'),
+                                            this.setState({
+                                              currentSelected: item.submissionId,
+                                              currentSelectedFormId: item.formId
+                                            });
+                                          }}
+                                          />
 
 
 
@@ -790,8 +745,6 @@ class Submissions extends React.Component {
     }
 
   }
-
-
   render() {
     const { submissions, value } = this.state;
 
@@ -807,70 +760,8 @@ class Submissions extends React.Component {
     // const tableData = this.makeArrayForTable(submissions);
 
     return (
-      <>
-        <View style={[styles2.container, {
-
-          backgroundColor: '#F4F4F4'
-
-
-
-        }]}
-
-
-        >
-
-          <Animated.View
-            style={{
-              alignItems: 'center',
-              opacity: Animated.add(0.1, Animated.multiply(this.fall, 0.9)),
-            }}
-          >
-
-          </Animated.View>
-
-
-
-          <BottomSheet
-            ref={this.bs}
-            snapPoints={[300, 0]}
-            renderContent={this.renderInner}
-            renderHeader={this.renderHeader}
-            initialSnap={1}
-            callbackNode={this.fall}
-            enabledInnerScrolling={false}
-            enabledContentGestureInteraction={false}
-          />
-          <Animated.View
-            style={{
-              alignItems: 'center',
-              opacity: Animated.add(0.1, Animated.multiply(this.fallFilter, 1)),
-            }}
-          >
-            <FlatList
-              data={submissions}
-              renderItem={this._renderItem}
-
-              refreshControl={
-                <RefreshControl
-                  refreshing={this.state.isFetching}
-                  onRefresh={this.getData.bind()}
-
-
-                />
-              }
-              // refreshing={this.state.isFetching}
-              ListHeaderComponent={this.renderHeader2}
-              keyExtractor={item => item.id}
-            />
-          </Animated.View>
-
-
-
-
-
-        </View>
+      <View style={[styles2.container, { backgroundColor: '#F4F4F4' }]}>
         <BottomSheet
-          style={{ backgroundColor: '#fff', opacity: 1 }}
           ref={this.bsFilter}
           snapPoints={[400, 0]}
           renderContent={this.renderInnerFilter}
@@ -880,7 +771,56 @@ class Submissions extends React.Component {
           enabledInnerScrolling={false}
           enabledContentGestureInteraction={false}
         />
-      </>
+        <Animated.View
+          style={{
+            alignItems: 'center',
+            opacity: Animated.add(0.1, Animated.multiply(this.fall, 0.9)),
+          }}
+        >
+
+        </Animated.View>
+
+
+
+        <BottomSheet
+          ref={this.bs}
+          snapPoints={[300, 0]}
+          renderContent={this.renderInner}
+          renderHeader={this.renderHeader}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledInnerScrolling={false}
+          enabledContentGestureInteraction={false}
+        />
+        <Animated.View
+          style={{
+            alignItems: 'center',
+            opacity: Animated.add(0.1, Animated.multiply(this.fall, 0.9)),
+          }}
+        >
+
+        </Animated.View>
+
+
+        <FlatList
+          data={submissions}
+          renderItem={this._renderItem}
+
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isFetching}
+              onRefresh={this.getData.bind()}
+
+
+            />
+          }
+          // refreshing={this.state.isFetching}
+         //s ListHeaderComponent={this.renderHeader2}
+          keyExtractor={item => item.id}
+        />
+
+
+      </View>
     )
   }
 }
@@ -891,7 +831,6 @@ const styles2 = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f1f2f3',
-
   },
   box: {
     width: IMAGE_SIZE,
@@ -915,7 +854,7 @@ const styles2 = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 5,
     shadowOpacity: 0.6,
-    backgroundColor: '#fff'
+    backgroundColor: '#e0ebff'
   },
   header: {
     width: '100%',
@@ -976,9 +915,16 @@ Submissions.propTypes = {
   fetchSubmissionDataFromCloud: PropTypes.func.isRequired,
   directSubmitDataFromCloudToFormio: PropTypes.func.isRequired,
 };
+const mapStateToProps = (state) => {
+
+  currentsinglesubmission=state.singlesubmissionreducer[0];
+  currentFormName=currentsinglesubmission.currentFormName;
+  currentFormDocumentId=currentsinglesubmission.currentFormDocumentId;
+  return {currentFormName,currentFormDocumentId};
+}
 
 const ConnectedSubmissions = connect(
-  null,
+  mapStateToProps,
   {
     setCurrentFormData: StoreActionsForm.setCurrentFormData,
     tryUpdateCurrentForm: StoreActionsForm.tryUpdateCurrentForm,

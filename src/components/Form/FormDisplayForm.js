@@ -81,6 +81,7 @@ class FormDisplayForm extends React.PureComponent {
     if (withStatus === UPDATE_DATA_STATUSES.SUBMIT) {
       submitCurrentDataToFormio();
       this.setState({ submitted: true,submitFlag:false });
+      this.props.navigation.navigate('Home');
     } else {
       updateSubmissionDataForPageOnCloud(withStatus);
       this.setState({ submitted: true,submitFlag:false });
@@ -112,7 +113,7 @@ class FormDisplayForm extends React.PureComponent {
         Alert.alert('Please wait for the files to be uploaded.');
         return;
       }
-     Alert.alert('Please fix the following errors before submitting.');
+     //sAlert.alert('Please fix the following errors before submitting.');
     }
   };
   handleNextButtonPress2 = () => {

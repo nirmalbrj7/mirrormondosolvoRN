@@ -5,12 +5,14 @@ import wizard from './wizard';
 import submission from './submission';
 import datagridreducer from './datagrid';
 import resourcereducer from './resource';
+import singlesubmissionreducer from './singleSubmission';
 const rootReducer = combineReducers({
   form,
   wizard,
   submission,
   datagridreducer,
-  resourcereducer
+  resourcereducer,
+  singlesubmissionreducer
 });
 
 export default rootReducer;

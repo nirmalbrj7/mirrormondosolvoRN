@@ -1,0 +1,52 @@
+image picker gallery
+{
+    //also base64
+	"fileName": "IMG_20200921_195631184.jpg",
+	"fileSize": 4277137,
+	"height": 4160,
+	"isVertical": true,
+	"originalRotation": 0,
+	"path": "/storage/emulated/0/DCIM/Camera/IMG_20200921_195631184.jpg",
+	"timestamp": "2020-09-21T14:11:31Z",
+	"type": "image/jpeg",
+	"uri": "content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F412276/ORIGINAL/NONE/image%2Fjpeg/3953582",
+	"width": 3120
+}
+
+image picker Camera
+{
+    //also base64
+	"fileSize": 1078569,
+	"height": 4160,
+	"isVertical": true,
+	"originalRotation": 0,
+	"path": "/storage/emulated/0/Pictures/images/image-5203ec7e-4316-4bb2-97a9-28ca79b49d99.jpg",
+	"timestamp": "2020-09-27T05:12:23Z",
+	"type": "image/jpeg",
+	"uri": "content://com.camera.provider/external_files/Pictures/images/image-5203ec7e-4316-4bb2-97a9-28ca79b49d99.jpg",
+	"width": 3120
+}
+
+crop picker camera
+ {
+ 	"cropRect": {
+ 		"height": 4160,
+ 		"width": 3119,
+ 		"x": 1,
+ 		"y": 0
+ 	},
+ 	"height": 400,
+ 	"mime": "image/jpeg",
+ 	"modificationDate": "1601183729000",
+ 	"path": "file:///storage/emulated/0/Android/data/com.camera/files/Pictures/1f800ffa-f791-4c1b-b33f-fe124c2bfa78.jpg",
+ 	"size": 31689,
+ 	"width": 300
+ }
+
+ {
+	"deviceOrientation": 1,
+	"height": 4096,
+	"pictureOrientation": 1,
+	"uri": "file:///data/user/0/com.camera/cache/Camera/7408e963-1d42-46eb-8e2e-4f49a897e24c.jpg",
+	"width": 2304
+}

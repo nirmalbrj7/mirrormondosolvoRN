@@ -29,6 +29,9 @@ import NetInfo from "@react-native-community/netinfo";
 import ImagePicker2 from "react-native-image-crop-picker";
 
 import { openDatabase } from 'react-native-sqlite-storage';
+import SQLite from 'react-native-sqlite-storage';
+
+
 import MultiComponent from '../sharedComponents/Multi';
 
 
@@ -38,7 +41,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 
 import Modal from 'react-native-modalbox';
 
-var db = openDatabase({ name: 'UserDatabase.db' });
+//var db = openDatabase({ name: 'UserDatabase.db' });
 
 const progressCustomStyles = {
   backgroundColor: Colors.SUCCESS_TEXT_COLOR,
@@ -54,6 +57,7 @@ var FileUpload = 0;
 class File extends MultiComponent {
   constructor(props) {
     super(props);
+    SQLite.DEBUG = true;
     this.getInitialValue = this.getInitialValue.bind(this);
 
     this.onConfirm = this.onConfirm.bind(this);
@@ -167,9 +171,21 @@ class File extends MultiComponent {
   }
 
   /***SQL */
+
+  ExecuteQuery = (sql, params = []) => new Promise((resolve, reject) => {
+    db.transaction((trans) => {
+      trans.executeSql(sql, params, (trans, results) => {
+        resolve(results);
+      },
+        (error) => {
+          reject(error);
+        });
+    });
+  });
+
   saveSQL = async (myarray) => {
     console.log("save sql");
-    db.transaction(function (txn) {
+  /*  db.transaction(function (txn) {
       txn.executeSql(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
         [],
@@ -184,10 +200,10 @@ class File extends MultiComponent {
           }
         }
       );
-    });
+    });*/
     console.log("here");
 
-    db.transaction(function (tx) {
+ /*   db.transaction(function (tx) {
 
       tx.executeSql(
         'INSERT INTO table_user (file_array) VALUES (?)',
@@ -200,7 +216,25 @@ class File extends MultiComponent {
         }
       );
     });
-    db.transaction((tx) => {
+*/
+
+
+
+    let Data = myarray;
+    console.log("Data"+JSON.stringify(Data));
+    var Data2=JSON.stringify(Data);
+    let singleInsert = await this.ExecuteQuery("INSERT INTO table_user (file_array) VALUES ( ?)", [Data2]);
+    console.log('sss'+singleInsert);
+
+
+    let selectQuery = await this.ExecuteQuery("SELECT * FROM table_user", []);
+    var rows = selectQuery.rows;
+    console.log("Rows"+JSON.stringify(rows));
+    var len = rows.length;
+    console.log("len"+JSON.stringify(len));
+
+
+  /*  db.transaction((tx) => {
       tx.executeSql(
         'SELECT * FROM table_user', [],
         (tx, results) => {
@@ -221,7 +255,7 @@ class File extends MultiComponent {
           }
         }
       );
-    });
+    });*/
 
   }
 
@@ -945,32 +979,32 @@ selectPhotoTappedAlert = async ()=>{
       },
     };
 
-    ImagePicker.launchCamera(options, async (response) => {
 
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        alert(`ImagePicker Error: ${response.error}`);
-        this.clear();
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const {
+
+
+    ImagePicker2.openCamera({
+      width: 300,
+      height: 400,
+      cropping: false,
+    }).then(response => {
+
+
+   const {
           component: { storage, url: urlStorage },
         } = this.props;
         const fileObject = {
-          uri: response.uri,
+          uri: response.path,
           type: response.type,
           name: response.fileName || uuidv4(),
           data: response.data,
           storage,
         };
-        console.log("fileObject" + JSON.stringify(response.uri));
+        console.log("fileObject" + JSON.stringify(fileObject));
         NetInfo.fetch().then(async (state) => {
           if (state.isConnected == true) {
 
             /**creating blob */
-            const photoData = await fetch(response.uri)
+            const photoData = await fetch(response.path)
             const blob = await photoData.blob();
             console.log("blob" + JSON.stringify(blob));
             /**uploading */
@@ -989,6 +1023,7 @@ selectPhotoTappedAlert = async ()=>{
             myObject.userId = currentUid;
             myObject.file = fileObject;
             myObject.submissionId = subId;
+            console.log("myObject" + JSON.stringify(myObject));
             await this.UploadCloudFile3(fileObject, blob, myObject);
 
           }
@@ -996,10 +1031,10 @@ selectPhotoTappedAlert = async ()=>{
 
             var copyResult = await this.CopyFile(fileObject.name, fileObject.uri, fileObject);
           }
-
         });
 
-      }
+
+      
     });
 
 

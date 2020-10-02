@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
@@ -164,10 +164,12 @@ export default class GroupedFormsList extends React.PureComponent {
     return (
       <View style={styles.groupsListContainer}>
         {groupsOrdered.map(group => (
+
           <FormsGroup
             key={group.key}
             group={group}
             handleFormsListItemPress={handleFormsListItemPress}
+            navigation={this.props.navigation}
           />
         ))}
       </View>

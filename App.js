@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AwesomeIcon from 'react-native-vector-icons/AntDesign';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider} from 'react-native-elements';
+import SQLite from 'react-native-sqlite-storage';
 
 const theme = {
   Button: {
@@ -16,6 +17,15 @@ const theme = {
     }
   },
 };
+global.db = SQLite.openDatabase(
+  {
+    name : "SQLite.db"
+  },
+  () => { },
+  error => {
+    console.log("ERROR: " + error);
+  }
+);
 const App: () => React$Node = () => {
   return (
 

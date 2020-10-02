@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   //  marginHorizontal: 10,
     marginTop: 5,
     marginBottom: 30,
+
   },
   groupsListItemContainer: {
     marginTop: 15,
