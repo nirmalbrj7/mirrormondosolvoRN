@@ -54,6 +54,9 @@ class CustomDrawerContentComponent extends React.PureComponent {
 
   render() {
     const { appName, userName,userEmail } = this.state;
+    const { state, ...rest } = this.props;
+    const newState = { ...state}  //copy from state before applying any filter. do not change original state
+    newState.routes = newState.routes.filter(item => item.name !== 'SubmissionsSingle') //replace "Login' with your route name
 
     return (
       <ScrollView>
@@ -98,7 +101,7 @@ class CustomDrawerContentComponent extends React.PureComponent {
 <View style={{backgroundColor:'gray',height:1,width:'90%',alignSelf:'center',marginTop:25,marginBottom:10}}></View>
 
          
-          <DrawerItemList {...this.props} />
+         <DrawerItemList state={newState} {...rest} />
 
           <DrawerItem
               icon={({ color, size }) =>  <AntIcon

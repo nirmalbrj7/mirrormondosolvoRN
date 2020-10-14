@@ -22,6 +22,16 @@ export default class PhoneNumber extends InputComponent {
     } = this.props;
     const fieldValue = typeof value === 'object' ? value.item : value;
     index = index || 0;
+    const disable=this.props.readOnly==true?true:false;
+
+    const disablestyle=[
+      styles.inputSingleLine,
+      {
+        borderColor: colors.borderColor,
+        lineHeight: theme.Input.lineHeight,
+        backgroundColor:'lightgray'
+      },
+    ];
     return (
       <TextInputMask
         key={index}
@@ -33,19 +43,21 @@ export default class PhoneNumber extends InputComponent {
         defaultValue={fieldValue}
         placeholder={component.placeholder}
 
-        disabled={!readOnly}
+        disabled={disable}
 
         type="cel-phone"
 
         onChange={this.onChange}
-
-        style={[
-          styles.inputSingleLine,
-          {
-            borderColor: colors.borderColor,
-            lineHeight: theme.Input.lineHeight,
-          },
-        ]}
+        style={disable==true?disablestyle:
+          [
+            styles.inputSingleLine,
+            {
+              borderColor: colors.borderColor,
+              lineHeight: theme.Input.lineHeight,
+            },
+          ]
+      }
+      
       />
     );
   }

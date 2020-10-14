@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import AsyncStorage from '@react-native-community/async-storage';
 import {eachComponent} from './utils';
 export default {
   /**

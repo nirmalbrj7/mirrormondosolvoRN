@@ -12,6 +12,9 @@ import commonStyles from '../../globalStyles';
 import Strings from '../../constants/strings';
 import { theme } from '../../core/theme';
 
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-community/async-storage';
+
 export default class Login extends React.PureComponent {
   state = {
     email: '',
@@ -20,6 +23,54 @@ export default class Login extends React.PureComponent {
     errorEmail: '',
     errorPassword: '',
     loading: false,
+    loginData: ''
+  };
+  storeData = async (value) => {
+    console.log("storing"+JSON.stringify(value));
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(value))
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  afterLogin = (email) => {
+    const { navigation } = this.props;
+    //  navigation.navigate('Main');
+    firestore()
+      .collection('users')
+      .where('email', '==', email)
+      .get()
+      .then(querySnapshot => {
+        console.log('Total users: ', querySnapshot.size);
+
+        querySnapshot.forEach(documentSnapshot => {
+          console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+
+          var data = documentSnapshot.data();
+          this.storeData(data);
+        });
+      });
+
+
+
+    /* aboutDataRef = firestore().collection('users').doc('about');
+     this.aboutDataUnsubscribe = this.aboutDataRef.onSnapshot(
+       this.onCollectionUpdate,
+     );*/
+
+
+
+  };
+
+  componentWillUnmount() {
+    //this.aboutDataUnsubscribe();
+  }
+
+  onCollectionUpdate = documentSnapshot => {
+    this.setState({
+      loginData: documentSnapshot.data(),
+    });
   };
 
   handleLogin = () => {
@@ -44,7 +95,7 @@ export default class Login extends React.PureComponent {
       this.setState({ loading: true });
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Main'))
+        .then(() => this.afterLogin(email))
         .catch(({ message = Strings.ERROR_DEFAULT }) =>
           this.setState({
             errorMessage: message,
@@ -116,23 +167,23 @@ export default class Login extends React.PureComponent {
               <Button mode="contained"
                 title={loading ? 'Loading' : 'Login'}
                 onPress={this.handleLogin}
-                style={{borderRadius:6}}
+                style={{ borderRadius: 6 }}
               //  containerStyle={commonStyles.button}
               >
                 {loading ? 'Loading' : 'Login'}
               </Button>
 
-{
-  /**
-   *               <View style={styles2.row}>
-                <Text style={styles2.label}>Don’t have an account? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                  <Text style={styles2.link}>Sign up</Text>
-                </TouchableOpacity>
-              </View>
-   * 
-   */
-}
+              {
+                /**
+                 *               <View style={styles2.row}>
+                              <Text style={styles2.label}>Don’t have an account? </Text>
+                              <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                                <Text style={styles2.link}>Sign up</Text>
+                              </TouchableOpacity>
+                            </View>
+                 * 
+                 */
+              }
 
 
 

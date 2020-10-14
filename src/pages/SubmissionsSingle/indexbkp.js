@@ -15,13 +15,15 @@ import StoreActionsSubmission from '../../store/actions/submission';
 import { Chip } from 'react-native-paper';
 import { IconButton, Colors } from 'react-native-paper';
 import SingleSubmissionContext from '../../store/context/singlesubmission'
-import { useIsFocused } from "@react-navigation/native";
+
 class Submissions extends PureComponent {
   static contextType = SingleSubmissionContext;
   constructor(props, navigation, route) {
 
     super(props);
-
+    console.log("PROPS"+JSON.stringify(props));
+    console.log("PROPS2"+JSON.stringify(navigation));
+    console.log("PROPS3"+JSON.stringify(route));
     this.state = {
       submissions: [],
       filterType: props.route.name,
@@ -40,58 +42,41 @@ class Submissions extends PureComponent {
     };
     this.arrayholder = [];
   }
- 
-   componentDidMount=async ()=> {
-    this._unsubscribe = await this.props.navigation.addListener('focus', async () => {
-      //alert('focus');
-      // Update your state here
-     /* this.setState({
+  async componentDidMount() {
+
+  
+
+    const formId = this.context;
+    alert(formId);
+    this.setState({
+      formId:formId
+    },
+    alert(formId),
+    await this.getData()
+    
+    )
+
+  }
+  willFocus = this.props.navigation.addListener(
+    'willFocus',
+    async (payload) => {
+      const formId = this.context;
+      alert(formId);
+      this.setState({
         formId:formId
-      })*/
-     // await this.getData()
-
-     const formId = this.context;
-     const currentFormDocumentId = formId;
-     this.setState({
-       submissions:[]
-     });
-     await firestore()
-       .collection('forms')
-       .where('slug', '==', currentFormDocumentId)
-       .get()
-       .then(querySnapshot => {
-         querySnapshot.forEach(async documentSnapshot => {
-           var slugId = documentSnapshot.id;
-           var formData = documentSnapshot.data();
-           const querySnapshot = await firestore().collection('submissions')
-             .doc(slugId)
-             .collection('submissionData')
-             .get()
-             .then(querySnapshot => {
-               console.log('Total users: ', querySnapshot.size);
-               querySnapshot.forEach(async documentSnapshot => {
-                 var submission = documentSnapshot.data();
-                 if (slugId == submission.formId) {
-                   submission["formName"] = formData.name;
-                   submission["form"] = formData;
-                   submission["slug"] = slugId;
-                   submission["submissionId"] = documentSnapshot.id;
-                   this.setState({
-                     submissions: [...this.state.submissions, submission],
-                   })
-                 }
-               });
-             });
-         });
-       });
-    });
-  }
-
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
+      },
+      alert(formId),
+      await this.getData()
+      
+      )
+    }
+  );
+componentWillUnmount=()=>{
+  this.setState({
+    formId:null
+  });
+}
   getData = async () => {
-    alert('sss')
     const formId = this.context;
     const currentFormDocumentId = formId;
     this.setState({
@@ -332,7 +317,6 @@ class Submissions extends PureComponent {
   
   render() {
     const { submissions, value } = this.state;
-
     const formId2 = this.context;
     if (submissions.length == 0 && value == '') {
       return (
@@ -440,15 +424,4 @@ const ConnectedSubmissions = connect(
   },
 )(Submissions);
 
-
-
-
-
-
-
-
-export default function(props) {
-  const isFocused = useIsFocused();
-
-  return <ConnectedSubmissions {...props} isFocused={isFocused} />;
-}
+export default ConnectedSubmissions;

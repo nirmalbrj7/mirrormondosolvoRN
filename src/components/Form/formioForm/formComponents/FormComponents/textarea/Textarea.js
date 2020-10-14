@@ -20,6 +20,14 @@ export default class Textarea extends InputComponent {
     } = this.props;
     const fieldValue = typeof value === 'object' ? value.item : value;
     index = index || 0;
+    console.log("textarea");
+    const disable=this.props.readOnly==true?true:false;
+    console.log("disable"+disable);
+    const disablestyle=[styles.textarea, { 
+      borderColor: colors.borderColor, 
+      lineHeight: theme.Input.lineHeight,
+      backgroundColor:'lightgray' }
+    ]
     return (
       <TextInput
         key={index}
@@ -28,11 +36,19 @@ export default class Textarea extends InputComponent {
         name={name}
         value={fieldValue}
         defaultValue={fieldValue}
-        style={[styles.textarea, { borderColor: colors.borderColor, lineHeight: theme.Input.lineHeight }]}
+        style={disable==true?disablestyle:
+          [styles.textarea, { 
+            borderColor: colors.borderColor, 
+            lineHeight: theme.Input.lineHeight,
+            }
+          ]
+      }
         multiline
         autoCorrect
         numberOfLines={component.rows}
-        disabled={!readOnly}
+        disabled={disable}
+        editable={disable}
+        disabledInputStyle={{backgroundColor:'lightgray'}}
         placeholder={component.placeholder}
         onChange={this.onChange}
       />

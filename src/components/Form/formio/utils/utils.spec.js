@@ -3,7 +3,7 @@ import writtenNumber from 'written-number';
 import utils from '.';
 import components from './fixtures/components.json';
 import submission1 from './fixtures/submission1.json';
-
+import AsyncStorage from '@react-native-community/async-storage';
 describe.skip('eachComponent', () => {
   it('should iterate through nested components in the right order', () => {
     let n = 1;

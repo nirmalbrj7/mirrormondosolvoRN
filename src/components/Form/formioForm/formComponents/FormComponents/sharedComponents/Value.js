@@ -4,7 +4,7 @@ import { validate } from '../componentUtils/validators';
 import { safeSingleToMultiple } from '../componentUtils/safeSingleToMultiple';
 import { getDefaultValue } from '../componentUtils/getDefaultValue';
 import store from "../../../../../../store/store";
-import { Alert } from 'react-native';
+
 
 class ValueComponent extends BaseComponent {
   constructor(props) {
@@ -93,7 +93,7 @@ class ValueComponent extends BaseComponent {
   };
 
   validate(value) {
-    console.log("VVVVVVVVVVVVVVVV"+JSON.stringify(value));
+   // console.log("VVVVVVVVVVVVVVVV"+JSON.stringify(value));
     if (this.props.component.type == 'selectboxes') {
       // {"":false}
       if (value[""] == false) {

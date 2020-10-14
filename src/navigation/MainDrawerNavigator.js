@@ -9,6 +9,7 @@ import About from './AboutStackNavigator';
 import Logout from './../pages/Logout';
 import DrawerContentComponent from '../components/CustomDrawerContentComponent';
 import Submissions from './SumbissionsStackNavigator';
+import SubmissionsCollective from './SubmissionsCollectiveStackNavigator';
 import SubmissionsSingle from './SubmissionsSingleStackNavigator';
 const Drawer = createDrawerNavigator();
 
@@ -63,6 +64,20 @@ function MainDrawerNavigator() {
           ),
         }}
       />
+            <Drawer.Screen
+        name="SubmissionsCollective"
+        component={SubmissionsCollective}
+        options={{
+          drawerIcon: ({tintColor}) => (
+            <AntIcon
+              name="rocket1"
+              color={tintColor}
+              size={Dimen.DRAWER_ICONS_SIZE}
+            />
+          ),
+        }}
+      />
+      
       <Drawer.Screen
         name="About"
         component={About}

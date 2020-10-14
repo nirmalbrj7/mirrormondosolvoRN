@@ -19,7 +19,7 @@ function GoToButton({ props,screenName,formId }) {
       onPress={() => {
         
    
-        navigation.navigate('SubmissionsSingle',{id:formId})
+     //   navigation.navigate('SubmissionsSingle',{id:formId})
       
       }}
     />

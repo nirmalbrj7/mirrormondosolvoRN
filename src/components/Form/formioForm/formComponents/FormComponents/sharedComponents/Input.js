@@ -5,6 +5,7 @@ import MultiComponent from './Multi';
 export default class InputComponent extends MultiComponent {
   constructor(props) {
     super(props);
+    console.log("INput REadonly"+JSON.stringify(props.readOnly));
     this.timeout = null;
 
     this.triggerChange = this.triggerChange.bind(this);

@@ -3,7 +3,7 @@ import jsonLogic from 'json-logic-js';
 import moment from 'moment';
 import { lodashOperators } from './jsonlogic/operators';
 import { Alert } from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 // Configure JsonLogic
 lodashOperators.forEach((name) => jsonLogic.add_operation(`_${name}`, _[name]));
 
@@ -33,6 +33,7 @@ export { jsonLogic };
  */
 export function evaluate(func, args, ret, tokenize) {
   let returnVal = null;
+
   args.component = args.component ? _.cloneDeep(args.component) : { key: 'unknown' };
   if (!args.form && args.instance) {
     args.form = _.get(args.instance, 'root._form', {});
@@ -92,7 +93,7 @@ export function evaluate(func, args, ret, tokenize) {
     console.warn(`Unknown function type for ${componentKey}`);
   }
   //if(returnVal=='')
-console.log("returnVal"+returnVal);
+
   if(isNaN(returnVal)){
    return returnVal;
    }else{
@@ -100,6 +101,82 @@ console.log("returnVal"+returnVal);
    }
   //return returnVal;
 }
+
+/**
+ * Evaluate a method.
+ *
+ * @param func
+ * @param args
+ * @return {*}
+ */
+export function evaluate2(component,func, args, ret, tokenize) {
+  let returnVal = null;
+console.log("comp"+JSON.stringify(component));
+  args.component =  args.component ? _.cloneDeep( args.component) : { key: 'unknown' };
+  if (!args.form && args.instance) {
+    args.form = _.get(args.instance, 'root._form', {});
+  }
+  args.form = _.cloneDeep(args.form);
+  const componentKey = args.component.key;
+  console.log('args'+JSON.stringify(func));
+  if (typeof func === 'string') {
+    if (ret) {
+      func += `;return ${ret}`;
+    }
+    const params = _.keys(args);
+
+    if (tokenize) {
+      // Replace all {{ }} references with actual data.
+      func = func.replace(/({{\s+(.*)\s+}})/, (match, $1, $2) => {
+        if ($2.indexOf('data.') === 0) {
+          return _.get(args.data, $2.replace('data.', ''));
+        }
+        else if ($2.indexOf('row.') === 0) {
+          return _.get(args.row, $2.replace('row.', ''));
+        }
+
+        // Support legacy...
+        return _.get(args.data, $2);
+      });
+    }
+
+    try {
+      func = new Function(...params, func);
+      args = _.values(args);
+    }
+    catch (err) {
+      console.warn(`An error occured within the custom function for ${componentKey}`, err);
+      returnVal = null;
+      func = false;
+    }
+  }
+  if (typeof func === 'function') {
+    try {
+      returnVal = Array.isArray(args) ? func(...args) : func(args);
+    }
+    catch (err) {
+      returnVal = null;
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
+    }
+  }
+  else if (typeof func === 'object') {
+    try {
+      returnVal = jsonLogic.apply(func, args);
+    }
+    catch (err) {
+      returnVal = null;
+      console.warn(`An error occured within custom function for ${componentKey}`, err);
+    }
+  }
+  else if (func) {
+    console.warn(`Unknown function type for ${componentKey}`);
+  }
+  //if(returnVal=='')
+console.log("returnVal"+returnVal);
+
+return returnVal;
+}
+
 
 export function getRandomComponentId() {
   return `e${Math.random().toString(36).substring(7)}`;

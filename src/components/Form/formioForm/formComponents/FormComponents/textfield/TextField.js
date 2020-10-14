@@ -40,9 +40,9 @@ export default class Textfield extends InputComponent {
     const item = typeof value === 'string' ? value : value.item;
     const { component, name, readOnly } = this.props;
     const mask = component.inputMask || '';
-    const disable=this.props.component.disabled==true?false:true;
+    const disable=this.props.readOnly==true?true:false;
     const properties = {
-      disabled:true,
+     // disabled:true,
       type: component.inputType !== 'number' ? component.inputType : 'text',
       key: index,
       id: component.key,
@@ -51,7 +51,7 @@ export default class Textfield extends InputComponent {
       shake: true,
       defaultValue: item,
       value: item,
-      editable: disable,
+    //  editable: disable,
       placeholder: component.placeholder,
       placeholderTextColor: this.props.theme.Input.placeholderTextColor,
       onChangeText: this.onChangeInput,
@@ -61,6 +61,9 @@ export default class Textfield extends InputComponent {
 
     return (
       <Input
+      disabled={disable}
+      disabledInputStyle={{backgroundColor:'lightgray'}}
+
         inputStyle={[
           styles.inputSingleLine,
           {

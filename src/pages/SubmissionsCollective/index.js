@@ -28,7 +28,6 @@ import { Chip, Title } from 'react-native-paper';
 import { IconButton, Colors } from 'react-native-paper';
 
 import { Button as PaperButton } from 'react-native-paper';
-
 const ITEM_HEIGHT=150;
 class Submissions extends React.Component {
   constructor(props, navigation, route) {
@@ -86,7 +85,6 @@ class Submissions extends React.Component {
           const querySnapshot = await firestore().collection('submissions')
             .doc(slugId)
             .collection('submissionData')
-            .where('userId', '==', currentUid)
             .get()
             .then(querySnapshot => {
               console.log('Total users: ', querySnapshot.size);
@@ -802,7 +800,6 @@ class Submissions extends React.Component {
 
   render() {
     const { submissions, value } = this.state;
-
     if (submissions.length == 0 && value == '') {
       return (
         <View style={globalStyles.loaderScreenCentered}>
@@ -810,34 +807,34 @@ class Submissions extends React.Component {
         </View>
       );
     }
-
+  
     const tableHead = ['Timestamp', 'Form Name', 'Status', 'Actions', 'Delete'];
     // const tableData = this.makeArrayForTable(submissions);
-
+  
     return (
       <>
         <View style={[styles2.container, {
-
+  
           backgroundColor: '#F4F4F4'
-
-
-
+  
+  
+  
         }]}
-
-
+  
+  
         >
-
+  
           <Animated.View
             style={{
               alignItems: 'center',
               opacity: Animated.add(0.1, Animated.multiply(this.fall, 0.9)),
             }}
           >
-
+  
           </Animated.View>
-
-
-
+  
+  
+  
           <BottomSheet
             ref={this.bs}
             snapPoints={[300, 0]}
@@ -857,13 +854,13 @@ class Submissions extends React.Component {
             <FlatList
               data={submissions}
               renderItem={this._renderItem}
-
+  
               refreshControl={
                 <RefreshControl
                   refreshing={this.state.isFetching}
                   onRefresh={this.getData.bind()}
-
-
+  
+  
                 />
               }
               // refreshing={this.state.isFetching}
@@ -873,11 +870,11 @@ class Submissions extends React.Component {
               getItemLayout={this.getItemLayout}
             />
           </Animated.View>
-
-
-
-
-
+  
+  
+  
+  
+  
         </View>
         <BottomSheet
           style={{ backgroundColor: '#fff', opacity: 1 }}
@@ -901,7 +898,6 @@ const styles2 = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f1f2f3',
-
   },
   box: {
     width: IMAGE_SIZE,

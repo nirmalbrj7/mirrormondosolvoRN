@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import firestore from '@react-native-firebase/firestore';
-import { ActivityIndicator, ScrollView, View, StyleSheet, Text, Alert } from 'react-native';
+import { ActivityIndicator, ScrollView, View, StyleSheet, Text, Alert,TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import globalStyles from '../../globalStyles';
 import StoreActionsForm from '../../store/actions/form';
@@ -9,31 +8,18 @@ import StoreActionsSubmission from '../../store/actions/submission';
 import StoreActionsSingleSubmissions from '../../store/actions/singlesubmission';
 import GroupedFormsList from '../../components/GroupedFormsList';
 import GetLocation from 'react-native-get-location'
-
-
-import { Button } from 'react-native-elements';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { Button as PaperButton,Divider,Title } from 'react-native-paper';
-
+import { Button as PaperButton, Divider, Title } from 'react-native-paper';
 import { Icon } from 'react-native-elements'
-
 import SubmissionsButton from '../../components/GroupedFormsList/SubButton';
+import { StackActions } from '@react-navigation/native';
+
 var fall = new Animated.Value(1)
 const bs = React.createRef()
 
 class Actions extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.handler = this.handler.bind(this)
-  }
   state = {
-    appData: {
-      appName: '',
-      topText: '',
-      bottomText: '',
-    },
     loading: true,
     currentFormSelection: '',
     currentForm: '',
@@ -43,32 +29,16 @@ class Actions extends React.PureComponent {
     payload: null
   };
 
-  handler() {
-    alert('res');
-    this.setState({
-      currentFormSelection: ''
-    }), bs.current.snapTo(1)
-  }
+
 
   renderInner = () => {
-
-
     return (<View style={styles2.panel}>
-<Title>Choose Options:</Title>
-      <Divider/>
-      <Text style={{ textAlign: 'center', fontWeight: 'bold', marginVertical: 10 }}>{this.state.currentFormName}</Text>
-
-
-
-
+      <Title>Choose Options:</Title>
+      <Divider />
+      <Text style={styles2.innerFormTitle}>{this.state.currentFormName}</Text>
 
       <View
-        style={{
-          flexDirection: "row",
-          // backgroundColor: "yellow",
-          // flex: 1,
-          justifyContent: "space-around"
-        }}
+        style={styles2.innerIconWrapper}
       >
         <View>
           <Icon
@@ -82,12 +52,23 @@ class Actions extends React.PureComponent {
           />
 
 
-          <Text style={{ textAlign: 'center' }}>Form</Text>
+          <Text style={styles2.centerText}>Form</Text>
+    <Text style={styles2.centerText}>{this.state.currentFormName}</Text>
         </View>
+        <TouchableOpacity
+        onPress={()=>{
+          this.setState({
+            currentFormSelection: ''
+          }),
+          bs.current.snapTo(1),
+        
+          this.props.navigation.navigate('SubmissionsSingle',{id:this.state.currentFormDocumentId})
+        }}>
 
         <SubmissionsButton screenName='Submissions' formId={this.state.currentFormDocumentId} />
+     </TouchableOpacity>
       </View>
-      <View style={{ marginVertical: 20 }}>
+      <View style={styles2.innerSpacing}>
         <PaperButton icon="closecircleo" mode="outlined"
 
 
@@ -99,7 +80,7 @@ class Actions extends React.PureComponent {
           Close
   </PaperButton>
 
-  <View style={{ marginVertical: 20 }}/>
+        <View style={styles2.innerSpacing} />
       </View>
 
 
@@ -112,15 +93,6 @@ class Actions extends React.PureComponent {
   }
 
   renderHeader = () => <View style={styles2.header} />
-  homepageSettingsRef = firestore()
-    .collection('settings')
-    .doc('homepage');
-
-  async componentDidMount() {
-    this.homepageSettingsUnsubscribe = this.homepageSettingsRef.onSnapshot(
-      this.onCollectionUpdate,
-    );
-  }
 
   getGeolocation = async () => {
     GetLocation.getCurrentPosition({
@@ -137,15 +109,11 @@ class Actions extends React.PureComponent {
       })
   }
 
-  componentWillUnmount() {
-    this.homepageSettingsUnsubscribe();
-  }
 
-  onCollectionUpdate = documentSnapshot => {
+  componentDidMount = async () => {
     this.setState({
-      appData: documentSnapshot.data(),
-      loading: false,
-    });
+      loading: false
+    })
   };
 
   handleFormsListItemPress = async (payload, latitude, longitude) => {
@@ -160,23 +128,13 @@ class Actions extends React.PureComponent {
     initializeSubmission(null, latitude, longitude);
   };
   onFormPressed = async () => {
-    await GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      //timeout: 15000,
-    })
-      .then(async (location) => {
-        if (location.latitude) {
-
-          bs.current.snapTo(1);
-          await this.handleFormsListItemPress(this.state.payload, location.latitude, location.longitude)
-          await this.props.navigation.navigate('FormView');
-        }
-
-      })
-      .catch(error => {
-        const { code, message } = error;
-        console.warn(code, message);
-      })
+    bs.current.snapTo(1);
+         await this.props.navigation.navigate('FormViewForm',{
+           payload:this.state.payload,
+           formName:this.state.currentFormName
+           //latitude:location.latitude,
+           //longitude:location.longitude
+         });
   }
   render() {
     const { loading } = this.state;
@@ -187,22 +145,14 @@ class Actions extends React.PureComponent {
       return (
         <View style={globalStyles.loaderScreenCentered}>
           <ActivityIndicator size="large" />
+          
         </View>
       );
     }
 
     return (
-      <ScrollView
-      //style={[globalStyles.screenContainerScrollView,,{backgroundColor:'blue'}]}
-      >
-
-
-
-        <View
-          style={[globalStyles.screenContainerAction, { backgroundColor: '#f4f4f4' }]}
-        >
-
-
+      <ScrollView>
+      <View style={[globalStyles.screenContainerAction, { backgroundColor: '#f4f4f4' }]}>
           <GroupedFormsList
             handleFormsListItemPress={async (payload) => {
               this.setState({
@@ -210,9 +160,14 @@ class Actions extends React.PureComponent {
                 currentFormName: payload.name,
                 currentFormDocumentId: payload.doc.id
 
-              })
-              bs.current.snapTo(0);
-              addSingleSubmission({ currentFormName: payload.name, currentFormDocumentId: payload.doc.id });
+              },
+              console.log('aaa'+this.state.currentFormName),
+              bs.current.snapTo(0),
+           //   addSingleSubmission({ currentFormName: this.state.currentFormName, currentFormDocumentId:this.state.currentFormDocumentId})
+
+              
+              
+              )
 
             }
 
@@ -264,6 +219,21 @@ const ConnectedActions = connect(
 const IMAGE_SIZE = 200
 
 const styles2 = StyleSheet.create({
+  innerFormTitle:{
+    textAlign: 'center', fontWeight: 'bold', marginVertical: 10
+    },
+    innerIconWrapper:{
+    
+        flexDirection: "row",
+        justifyContent: "space-around"
+      
+    },
+    centerText:{
+       textAlign: 'center' 
+    },
+    innerSpacing:{
+     marginVertical: 20 
+    },
   container: {
     flex: 1,
     backgroundColor: '#f1f2f3',

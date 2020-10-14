@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import FormView from '../pages/FormView';
+import FormViewForm from '../pages/FormViewForm';
 import Actions from '../pages/Actions';
 import MenuButton from '../components/headerMain/MenuButton';
 import LogoutButton from '../components/headerMain/LogoutButton';
@@ -28,6 +29,12 @@ function ActionsStack() {
       <Stack.Screen
         name="FormView"
         component={FormView}
+        options={{headerTitle: 'Report'}}
+        
+      />
+            <Stack.Screen
+        name="FormViewForm"
+        component={FormViewForm}
         options={{headerTitle: 'Report'}}
         
       />

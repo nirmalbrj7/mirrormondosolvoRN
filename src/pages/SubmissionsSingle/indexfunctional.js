@@ -1,4 +1,6 @@
-import React,{PureComponent} from 'react';
+
+
+import React, { useContext, useEffect, useState } from 'react';
 import { View, ToastAndroid, ActivityIndicator, FlatList, Text, StyleSheet, TouchableOpacity, RefreshControl, Alert } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -16,90 +18,48 @@ import { Chip } from 'react-native-paper';
 import { IconButton, Colors } from 'react-native-paper';
 import SingleSubmissionContext from '../../store/context/singlesubmission'
 import { useIsFocused } from "@react-navigation/native";
-class Submissions extends PureComponent {
-  static contextType = SingleSubmissionContext;
-  constructor(props, navigation, route) {
 
-    super(props);
+Submissions = (props, navigation, route) => {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-    this.state = {
-      submissions: [],
-      filterType: props.route.name,
-      isFetching: false,
-      ArrayData: [],
-      currentSelected: null,
-      currentSelectedFormId: null,
-      forms: [{ label: 'All Form', value: 'all' }],
-      dateSorting: false,
-      formSorting: false,
-      currentDateType: true,//for descending
-      currentFormType: null,//true for descending false for assending
-      currentFormName: 'all',
-      value: '',
-      formId:null
-    };
-    this.arrayholder = [];
-  }
- 
-   componentDidMount=async ()=> {
-    this._unsubscribe = await this.props.navigation.addListener('focus', async () => {
-      //alert('focus');
-      // Update your state here
-     /* this.setState({
-        formId:formId
-      })*/
-     // await this.getData()
 
-     const formId = this.context;
-     const currentFormDocumentId = formId;
-     this.setState({
-       submissions:[]
-     });
-     await firestore()
-       .collection('forms')
-       .where('slug', '==', currentFormDocumentId)
-       .get()
-       .then(querySnapshot => {
-         querySnapshot.forEach(async documentSnapshot => {
-           var slugId = documentSnapshot.id;
-           var formData = documentSnapshot.data();
-           const querySnapshot = await firestore().collection('submissions')
-             .doc(slugId)
-             .collection('submissionData')
-             .get()
-             .then(querySnapshot => {
-               console.log('Total users: ', querySnapshot.size);
-               querySnapshot.forEach(async documentSnapshot => {
-                 var submission = documentSnapshot.data();
-                 if (slugId == submission.formId) {
-                   submission["formName"] = formData.name;
-                   submission["form"] = formData;
-                   submission["slug"] = slugId;
-                   submission["submissionId"] = documentSnapshot.id;
-                   this.setState({
-                     submissions: [...this.state.submissions, submission],
-                   })
-                 }
-               });
-             });
-         });
-       });
-    });
-  }
+  const [submissions, setSubmissions] = useState([]);
+  const [filterType, setFilterType] = useState(props.route.name);
+  const [isFetching, setIsFetching] = useState(false);
+  const [ArrayData, setArrayData] = useState([]);
+  const [currentSelected, setCurrentSelected] = useState(null);
+  const [currentSelectedFormId, setCurrentSelectedFormId] = useState(null);
+  const [value, setValue] = useState('');
+  const form2 = useContext(SingleSubmissionContext);
+  const [formId, setFormId] = useState(null);
+  const isFocused = useIsFocused();
 
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
+  const {
+    navigation,
+    tryUpdateCurrentForm,
+    setCurrentFormData,
+    updateFirebaseSubmissionId,
+    fetchSubmissionDataFromCloud,
+  } = props;
+
+
+  useEffect(async () => {
+    if (isFocused) {
+      console.log(form2);
+      setFormId(form2);
+      await this.getData();
+      setLoading(false);
+    }
+  }, [isFocused]);
+
   getData = async () => {
-    alert('sss')
-    const formId = this.context;
-    const currentFormDocumentId = formId;
-    this.setState({
-      submissions:[]
-    });
+    console.log('frm getdata' + form2);
+    setSubmissions([]);
+    var tempSubmission = [];
     await firestore()
       .collection('forms')
-      .where('slug', '==', currentFormDocumentId)
+      .where('slug', '==', form2)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(async documentSnapshot => {
@@ -118,26 +78,26 @@ class Submissions extends PureComponent {
                   submission["form"] = formData;
                   submission["slug"] = slugId;
                   submission["submissionId"] = documentSnapshot.id;
-                  this.setState({
-                    submissions: [...this.state.submissions, submission],
-                  })
+                  setSubmissions(submissions => [...submissions, submission]);
                 }
               });
             });
         });
       });
+    //setSubmissions(tempSubmission)
   }
-  onRefresh() {
-    this.setState({ isFetching: true, }, () => { this.getData(); });
+  onRefresh = () => {
+    setIsFetching(true);
+    getData();
   }
-  makeSubmissionActionButton = data => {
+  makeSubmissionActionButton = (data) => {
     const {
       navigation,
       tryUpdateCurrentForm,
       setCurrentFormData,
       updateFirebaseSubmissionId,
       fetchSubmissionDataFromCloud,
-    } = this.props;
+    } = props;
     let buttonTitle;
     switch (data.status) {
       case 'Incomplete':
@@ -221,10 +181,8 @@ class Submissions extends PureComponent {
       .delete()
       .then(() => {
         console.log(' firestore deleted!');
-        this.bs.current.snapTo(1);
-        this.setState({
-          currentSelected: null
-        })
+        bs.current.snapTo(1);
+        setCurrentSelected(null);
         ToastAndroid.showWithGravityAndOffset(
           'Submission has been deleted.You can pull to refresh to see changes',
           ToastAndroid.LONG,
@@ -256,7 +214,7 @@ class Submissions extends PureComponent {
       });
   }
   deleteSubmission = (formId, submissionId) => {
-    this.deleteFromFirebase(formId, submissionId)
+    deleteFromFirebase(formId, submissionId)
   }
   _renderItem = ({ item }) => {
     if (item.form) {
@@ -264,7 +222,7 @@ class Submissions extends PureComponent {
         item.timestamp && item.timestamp.seconds
           ? moment(item.timestamp.seconds * 1000).format('L[:]LTS')
           : 'Unknown';
-      if (item.status == this.state.filterType) {
+      if (item.status == filterType) {
         return (
           <TouchableOpacity>
             <Card containerStyle={styles.cardWrapper}>
@@ -276,7 +234,7 @@ class Submissions extends PureComponent {
                     <Chip icon="tag" style={styles.status}>{item.status}</Chip>
                   </View>
                   {
-                    this.state.currentSelected == item.submissionId && (item.status == 'Incomplete' || item.status == 'Ready' || item.status == 'Submitted') 
+                    currentSelected == item.submissionId && (item.status == 'Incomplete' || item.status == 'Ready' || item.status == 'Submitted')
                       ?
                       <Text style={styles.submission}>Id:{item.submissionId}</Text>
                       :
@@ -290,11 +248,9 @@ class Submissions extends PureComponent {
                       color={Colors.red500}
                       size={20}
                       onPress={() => {
-                        this.setState({
-                          currentSelected: item.submissionId,
-                          currentSelectedFormId: item.formId
-                        });
-                        this.bs.current.snapTo(0)
+                        setCurrentSelected(item.submissionId);
+                        setCurrentSelectedFormId(item.formId);
+                        bs.current.snapTo(0)
                       }}
                     />
                     <IconsFeather
@@ -303,17 +259,15 @@ class Submissions extends PureComponent {
                       size={20}
                       style={{ marginTop: -50 }}
                       onPress={() => {
-                        this.setState({
-                          currentSelected: item.submissionId,
-                          currentSelectedFormId: item.formId
-                        });
+                        setCurrentSelected(item.submissionId);
+                        setCurrentSelectedFormId(item.formId);
                       }}
                     />
                   </View>
-                  {this.makeSubmissionActionButton(item)}
+                  {makeSubmissionActionButton(item)}
                   <View>
                     {
-                      this.state.currentSelected == item.submissionId ?
+                      currentSelected == item.submissionId ?
                         <Icons name="checkcircleo" size={20} color="green" style={styles.centerText} />
                         :
                         null
@@ -329,104 +283,56 @@ class Submissions extends PureComponent {
     }
 
   }
-  
-  render() {
-    const { submissions, value } = this.state;
 
-    const formId2 = this.context;
-    if (submissions.length == 0 && value == '') {
-      return (
-        <View style={globalStyles.loaderScreenCentered}>
-          <ActivityIndicator size="large" />
-        </View>
-      );
-    }
+  if (submissions.length == 0 && value == '') {
     return (
-      <View style={[styles.container, { backgroundColor: '#F4F4F4' }]}>
-     <Text>{this.state.formId}</Text>
-        <FlatList
-          data={submissions}
-          renderItem={this._renderItem}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.isFetching}
-              onRefresh={this.getData.bind()}
-            />
-          }
-          initialNumToRender={5}
-          keyExtractor={item => item.id}
-          getItemLayout={this.getItemLayout}
-          extraData={this.context}
-        />
+      <View style={globalStyles.loaderScreenCentered}>
+        <ActivityIndicator size="large" />
       </View>
-    )
+    );
   }
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f1f2f3',
+  return (
+    <View style={[styles.container, { backgroundColor: '#F4F4F4' }]}>
+      <FlatList
+        data={submissions}
+        renderItem={_renderItem}
+        refreshControl={
+          <RefreshControl
+            refreshing={isFetching}
+            onRefresh={getData}
+          />
+        }
+        initialNumToRender={5}
+        keyExtractor={item => item.id}
+        //getItemLayout={getItemLayout}
+        extraData={form2}
+      />
+    </View>
+  );
 
-  },
-  cardWrapper: {
-    paddingVertical: 10,
-    marginBottom: 15, 
-    marginHorizontal: 10,
-    borderRadius: 6
-  },
-  dateWrapper:{ 
-    color: '#000',
-    marginTop: 10 
-  },
-  date: {
-    marginRight: 20
-  },
-  formName:{ 
-    fontWeight: '900', 
-    marginTop: 5,
-    fontSize: 17,
-    fontFamily: 'sans-serif-medium' 
-  },
-  centerText: {
-    textAlign: 'center'
-  },
-  statusWrapper:{ 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'flex-start' 
-  },
-  status: {
-    marginTop: 20
-  },
-  submission: {
-    color: 'gray'
-  },
-  iconWrapper: {
-    flexDirection: 'row', 
-    alignItems: 'flex-end', 
-    alignSelf: 'flex-end'
-  }
-})
 
-Submissions.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-  tryUpdateCurrentForm: PropTypes.func.isRequired,
-  setCurrentFormData: PropTypes.func.isRequired,
-  updateFirebaseSubmissionId: PropTypes.func.isRequired,
-  fetchSubmissionDataFromCloud: PropTypes.func.isRequired,
-  directSubmitDataFromCloudToFormio: PropTypes.func.isRequired,
+
+
+
 };
-const mapStateToProps = (state) => {
-  currentsinglesubmission = state.singlesubmissionreducer[0];
-  currentFormName = currentsinglesubmission.currentFormName;
-  currentFormDocumentId = currentsinglesubmission.currentFormDocumentId;
-  return { currentFormName, currentFormDocumentId };
-}
 
-const ConnectedSubmissions = connect(
-  mapStateToProps,
+/*const ConnectedSubmissions = connect(
+  null,
+  {
+    setCurrentFormData: StoreActionsForm.setCurrentFormData,
+    tryUpdateCurrentForm: StoreActionsForm.tryUpdateCurrentForm,
+    initializeSubmission: StoreActionsSubmission.initializeSubmission,
+    updateFirebaseSubmissionId:
+      StoreActionsSubmission.updateFirebaseSubmissionId,
+    fetchSubmissionDataFromCloud:
+      StoreActionsSubmission.fetchSubmissionDataFromCloud,
+    directSubmitDataFromCloudToFormio:
+      StoreActionsSubmission.directSubmitDataFromCloudToFormio,
+  },
+)(Submissions);*/
+
+export default connect(
+  null,
   {
     setCurrentFormData: StoreActionsForm.setCurrentFormData,
     tryUpdateCurrentForm: StoreActionsForm.tryUpdateCurrentForm,
@@ -439,16 +345,48 @@ const ConnectedSubmissions = connect(
       StoreActionsSubmission.directSubmitDataFromCloudToFormio,
   },
 )(Submissions);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f1f2f3',
 
-
-
-
-
-
-
-
-export default function(props) {
-  const isFocused = useIsFocused();
-
-  return <ConnectedSubmissions {...props} isFocused={isFocused} />;
-}
+  },
+  cardWrapper: {
+    paddingVertical: 10,
+    marginBottom: 15,
+    marginHorizontal: 10,
+    borderRadius: 6
+  },
+  dateWrapper: {
+    color: '#000',
+    marginTop: 10
+  },
+  date: {
+    marginRight: 20
+  },
+  formName: {
+    fontWeight: '900',
+    marginTop: 5,
+    fontSize: 17,
+    fontFamily: 'sans-serif-medium'
+  },
+  centerText: {
+    textAlign: 'center'
+  },
+  statusWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  status: {
+    marginTop: 20
+  },
+  submission: {
+    color: 'gray'
+  },
+  iconWrapper: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    alignSelf: 'flex-end'
+  }
+})

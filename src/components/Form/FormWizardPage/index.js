@@ -3,25 +3,29 @@ import { connect } from 'react-redux';
 import { clone } from 'lodash';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Text,View } from 'react-native';
+import { Text, View } from 'react-native';
 import FormioComponentsList from '../formioForm/formComponents/FormioComponentsList';
 import '../formioForm/formComponents/FormComponents';
 import theme from '../formioForm/defaultTheme';
 import colors from '../formioForm/defaultTheme/colors';
-import { checkCondition, evaluate, checkCalculated } from '../formio/utils/utils';
+import { checkCondition, evaluate,evaluate2, checkCalculated,checkTrigger } from '../formio/utils/utils';
 import StoreActionsSubmission from '../../../store/actions/submission';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class FormWizardPage extends React.PureComponent {
-  constructor(props) {
+   constructor(props) {
     super(props);
     this.selectCard = props.cardSelected;
     // data object is used to store user inputs. It's component of submission object
     if (props.currentPageSubmissionData) {
       this.data = clone(props.currentPageSubmissionData);
+      
+
     } else {
       this.data = {};
+ 
+      
     }
     this.inputs = {};
 
@@ -34,9 +38,26 @@ class FormWizardPage extends React.PureComponent {
     this.dummy = this.dummy.bind(this);
     this.checkCalculative = this.checkCalculative.bind(this);
   }
+  getUser =  async () => {
+    try {
+      const user = await AsyncStorage.getItem('user')
 
+    if (user !== null) {
+      return user
+    }
+      
+    } catch(e) {
+      return 0;
+      // read error
+    }
+  
+    console.log('Done.')
+  
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.data.user=await this.getUser();
+
     const { receiverOfCallbackForDataRetrieval } = this.props;
     receiverOfCallbackForDataRetrieval(this.getData);
   }
@@ -63,46 +84,46 @@ class FormWizardPage extends React.PureComponent {
 
 
   dummy = (component, row = {}) => {
-     if (component.hasOwnProperty("calculateValue")) {
-       var component = component;
-       var rowData = this.data;
-       var key = component.key;
-       var calculateValue = component.calculateValue;
-       const show2 = evaluate(
-         calculateValue,
-         {
-           value: undefined,
-           data: rowData,
-           row: rowData,
-           util: this,
-           component
-         },
-         "value"
-       );
-     // var show2= checkCalculated(component, this.data, rowData); 
+    if (component.hasOwnProperty("calculateValue")) {
+      var component = component;
+      var rowData = this.data;
+      var key = component.key;
+      var calculateValue = component.calculateValue;
+      const show2 = evaluate(
+        calculateValue,
+        {
+          value: undefined,
+          data: rowData,
+          row: rowData,
+          util: this,
+          component
+        },
+        "value"
+      );
+      // var show2= checkCalculated(component, this.data, rowData); 
 
 
 
-       if (show2 != undefined) {
-         this.data[component.key] = show2;
-       }
-       const show = checkCondition(component, row, this.data);
-       if (!show) {
-         this.clearHiddenData(component);
-       }
-       this.rerender = true;
-       return show;
-     }
-     else {
-       const show = checkCondition(component, row, this.data);
-       if (!show) {
-         // Recursively delete data for all components under this component.
-         this.clearHiddenData(component);
-       }
-       this.rerender = true;
-       return show;
-     }
-   };
+      if (show2 != undefined) {
+        this.data[component.key] = show2;
+      }
+      const show = checkCondition(component, row, this.data);
+      if (!show) {
+        this.clearHiddenData(component);
+      }
+      this.rerender = true;
+      return show;
+    }
+    else {
+      const show = checkCondition(component, row, this.data);
+      if (!show) {
+        // Recursively delete data for all components under this component.
+        this.clearHiddenData(component);
+      }
+      this.rerender = true;
+      return show;
+    }
+  };
 
 
   checkCalculative = (component) => {
@@ -113,6 +134,7 @@ class FormWizardPage extends React.PureComponent {
       var key = component.key;
 
       var calculateValue = component.calculateValue;
+      
       const show = evaluate(
         calculateValue,
         {
@@ -124,22 +146,70 @@ class FormWizardPage extends React.PureComponent {
         },
         "value"
       );
-      
-    //  var show= checkCalculated(component, this.data, rowData); 
 
-      
+      //  var show= checkCalculated(component, this.data, rowData); 
+
+
       this.data[key] = show;
       this.data[key] = show;
       this.rerender = true;
-      return this.data;   
+      return this.data;
     }
     return true;
   }
 
-  dummyThatSaysFalse = () => false;
+  dummyThatSaysFalse = (component) => {
+
+
+      if (component.hasOwnProperty("logic")) {
+        if(component.logic.length!=0){
+          alert("hhhhhhhhhhs");
+
+          var component = component;
+          var rowData = this.data;
+          var key = component.key;
+          var  logic=component.logic[0].trigger.javascript;
+  
+          console.log("============================================");
+          console.log("============================================");
+          console.log("============================================");
+  console.log("componentkety"+component.key);
+          var calculateValue = logic;
+         
+          var componentDisable= component.disabled;
+          const user={'id':'ss','name':'ssss'};
+          const logicDisable = evaluate2(
+            user,
+            calculateValue,
+            {
+              value: undefined,
+              data: rowData,
+              row: rowData,
+              component:component,
+              util: this
+              
+            },
+            "value"
+          );
+          if(componentDisable==true || logicDisable==true){
+            console.log("true aayo");
+            return true;
+          }
+          else{
+            console.log("false aayo");
+            return false;
+          }
+        }
+      
+      }
+      
+      return false;
+    
+  
+  };
 
   externalChange = (component, context) => {
-  
+
     // TODO: make saga to save validated submission data
     console.groupCollapsed('Evoking external change');
     console.groupEnd();
@@ -226,20 +296,20 @@ class FormWizardPage extends React.PureComponent {
     return allIsValid;
   };
 
- findPath=(a, obj)=> {
+  findPath = (a, obj) => {
     function iter(o, p) {
-        return Object.keys(o).some(function (k) {
-            result = p.concat(Array.isArray(o) ? +k : k);
-            return o[k] === a || o[k] && typeof o[k] === 'object' && iter(o[k], result);
-        });
+      return Object.keys(o).some(function (k) {
+        result = p.concat(Array.isArray(o) ? +k : k);
+        return o[k] === a || o[k] && typeof o[k] === 'object' && iter(o[k], result);
+      });
     }
     var result;
     return iter(obj, []) && result || undefined;
-}
+  }
 
 
   onChange = (component, context = {}) => {
-    console.log("this.data"+JSON.stringify(this.data));
+    console.log("this.data" + JSON.stringify(this.data));
     const { isPristine } = this.state;
     const cardId = this.props.cardSelected.datagridreducer;
     const currentComponent = component.props.component;
@@ -247,7 +317,7 @@ class FormWizardPage extends React.PureComponent {
       var component = component;
       var rowData = this.data;
       var key = component.key;
-      console.log("b"+JSON.stringify(key));
+      console.log("b" + JSON.stringify(key));
       var calculateValue = component.calculateValue;
 
       const show2 = evaluate(
@@ -262,7 +332,7 @@ class FormWizardPage extends React.PureComponent {
         "value"
       );
 
-     // var show2= checkCalculated(component, this.data, rowData); 
+      // var show2= checkCalculated(component, this.data, rowData); 
 
       if (show2 != undefined) {
         this.data[component.key] = show2;
@@ -275,33 +345,33 @@ class FormWizardPage extends React.PureComponent {
       const currentkey = component.props.component.key;
       const parentkey = currentComponent.datagridItem;
       var currentArray = this.data[parentkey];
-      const datagridSchema=this.props.datagridSchema;
-      datagridSchema.map((val,index)=>{
-        if(val.key==parentkey){
-          if(val.parent_key.length==0){
-            if ( this.data[parentkey] &&  this.data[parentkey].length > 0) {
+      const datagridSchema = this.props.datagridSchema;
+      datagridSchema.map((val, index) => {
+        if (val.key == parentkey) {
+          if (val.parent_key.length == 0) {
+            if (this.data[parentkey] && this.data[parentkey].length > 0) {
               this.data[parentkey].map((val, index) => {
                 var newindex = 0;
-                if (cardId == val.id) {      
+                if (cardId == val.id) {
                   this.data[parentkey][index][currentkey] = component.state.value.item;
                 }
               })
             }
           }
 
-          else if(val.parent_key.length==1){
-            var grandParent=val.parent_key[0];
-              var mainDatagrid=this.data[grandParent][0][parentkey];
-              this.data[grandParent].map((val, index) => {
-                if(val[parentkey]){
-                  this.data[grandParent][index][parentkey].map((val2, index2) => {
-                    if(val2.id==cardId){
-                      this.data[grandParent][index][parentkey][index2][currentkey] = component.state.value.item;
-                    }
-                  });
-                }
-              });
-            }         
+          else if (val.parent_key.length == 1) {
+            var grandParent = val.parent_key[0];
+            var mainDatagrid = this.data[grandParent][0][parentkey];
+            this.data[grandParent].map((val, index) => {
+              if (val[parentkey]) {
+                this.data[grandParent][index][parentkey].map((val2, index2) => {
+                  if (val2.id == cardId) {
+                    this.data[grandParent][index][parentkey][index2][currentkey] = component.state.value.item;
+                  }
+                });
+              }
+            });
+          }
         }
       })
     } else {
@@ -314,7 +384,7 @@ class FormWizardPage extends React.PureComponent {
       } else if (component.state.value === null) {
         alert(component.props.component.key);
         delete this.data[component.props.component.key];
-      } else {    
+      } else {
         this.data[component.props.component.key] = component.state.value.item;
       }
       // context.container.state.value
@@ -330,10 +400,10 @@ class FormWizardPage extends React.PureComponent {
       });
     }
     //alert(this.props.checkform);
-    if(this.props.checkform=='wizard'){
-      if(this.props.currentPage.key){
+    if (this.props.checkform == 'wizard') {
+      if (this.props.currentPage.key) {
         this.props.updateSubmissionDataAllPagesLocally(this.props.currentPage.key, this.data);
-      }   
+      }
     }
 
     this.props.updateSubmissionDataAllPagesLocally('__root', this.data);
@@ -345,10 +415,10 @@ class FormWizardPage extends React.PureComponent {
 
   render() {
     const {
-      currentPageComponents, currentPageSubmissionData, options, onElementRender,formId
+      currentPageComponents, currentPageSubmissionData, options, onElementRender, formId
     } = this.props;
     const { isSubmitting, isValid, isPristine } = this.state;
-    const staticdata=  [
+    const staticdata = [
       {
         "title": "Informasi Umum",
         "label": "General Info",
@@ -5066,42 +5136,43 @@ class FormWizardPage extends React.PureComponent {
         },
         "collapsible": false
       }];
+
     return (
-      <View style={{backgroundColor:'#f1f2f3'}}>
-      <KeyboardAwareScrollView>
-   
-        <FormioComponentsList
-       //  components={formId=='hqlhW0T1oyJyICDXzHZu'?staticdata:currentPageComponents}   
-       components={currentPageComponents}             
-         values={currentPageSubmissionData}
-        data={this.data}
+      <View style={{ backgroundColor: '#f1f2f3' }}>
+        <KeyboardAwareScrollView>
+
+          <FormioComponentsList
+            //  components={formId=='hqlhW0T1oyJyICDXzHZu'?staticdata:currentPageComponents}   
+            components={currentPageComponents}
+            values={currentPageSubmissionData}
+            data={this.data}
 
 
-       
-          options={options} // Used in Value component, there's something about initial values (Value.js:36)
-          attachToForm={this.attachToForm} // Register newly rendered input in inputs[]
-          detachFromForm={this.detachFromForm} // Unregister input
-          isSubmitting={isSubmitting} // Needed to deactivate submit button when it pressed and request is sent
-          isFormValid={isValid}
-          // Evoked when element renders. It's possible to modify element and return it back
-          onElementRender={onElementRender}
-          onChange={this.onChange} // Evoked when user modifies some data in form
-          theme={theme}
-          colors={{ ...colors }}
-          formio={this.formio} // Didn't find any usages of thi
-          // This section is used for handling actions of different buttons
-          onSubmit={this.onSubmit}
-          onSave={this.onSave}
-          onEvent={this.onEvent}
-          resetForm={this.resetForm}
-          showAlert={this.showAlert}
-          // Takes a function that gets component, checks whether it's disabled and returns bool
-          isDisabled={this.dummyThatSaysFalse}
-          checkCalculative={this.checkCalculative}
-          checkConditional={this.dummy} // Something for hidden components and data removal
-          formPristine={isPristine}
-        />
-      </KeyboardAwareScrollView>
+
+            options={options} // Used in Value component, there's something about initial values (Value.js:36)
+            attachToForm={this.attachToForm} // Register newly rendered input in inputs[]
+            detachFromForm={this.detachFromForm} // Unregister input
+            isSubmitting={isSubmitting} // Needed to deactivate submit button when it pressed and request is sent
+            isFormValid={isValid}
+            // Evoked when element renders. It's possible to modify element and return it back
+            onElementRender={onElementRender}
+            onChange={this.onChange} // Evoked when user modifies some data in form
+            theme={theme}
+            colors={{ ...colors }}
+            formio={this.formio} // Didn't find any usages of thi
+            // This section is used for handling actions of different buttons
+            onSubmit={this.onSubmit}
+            onSave={this.onSave}
+            onEvent={this.onEvent}
+            resetForm={this.resetForm}
+            showAlert={this.showAlert}
+            // Takes a function that gets component, checks whether it's disabled and returns bool
+            isDisabled={this.dummyThatSaysFalse}
+            checkCalculative={this.checkCalculative}
+            checkConditional={this.dummy} // Something for hidden components and data removal
+            formPristine={isPristine}
+          />
+        </KeyboardAwareScrollView>
       </View>
     );
   }
@@ -5134,9 +5205,9 @@ const mapStateToProps = (state) => {
   let currentPageComponents = null;
   let currentPageSubmissionData = null;
   let cardSelected = state;
-  let datagridSchema=state.form.datagrid;
-let allsubmission=state.submission;
-//console.log("sttate"+JSON.stringify(state));
+  let datagridSchema = state.form.datagrid;
+  let allsubmission = state.submission;
+  //console.log("sttate"+JSON.stringify(state));
   const checkform = state.form && state.form.form && state.form.form.display;
 
 
@@ -5146,17 +5217,19 @@ let allsubmission=state.submission;
       var pageNo = state.wizard.currentPage;
       var mycomponents = state.form.form.components;
       var mycurrentPageComponents = null;
+   
       currentPageComponents = state.form.form.components[state.wizard.currentPage].components;
+      currentPageComponents.user={'id':'111',name:'ssss'};
       //hqlhW0T1oyJyICDXzHZu
-  var formId=state.form.form._id;
+      var formId = state.form.form._id;
 
       if (state.submission.rawSubmission) {
         console.log("************************************************");
         console.log("************************************************");
         console.log("************************************************");
-       currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
+        currentPageSubmissionData = state.submission.rawSubmission.data[currentPage.key];
         //this.data=currentPageSubmissionData;
-console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
+        console.log("currentsubmiss" + JSON.stringify(currentPageSubmissionData));
         console.log("************************************************");
         console.log("************************************************");
         console.log("************************************************");
@@ -5165,12 +5238,12 @@ console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
     }
     else {
       currentPageComponents = state.form.form.components;
-  currentPageSubmissionData = state.submission.rawSubmission.data.__root;
-    
+      currentPageSubmissionData = state.submission.rawSubmission.data.__root;
+
       //console.log(JSON.stringify("SIMPLE"+JSON.stringify(state.form)));
       //alert(JSON.stringify("SIMPLE"+JSON.stringify(state.form)));
-     // currentPageSubmissionData = state.submission.rawSubmission.data.__root;
-   
+      // currentPageSubmissionData = state.submission.rawSubmission.data.__root;
+
       //alert('data'+JSON.stringify(state.submission.rawSubmission.data.__root));
     }
   }
@@ -5192,8 +5265,8 @@ console.log("currentsubmiss"+JSON.stringify(currentPageSubmissionData));
     cardSelected,
     datagridSchema,
     allsubmission,
-    sub:state.submission,
-    resource:state.resourcereducer,
+    sub: state.submission,
+    resource: state.resourcereducer,
     currentPage,
     checkform
   };

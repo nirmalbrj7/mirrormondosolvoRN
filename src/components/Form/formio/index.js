@@ -1,7 +1,7 @@
 import {EventEmitter2 as EventEmitter} from 'eventemitter2';
 import clone from 'lodash/clone';
 import * as providers from './providers';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 const buffer = require('buffer').Buffer;
 const isBoolean = (val) => typeof val === typeof true;
 const isNil = (val) => val === null || val === undefined;

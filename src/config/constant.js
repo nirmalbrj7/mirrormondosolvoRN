@@ -1,4 +1,4 @@
-export const AppVersion = '0.0.2';
+export const AppVersion = '0.0.3';
 export const AppName = 'BC Forms';
 
 

@@ -26,6 +26,8 @@ global.db = SQLite.openDatabase(
     console.log("ERROR: " + error);
   }
 );
+
+
 const App: () => React$Node = () => {
   return (
 

@@ -17,6 +17,8 @@ export default class Password extends InputComponent {
     } = this.props;
     const fieldValue = typeof value === 'object' ? value.item : value;
     index = index || 0;
+    const disable=this.props.readOnly==true?true:false;
+
     return (
       <Input
         key={index}
@@ -35,7 +37,9 @@ export default class Password extends InputComponent {
         containerStyle={styles.inputSingleLineContainer}
         inputContainerStyle={styles.inputSingleLineInputContainer}
         autoCorrect
-        disabled={readOnly}
+        disabled={disable}
+        disabledInputStyle={{backgroundColor:'lightgray'}}
+
         placeholder={component.placeholder}
         secureTextEntry
         onChange={this.onChange}

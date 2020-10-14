@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet,Text} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { Input } from 'react-native-elements';
 import Location from '../location';
@@ -13,8 +13,9 @@ export default class Number extends InputComponent {
     super(props);
   }
   getSingleElement(value, index, error) {
+  
     const { component: { tags = [] } } = this.props;
-    
+
     if (tags.includes(LOCATION_KEY)) {
       return <Location value={value} onChangeValue={this.onChange} />;
     }
@@ -40,9 +41,11 @@ export default class Number extends InputComponent {
     const item = typeof value === 'string' ? value : value.item;
     const { component, name, readOnly } = this.props;
     const mask = component.inputMask || '';
-    const disable=this.props.component.disabled==true?false:true;
+    const disable=this.props.readOnly==true?true:false;
+
     const properties = {
-      disabled:true,
+      //disabled:true,
+      
       //type: component.inputType !== 'number' ? component.inputType : 'text',
       type:'number',
       key: index,
@@ -52,7 +55,7 @@ export default class Number extends InputComponent {
       shake: true,
       defaultValue: item,
       value: item,
-      editable: disable,
+    
       placeholder: component.placeholder,
       placeholderTextColor: this.props.theme.Input.placeholderTextColor,
       onChangeText: this.onChangeInput,
@@ -61,7 +64,10 @@ export default class Number extends InputComponent {
     };
 
     return (
+
       <Input
+        disabled={disable}
+        disabledInputStyle={{backgroundColor:'lightgray'}}
         inputStyle={[
           styles.inputSingleLine,
           {
@@ -75,6 +81,7 @@ export default class Number extends InputComponent {
 
         {...properties}
       />
+   
     );
   }
 }
