@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "876289097091",
+    "firebase_url": "https://mondasolvo.firebaseio.com",
+    "project_id": "mondasolvo",
+    "storage_bucket": "mondasolvo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876289097091:android:ea19e1ff88a63ae0670ab6",
+        "android_client_info": {
+          "package_name": "com.bcforms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876289097091-mcsms5fi73cnutmm9j9tmh4tbemp50v7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7zjirXowI6ZNReKJjx-sfMWAQdFRPwPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "876289097091-mcsms5fi73cnutmm9j9tmh4tbemp50v7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

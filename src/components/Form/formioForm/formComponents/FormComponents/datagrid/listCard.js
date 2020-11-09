@@ -1,0 +1,156 @@
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { View, Text, Button, FlatList, StyleSheet,TouchableOpacity } from 'react-native';
+import { Avatar, Card, Title, Paragraph, IconButton } from 'react-native-paper';
+
+import { FormioComponents } from './../../../factories/FormioComponents';
+import Textarea from '../textarea/Textarea';
+import { Icon } from 'react-native-elements';
+import RemoveCard from './removeCard';
+export const listCard = (props) => {
+  const dispatch = useDispatch();
+  const newstate = props.newstate;
+  const ourcomponent = props.ourcomponent;
+  const listcomponent = props.listcomponent;
+  const parentKey = props.parentKey;
+  //dispatch({ type: 'select_card',payload:initdata});
+
+  const currentCard = useSelector(state => {
+    //console.log("STATE" + JSON.stringify(state.datagridreducer))
+    return state.datagridreducer;
+  });
+
+
+  const myCallback = () => {
+    console.log('callback aayo');
+  };
+  const isEmpty = (obj) => {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key))
+        return false;
+    }
+    return true;
+  }
+
+  //currentPageSubmissionData
+  const mycomp = props.listcomponent;
+  var mycompLengthmycompLength = Object.keys(mycomp).length === 0;
+  //console.log('AAAA' + mycompLengthmycompLength);
+
+  var myObj = {}; // Empty Object
+  if (isEmpty(newstate)) {
+    console.log('empty 6');
+    // Object is empty (Would return true in this example)
+  } else {
+    if (newstate) {
+      const cardData = newstate;
+      //const removeprops
+      var result = cardData.filter(value => JSON.stringify(value) !== '[]');
+      return (<View>
+
+
+
+        <FlatList
+          data={result}
+          renderItem={({ item, datagridIndex }) => (
+            <View style={{ marginLeft: 0 }}>
+              <TouchableOpacity
+                onPress={(event) => { dispatch({ type: 'select_card', payload: item.id }) }}
+                >
+                  <View style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}>
+                    <View >
+                    <Icon
+                  raised
+                  name='close'
+                  type='font-awesome'
+                  color='#f50'
+                  style={currentCard != item.id ? { backgroundColor: 'gray' } : {}}
+                  onPress={(event) => { props.action(item.id) }} />
+                    </View>
+
+                  {ourcomponent.map((component, index) => {
+                component.datagridItem = parentKey;
+                component.datagridIndex = datagridIndex;
+                component.datagridId = item.id;
+                const key = component.key || component.type + index;
+
+                const value = (item.hasOwnProperty(key) ? item[key] : listcomponent.values && listcomponent.values.hasOwnProperty(component.key)
+                  ? mycomp.values[component.key]
+                  : null);
+
+
+                const FormioElement = FormioComponents.getComponent(component.type);
+                if (!FormioElement) return null;
+                if (mycomp.checkConditional(component, listcomponent.row)) {
+                  return (
+
+                    <FormioElement
+                      {...listcomponent}
+                      readOnly={listcomponent.isDisabled(component)}
+                      name={component.key}
+                      key={key}
+                      component={component}
+                      value={value}
+                      dgId={item.id}
+                    //callbackau6={myCallback}
+
+                    />
+
+
+                  )
+
+                }
+                return null;
+              })
+
+
+              }
+
+                  </View>
+
+                </TouchableOpacity>
+
+
+          
+
+            </View>
+
+          )}
+          keyExtractor={item => item.id}
+        />
+
+
+
+
+
+      </View>);
+    }
+    else {
+      return (<View><Text>item 6aina{JSON.stringify(newstate.value)}</Text></View>)
+    }
+
+  }
+
+  return (<View></View>);
+
+
+
+}
+export default listCard;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 5,
+  },
+  item: {
+    //  backgroundColor: '#f9c2ff',
+    paddingVertical: 5,
+
+    marginVertical: 8,
+    paddingHorizontal: 0,
+    marginHorizontal: 0,
+  },
+  title: {
+    fontSize: 32,
+  },
+});

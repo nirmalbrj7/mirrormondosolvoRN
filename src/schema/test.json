@@ -1,0 +1,103 @@
+{
+	"display": "form",
+	"name": "moni",
+	"title": "moni",
+	"_id": "pSy9Gv6nUnWCPjIHIo1X",
+	"components": [{
+		"label": "Geo Location",
+		"tableView": false,
+		"key": "geoLocation",
+		"type": "geolocation",
+		"input": true
+	}, {
+		"label": "First Name",
+		"tableView": true,
+		"key": "firstName",
+		"type": "textfield",
+		"input": true
+	}, {
+		"label": "Image",
+		"tableView": false,
+		"storage": "url",
+		"image": true,
+		"webcam": false,
+		"fileTypes": [{
+			"label": "",
+			"value": ""
+		}],
+		"key": "image",
+		"type": "file",
+		"url": "https:\/\/web.mondasolvo.net\/api\/fileUpload",
+		"input": true
+	}, {
+		"label": "Number1",
+		"mask": false,
+		"spellcheck": true,
+		"tableView": false,
+		"delimiter": false,
+		"requireDecimal": false,
+		"inputFormat": "plain",
+		"key": "number1",
+		"type": "number",
+		"input": true
+	}, {
+		"label": "Number2",
+		"mask": false,
+		"spellcheck": true,
+		"tableView": false,
+		"delimiter": false,
+		"requireDecimal": false,
+		"inputFormat": "plain",
+		"key": "number2",
+		"type": "number",
+		"input": true
+	}, {
+		"label": "NumberOutput",
+		"mask": false,
+		"spellcheck": true,
+		"tableView": false,
+		"delimiter": false,
+		"requireDecimal": false,
+		"inputFormat": "plain",
+		"calculateValue": "value = data.number1 + data.number2\nconsole.log(value);\ninstance.setValue(value);",
+		"key": "numberOutput",
+		"type": "number",
+		"input": true
+	}, {
+		"label": "Time",
+		"widget": "choicesjs",
+		"tableView": true,
+		"data": {
+			"values": [{
+				"label": "9:00",
+				"value": "900"
+			}]
+		},
+		"selectThreshold": 0.3,
+		"key": "time",
+		"type": "select",
+		"indexeddb": {
+			"filter": []
+		},
+		"input": true
+	}, {
+		"label": "Last Name",
+		"tableView": true,
+		"redrawOn": "firstName",
+		"key": "lastName",
+		"conditional": {
+			"show": true,
+			"when": "firstName",
+			"eq": "Nirmal"
+		},
+		"type": "textfield",
+		"input": true
+	}, {
+		"type": "button",
+		"label": "Submit",
+		"key": "submit",
+		"disableOnInvalid": true,
+		"input": true,
+		"tableView": false
+	}]
+}
