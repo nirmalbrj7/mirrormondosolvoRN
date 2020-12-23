@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "542153832393",
+    "firebase_url": "https://formbuilder-e5062.firebaseio.com",
+    "project_id": "formbuilder-e5062",
+    "storage_bucket": "formbuilder-e5062.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542153832393:android:587bc7a5a6f0780df39a18",
+        "android_client_info": {
+          "package_name": "com.bcforms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542153832393-nvr22hfok002or3ll7vspeu84teo74qr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFZ1hYlZkAAQT2s0ja94YHNuHGXxcE-2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542153832393-nvr22hfok002or3ll7vspeu84teo74qr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
